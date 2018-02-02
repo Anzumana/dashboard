@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "create-react-class": "^15.6.3",
     "husky": "^0.14.3",
     "react": "^16.2.0",
     "react-arcgis": "^3.1.1",
-    "react-dazzle": "^1.2.7",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-leaflet": "^1.8.0",
+    "react-leaflet-heatmap-layer": "^1.0.3",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "semantic-ui-react": "^0.77.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,10 +20,15 @@
     "test": "react-scripts test --env=jsdom && jest && pull-request-status",
     "eject": "react-scripts eject",
     "prepush": "npm run test && pull-request-status",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build"
   },
   "devDependencies": {
     "@projektionisten/pull-request-status": "^1.0.5",
+    "react-styleguidist": "^6.2.2",
+    "rechart": "0.0.1",
+    "recharts": "^1.0.0-beta.10",
     "validate-commit-msg": "^2.14.0"
   }
 }
