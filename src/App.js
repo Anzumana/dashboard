@@ -13,6 +13,7 @@ import "react-sweet-progress/lib/style.css";
 import { Statistic } from 'semantic-ui-react'
 import {getTodo} from './lib/service'
 import SideOverlay from './components/SideOverlay.js'
+import D4UMMAP from './D4UMMAP.js'
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
@@ -204,10 +205,15 @@ class  Home extends Component {
 class App extends Component {
 	constructor(){
 		super();
+		this.state = { 
+			visible: false 
+		}
+		//this.toggleVisiblity = this.toggleVisiblity.bind(this);
 	}
-	state = { visible: false }
-	toggleVisibility = () => this.setState({ visible: !this.state.visible })
-
+	toggleVisibility() {
+		console.log(this.state);
+		//this.setState({ visible: !this.state.visible })
+	}
 
 	render() {
 		const { visible } = this.state
@@ -249,7 +255,7 @@ class App extends Component {
 							<Sidebar.Pusher>
 								<Segment basic>
 									<Route exact path="/" component={SideOverlay}/>
-									<Route exact path="/" component={Test}/>
+									<Route exact path="/" component={D4UMMAP}/>
 									<Route exact path="/" component={Home}/>
 									<Route path="/about" component={About}/>
 									<Route path="/bubbleChart" component={BubbleChart}/>
