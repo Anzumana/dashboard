@@ -1,0 +1,3 @@
+[submodule "mapbox"]
+	path = mapbox
+	url = https://taal@bitbucket.projektionisten.de/scm/d4um/mapbox.git
