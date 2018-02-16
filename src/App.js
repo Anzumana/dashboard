@@ -30,9 +30,12 @@ const Home = ()=>
 
 
 class App extends Component {
-  state = { visible: false }
+	constructor(){
+		super();
+	}
+		state = { visible: false }
+		toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
 			const { visible } = this.state
