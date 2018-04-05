@@ -53,14 +53,14 @@ class BadgesStatistic extends React.Component {
 				</Statistic>
 				<Statistic color='blue' inverted>
 					<Statistic.Value>1'</Statistic.Value>
-					<Statistic.Label>FeedbnackHero</Statistic.Label>
+					<Statistic.Label>FeedbackHero</Statistic.Label>
 				</Statistic>
 				<Statistic color='violet' inverted>
 					<Statistic.Value>22</Statistic.Value>
 					<Statistic.Label>Timetraveler</Statistic.Label>
 				</Statistic>
 				<Statistic color='purple' inverted>
-					<Statistic.Value>23</Statistic.Value>
+					<Statistic.Value>25</Statistic.Value>
 					<Statistic.Label>purple</Statistic.Label>
 				</Statistic>
 				<Statistic color='pink' inverted>
