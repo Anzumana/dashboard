@@ -2,6 +2,7 @@ node_modules/
 ./.tern-project.js
 .tern-project.js
 .babelrc
+src/index.css
 
 # Cordova
 platforms/
