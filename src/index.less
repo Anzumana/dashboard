@@ -4,7 +4,7 @@
 		color:pink;
 	}
 .pusher {
-	background: white;
+	.bg-dark-blue();
 }
 }
 .Greeting{
@@ -21,4 +21,45 @@
 	max-height:200px;
 	align-items:center;
 	/*color:black;*/
+}
+.SideOverlay{
+	.flex();
+	.flex-column();
+	backdrop-filter: blur(2px);
+	background-color: rgba(255, 255, 255, 0.2);
+	font-size:12px;
+	width:20vw;
+
+	&__close{
+		.self-end();
+		color:#4a4a4a;
+		.f3();
+		.pr2();
+		.mr2();
+		.mt2();
+	}
+	&__description{
+		.ml2();
+		.mt2();
+		.self-center();
+		.serif();
+	}
+	&__title{
+		.self-start();
+		.f4();
+		.ml2();
+	}
+	&__type{
+		.self-start();
+		.ml2();
+		.f5();
+	}
+	&__time{
+		.self-start();
+		.ml2();
+	}
+	&__date{
+		.self-start();
+		.ml2();
+	}
 }

@@ -8,10 +8,11 @@ import SimpleTreemap from './components/SimpleTreemap'
 import MakeMap from './components/Map.js'
 import myScene  from './components/Scene'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header , Dropdown} from 'semantic-ui-react'
-import { Circle } from 'rc-progress'
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
 import { Statistic } from 'semantic-ui-react'
+import {getTodo} from './lib/service'
+import SideOverlay from './components/SideOverlay.js'
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
@@ -76,6 +77,31 @@ class BadgesStatistic extends React.Component {
 					<Statistic.Label>grey</Statistic.Label>
 				</Statistic>
 			</Segment>
+		)
+	}
+}
+class Test extends React.Component {
+	constructor(){
+		super();
+		this.state={ val:0,
+		d:['sdfsdf','sdfsdf']};
+	}
+	componentWillMount(){
+		console.log('component will mount');
+		this.setState({m:2});
+		getTodo().then((res)=> this.setState({d:res}));
+
+	}	
+	componentDidMount(){
+	console.log('component did mount');
+	}
+	render(){
+		return (
+			<div>
+			some sample text
+			{Object.entries(this.state.d).map((item) => <h4> {item} sdfsdf </h4> )}
+				html
+			</div>
 		)
 	}
 }
@@ -192,7 +218,7 @@ class App extends Component {
 						<Button onClick={this.toggleVisibility}>
 							<Icon name='align justify' size="large" />
 						</Button>
-						<Sidebar.Pushable as={Segment}>
+							<Sidebar.Pushable as={Segment}>
 							<Sidebar as={Menu} animation='overlay' direction='left' visible={visible} icon='labeled'  vertical inverted>
 								<Menu.Item name='home'>
 									<Icon name='cube' />
@@ -222,6 +248,8 @@ class App extends Component {
 							</Sidebar>
 							<Sidebar.Pusher>
 								<Segment basic>
+									<Route exact path="/" component={SideOverlay}/>
+									<Route exact path="/" component={Test}/>
 									<Route exact path="/" component={Home}/>
 									<Route path="/about" component={About}/>
 									<Route path="/bubbleChart" component={BubbleChart}/>
