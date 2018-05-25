@@ -11,9 +11,10 @@ import { Sidebar, Segment, Button, Menu, Image, Icon, Header , Dropdown} from 's
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
 import { Statistic } from 'semantic-ui-react'
-import {getTodo} from './lib/service'
+import {getTodo, fetchResults} from './lib/service'
 import SideOverlay from './components/SideOverlay.js'
 import D4UMMAP from './D4UMMAP.js'
+import Scatterplot from './components/Scatterplot.js'
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
@@ -91,14 +92,19 @@ class Test extends React.Component {
 		console.log('component will mount');
 		this.setState({m:2});
 		getTodo().then((res)=> this.setState({d:res}));
+		this.fetchTest= this.fetchTest.bind(this);
 
 	}	
 	componentDidMount(){
 	console.log('component did mount');
 	}
+	fetchTest(){
+		fetchResults().then(()=> console.log('did fetch some results'));
+	}
 	render(){
 		return (
 			<div>
+			<button onClick={this.fetchTest}>some text on my button </button>
 			some sample text
 			{Object.entries(this.state.d).map((item) => <h4> {item} sdfsdf </h4> )}
 				html
@@ -136,15 +142,49 @@ class Greeting extends React.Component {
 		)
 	}
 }
+class SelectCity extends Component {
+	constructor(){
+		super();
+		this.state = {
+			city:'----',
+			cities : [
+				{
+					 text: 'Hannover',
+					 value: 'hannover',
+				},
+				{
+					 text: 'Wolfsburg',
+					 value: 'wolfsburg',
+				},
+				{
+					 text: 'Braunschweig',
+					 value: 'braunschweig',
+				}
+			]
+		}
+		this.switchCity= this.switchCity.bind(this);
+	}
+	switchCity(event,data){
+		console.log(data.value);
+		this.setState({city:data.value});
+		//fetch api for selected region 
+	}
+	render(){
+		return (
+			<div className="SelectCity">
+				<Dropdown placeholder='Select City'onChange={this.switchCity} fluid selection options={this.state.cities} />
+			</div>
+		)
+	}
+}
 
 class  Home extends Component {
 	constructor(){
 		super();
 		this.state = {
 			currentEvent : '----',
-			city:'----',
 			value: 23,
-			 friendOptions : [
+			 cities : [
 				 {
 					 text: 'Hannover',
 					 value: 'hannover',
@@ -177,15 +217,13 @@ class  Home extends Component {
 		this.setState({city:data.value});
 		//fetch api for selected region 
 	}
-					//<div id="guage" onKeyDown={this.update}> 
-					//</div>
-					//<h1> {this.state.currentEvent}</h1>
 	render() {
 		return (
-			<div onClick= {this.test} >
+			<div>
+			<Test/>
 			<Greeting/>
 			<div> {this.state.city}</div>
-				<Dropdown placeholder='Select City'onChange={this.switchCity} fluid selection options={this.state.friendOptions} />
+				<Dropdown  placeholder='Select City'onChange={this.switchCity} fluid selection options={this.state.cities} />
 				<BadgesStatistic/>
 					<Guage value={this.state.value} maxValue= "100"/>
 					<Guage value="61" maxValue= "100"/>
@@ -208,15 +246,15 @@ class App extends Component {
 		this.state = { 
 			visible: false 
 		}
-		//this.toggleVisiblity = this.toggleVisiblity.bind(this);
+		this.toggleVisibility = this.toggleVisibility.bind(this);
 	}
 	toggleVisibility() {
-		console.log(this.state);
-		//this.setState({ visible: !this.state.visible })
+		this.setState({ visible: !this.state.visible })
 	}
 
 	render() {
 		const { visible } = this.state
+		console.log(visible);
 		return (
 			<div id="d4um-container">
 				<Router>
@@ -254,8 +292,10 @@ class App extends Component {
 							</Sidebar>
 							<Sidebar.Pusher>
 								<Segment basic>
-									<Route exact path="/" component={SideOverlay}/>
-									<Route exact path="/" component={D4UMMAP}/>
+									<Route exact path="/events" component={SelectCity}/>
+									<Route exact path="/events" component={SideOverlay}/>
+									<Route exact path="/events" component={D4UMMAP}/>
+									<Route exact path="/events" component={Scatterplot}/>
 									<Route exact path="/" component={Home}/>
 									<Route path="/about" component={About}/>
 									<Route path="/bubbleChart" component={BubbleChart}/>

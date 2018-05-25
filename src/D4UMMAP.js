@@ -13,8 +13,8 @@ class D4UMMAP extends Component {
 				latitude: 52.385932,
 				longitude: 9.739497,
 				zoom: 7,
-				width:500 ,
-				height:500,
+				width:1040 ,
+				height:618,
 				pitch: 0,
 				bearing: 0
 			},
@@ -45,8 +45,8 @@ class D4UMMAP extends Component {
 	//}
   _resize() {
     this._onViewportChange({
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: window.innerWidth-40,
+      height: window.innerHeight-200
     });
   }
   _onViewportChange(viewport) {
@@ -147,7 +147,7 @@ class D4UMMAP extends Component {
 			outline:false,
 			data: [
 				{position:[9.5,52],radius: 150 ,color:[0,128,255]},
-				{position:[9.3,52],radius: 55,color:[255,0,128] },
+				{position:[9.2,51.9],radius: 30,color:[255,0,128] },
 				{position:[9.3,52.3],radius: 55 , color:[255,0,128]},
 			],
 			radiusScale: 100

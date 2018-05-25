@@ -22,7 +22,7 @@ class SideOverlay extends React.Component {
 			<div className="SideOverlay__type">art von Event</div>
 			<div className="SideOverlay__date">12.03.2018</div>
 			<div className="SideOverlay__time"> 12:00 - 20:00 </div>
-				<p class="SideOverlay__description">
+				<p className="SideOverlay__description">
 					Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui. 
 					In malesuada enim in dolor euismod, id commodo mi consectetur. 
 					Curabitur at vestibulum nisi. Nullam vehicula nisi velit
