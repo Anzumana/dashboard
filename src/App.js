@@ -1,20 +1,25 @@
-import React, { Component } from 'react';
-import { BrowserRouter  as Router , Route , Link} from 'react-router-dom';
-import './App.css';
-import About from './components/About';
-import BubbleChart from './components/BubbleChart'
-import SimpleLineChart from './components/SimpleLineChart'
-import SimpleTreemap from './components/SimpleTreemap'
-import MakeMap from './components/Map.js'
-import myScene  from './components/Scene'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header , Dropdown} from 'semantic-ui-react'
-import { Progress } from 'react-sweet-progress';
-import "react-sweet-progress/lib/style.css";
-import { Statistic } from 'semantic-ui-react'
-import {getTodo, fetchResults} from './lib/service'
-import SideOverlay from './components/SideOverlay.js'
-import D4UMMAP from './D4UMMAP.js'
-import Scatterplot from './components/Scatterplot.js'
+// libraries
+	import React, { Component } from 'react';
+	import { BrowserRouter  as Router , Route , Link} from 'react-router-dom';
+	//Styling
+	import './App.css';
+// Services
+	import {getTodo, fetchResults} from './lib/service'
+//Component
+	import MakeMap from './components/Map.js'
+	import myScene  from './components/Scene'
+	import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+	import { Progress } from 'react-sweet-progress';
+	import "react-sweet-progress/lib/style.css";
+	import { Statistic } from 'semantic-ui-react'
+	import SideOverlay from './components/SideOverlay.js'
+	import D4UMMAP from './D4UMMAP.js'
+	import Scatterplot from './components/Scatterplot.js'
+	import SelectCity from './components/SelectCity.js'
+	import About from './components/About';
+	import BubbleChart from './components/BubbleChart'
+	import SimpleLineChart from './components/SimpleLineChart'
+	import SimpleTreemap from './components/SimpleTreemap'
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
@@ -142,41 +147,6 @@ class Greeting extends React.Component {
 		)
 	}
 }
-class SelectCity extends Component {
-	constructor(){
-		super();
-		this.state = {
-			city:'----',
-			cities : [
-				{
-					 text: 'Hannover',
-					 value: 'hannover',
-				},
-				{
-					 text: 'Wolfsburg',
-					 value: 'wolfsburg',
-				},
-				{
-					 text: 'Braunschweig',
-					 value: 'braunschweig',
-				}
-			]
-		}
-		this.switchCity= this.switchCity.bind(this);
-	}
-	switchCity(event,data){
-		console.log(data.value);
-		this.setState({city:data.value});
-		//fetch api for selected region 
-	}
-	render(){
-		return (
-			<div className="SelectCity">
-				<Dropdown placeholder='Select City'onChange={this.switchCity} fluid selection options={this.state.cities} />
-			</div>
-		)
-	}
-}
 
 class  Home extends Component {
 	constructor(){
@@ -222,8 +192,6 @@ class  Home extends Component {
 			<div>
 			<Test/>
 			<Greeting/>
-			<div> {this.state.city}</div>
-				<Dropdown  placeholder='Select City'onChange={this.switchCity} fluid selection options={this.state.cities} />
 				<BadgesStatistic/>
 					<Guage value={this.state.value} maxValue= "100"/>
 					<Guage value="61" maxValue= "100"/>
@@ -253,10 +221,18 @@ class App extends Component {
 	}
 
 	render() {
-		const { visible } = this.state
+		const { visible} = this.state
+		const { city,cities} = this.props;
 		console.log(visible);
 		return (
 			<div id="d4um-container">
+			{cities[0].location}
+			{city}
+			{this.props.city}
+			<SelectCity 
+				changeCity ={this.props.changeCity} 
+				cities= {this.props.cities} 
+			/>
 				<Router>
 					<div style={{height:  +100 +'vh'}}>
 						<Button onClick={this.toggleVisibility}>
