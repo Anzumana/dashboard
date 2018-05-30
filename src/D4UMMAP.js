@@ -9,15 +9,7 @@ class D4UMMAP extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			viewport: {
-				latitude: 52.385932,
-				longitude: 9.739497,
-				zoom: 7,
-				width:1040 ,
-				height:618,
-				pitch: 0,
-				bearing: 0
-			},
+			viewport: this.props.viewport,
 			data: [
 				{
 					sourcePosition: [9, 52], 
@@ -54,6 +46,14 @@ class D4UMMAP extends Component {
       viewport: {...this.state.viewport, ...viewport}
     });
   }
+	
+	componentWillReceiveProps(props){
+		console.log('did receive props');
+		console.log(props);
+		this.setState({
+			viewport: {...this.state.viewport , ...props.viewport}
+		});
+	}
 	update(e){
 		console.log('test');
 		var oldLng = this.state.data[0].sourcePosition[0];

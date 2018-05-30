@@ -222,7 +222,15 @@ class App extends Component {
 
 	render() {
 		const { visible} = this.state
-		const { city,cities} = this.props;
+		const { city,cities,viewport, changeViewport} = this.props; 
+ 		const createD4UMMAP = (props) => {
+      return (
+        <D4UMMAP 
+					viewport= {viewport}
+					changeViewport ={changeViewport}
+        />
+      );
+    }
 		console.log(visible);
 		return (
 			<div id="d4um-container">
@@ -232,6 +240,7 @@ class App extends Component {
 			<SelectCity 
 				changeCity ={this.props.changeCity} 
 				cities= {this.props.cities} 
+				changeViewport ={changeViewport}
 			/>
 				<Router>
 					<div style={{height:  +100 +'vh'}}>
@@ -270,7 +279,7 @@ class App extends Component {
 								<Segment basic>
 									<Route exact path="/events" component={SelectCity}/>
 									<Route exact path="/events" component={SideOverlay}/>
-									<Route exact path="/events" component={D4UMMAP}/>
+									<Route exact path="/events" render={createD4UMMAP}/>
 									<Route exact path="/events" component={Scatterplot}/>
 									<Route exact path="/" component={Home}/>
 									<Route path="/about" component={About}/>
