@@ -8,7 +8,7 @@ export const fetchResults=() =>{
 	console.log('fetchResults');
 	return fetch('https://d4umnode.hannit.de/events?location=9.59969,52.42556-9.82954,52.33702&since=2017-12-05T19:30:00&until=2017-12-05T19:30:00&type=null',{
 		header:header,
-		mode:'no-cors',
+		mode:'cors',
 		credentials:'include'
 	}).then(res=>res.json());
 }
