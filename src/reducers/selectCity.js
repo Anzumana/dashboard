@@ -4,7 +4,7 @@ const initialState = {
 		{
 			text: 'Hannover',
 			value: 'hannover',
-			location:'long:lat',
+			location:'9.548431,52.470767-9.973886,52.296619',
 			viewport:{
 				latitude: 52.376712,
 				longitude: 9.754260,
@@ -17,19 +17,19 @@ const initialState = {
 		{
 			text: 'Braunschweig',
 			value: 'braunschweig',
-			location:'long:lat',
+			location:'10.355531,52.361515-10.727006,52.152200'
 			viewport:{
 				latitude: 52.275471,
 				longitude: 10.524445,
 				zoom: 9,
 				pitch: 58.07,
 				bearing: 10.5579
-			}
+		}
 		},
 		{
 			text: 'Wolfsburg',
 			value: 'wolfsburg',
-			location:'long:lat',
+			location:'10.611414,52.489153-10.967783,52.291364'
 			viewport:{
 				latitude: 52.413830,
 				longitude: 10.773462,
