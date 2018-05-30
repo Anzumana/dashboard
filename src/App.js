@@ -104,9 +104,10 @@ class Test extends React.Component {
 	console.log('component did mount');
 	}
 	fetchTest(){
-		fetchResults().then(res=>
-			res.json())
-		.catch(error => console.error('Error:', error));
+		fetchResults().then(res=> {
+			var b = res.json().then(data => { console.log(data)});
+		})
+		.catch(error => console.log('Error:', error));
 	}
 	render(){
 		return (

@@ -10,5 +10,5 @@ export const fetchResults=() =>{
 		header:header,
 		mode:'cors',
 		credentials:'include'
-	}).then(res=>res.json());
+	});
 }
