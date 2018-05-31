@@ -211,7 +211,7 @@ class  Home extends Component {
 	}
 }
 
-class App extends Component {
+class DashboardWithSidebar extends Component {
 	constructor(){
 		super();
 		this.state = { 
@@ -225,12 +225,13 @@ class App extends Component {
 
 	render() {
 		const { visible} = this.state
-		const { city,cities,viewport, changeViewport} = this.props; 
+		const { city,cities,viewport, changeViewport, changeEventData, selectEvent} = this.props; 
  		const createD4UMMAP = (props) => {
       return (
         <D4UMMAP 
 					viewport= {viewport}
 					changeViewport ={changeViewport}
+					selectEvent = {selectEvent}
         />
       );
     }
@@ -294,6 +295,50 @@ class App extends Component {
 								</Segment>
 							</Sidebar.Pusher>
 						</Sidebar.Pushable>
+					</div>
+				</Router>
+			</div>
+			)
+	}
+}
+class App extends Component {
+	constructor(){
+		super();
+	}
+
+	render() {
+		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent} = this.props; 
+ 		const renderD4UMMAP = (props) => {
+      return (
+        <D4UMMAP 
+					viewport= {viewport}
+					changeViewport ={changeViewport}
+					events= {events}
+					changeSelectedEvent = {changeSelectedEvent}
+        />
+      );
+    }
+ 		const renderSelectCity = (props) => {
+      return (
+			<SelectCity 
+				changeCity ={changeCity} 
+				cities= {cities} 
+				changeViewport ={changeViewport}
+			/>
+      );
+    }
+		const renderSideOverlay = (props) => {
+			return (
+				<SideOverlay selectEvent={selectEvent}/>
+			);
+		}
+		return (
+			<div id="d4um-container">
+				<Router>
+					<div>
+						<Route exact path="/" render={renderSelectCity}/>
+						<Route exact path="/" render={renderSideOverlay}/>
+						<Route exact path="/" render={renderD4UMMAP}/>
 					</div>
 				</Router>
 			</div>

@@ -2,41 +2,42 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../index.css'
 
-
 class SideOverlay extends React.Component {
 	constructor(){
 		super();
 	}
 	componentWillMount(){
-		console.log("willMount");
 	}
 	componentDidMount(){
-		console.log("didMount");
+	}
+	
+	componentWillReceiveProps(props){
+		this.setState(props.selectEvent);
 	}
 	
 	render(){
-		return (
-			<div className="SideOverlay">
-			<div className="SideOverlay__close">x</div>
-			<div className="SideOverlay__title" >Event-Name</div>
-			<div className="SideOverlay__type">art von Event</div>
-			<div className="SideOverlay__date">12.03.2018</div>
-			<div className="SideOverlay__time"> 12:00 - 20:00 </div>
-				<p className="SideOverlay__description">
-					Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui. 
-					In malesuada enim in dolor euismod, id commodo mi consectetur. 
-					Curabitur at vestibulum nisi. Nullam vehicula nisi velit
-					. Mauris turpis nisl, molestie ut ipsum et
-						, suscipit vehicula odio. Vestibulum 
-						interdum vestibulum felis ac 
-						molestie. Praesent aliquet quam et 
-						libero dictum, vitae dignissim leo eleifend. 
-							In in turpis turpis. Quisque justo turpis, 
-							vestibulum non enim nec, tempor mollis mi
-							. Sed vel tristique quam.
-				</p>
-			</div>
-		)
+		console.log('render call');
+		console.log(this.state)
+		if(this.state == null){
+			return null
+		}else {
+			let time;
+			let date;
+			if(this.state.start){
+				const dateArray = this.state.start.split(' ')[0].split('-');
+				date = dateArray[2]+ '.' + dateArray[1] +'.' + dateArray[0];
+				time = this.state.start.split(' ')[1].substr(0,5);
+			}
+			return (
+				<div className="SideOverlay">
+				<div className="SideOverlay__close">x</div>
+				<div className="SideOverlay__title" >{this.state.name}</div>
+				<div className="SideOverlay__type">{this.state.place}</div>
+				<div className="SideOverlay__date">{date}</div>
+				<div className="SideOverlay__time"> {time}</div>
+				</div>
+			)
+		}
 	}
 }
 export default SideOverlay

@@ -17,25 +17,27 @@ const initialState = {
 		{
 			text: 'Braunschweig',
 			value: 'braunschweig',
-			location:'10.355531,52.361515-10.727006,52.152200'
+			location:'10.355531,52.361515-10.727006,52.152200',
 			viewport:{
 				latitude: 52.275471,
 				longitude: 10.524445,
 				zoom: 9,
 				pitch: 58.07,
-				bearing: 10.5579
+				bearing: 10.5579,
+				transitionDuration:3000
 		}
 		},
 		{
 			text: 'Wolfsburg',
 			value: 'wolfsburg',
-			location:'10.611414,52.489153-10.967783,52.291364'
+			location:'10.611414,52.489153-10.967783,52.291364',
 			viewport:{
 				latitude: 52.413830,
 				longitude: 10.773462,
 				zoom: 9,
 				pitch: 58.59013474066599,
-				bearing: -49.63659663812949
+				bearing: -49.63659663812949,
+				transitionDuration:3000
 			}
 		}
 		

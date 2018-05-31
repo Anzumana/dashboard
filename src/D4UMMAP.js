@@ -10,17 +10,6 @@ class D4UMMAP extends Component {
 		super(props);
 		this.state = {
 			viewport: this.props.viewport,
-			data: [
-				{
-					sourcePosition: [9, 52], 
-					targetPosition: [9, 53], 
-					color: [0, 128, 255]},
-				{
-					sourcePosition: [9, 52],
-				 	targetPosition: [10, 52], 
-					color: [255, 0, 128]
-				}
-			]
 		};
 		this.update = this.update.bind(this);
 		this.test.bind(this);
@@ -30,7 +19,6 @@ class D4UMMAP extends Component {
     window.addEventListener('resize', this._resize.bind(this));
     this._resize();
 		var intervalId = setInterval(this.update, 500);
-		console.log(this.props);
 	}
 	//componentWillUnmount(){
 		//clearInterval(this.state.intervalId);
@@ -45,32 +33,44 @@ class D4UMMAP extends Component {
     this.setState({
       viewport: {...this.state.viewport, ...viewport}
     });
+		this.props.changeViewport(viewport);
+
   }
 	
 	componentWillReceiveProps(props){
-		console.log('did receive props');
 		console.log(props);
 		this.setState({
 			viewport: {...this.state.viewport , ...props.viewport}
 		});
+		var myData = 	[ 
+				{coordinates: [ 9,52] , icon: 'test', size: 60, color: [125,219,37]}
+			]
+			console.log(props.events);
+			//let filteredEvents = props.events.filter( event => event.start < props.until && event.start > props.since)
+			//this.setState({
+				//data:filteredEvents
+			//})
+			this.setState({
+				data:props.events
+			})
 	}
 	update(e){
-		console.log('test');
-		var oldLng = this.state.data[0].sourcePosition[0];
-		var newValue = this.state.data[0].sourcePosition[0] = oldLng + 0.1;
-		this.setState({
-			data: [
-				{
-					sourcePosition: [newValue, 52], 
-					targetPosition: [9, 53], 
-					color: [255, 128, 255]},
-				{
-					sourcePosition: [9, 52],
-				 	targetPosition: [10, 52], 
-					color: [255, 0, 128]
-				}
-			] 
-		});
+		//console.log('test');
+		//var oldLng = this.state.data[0].sourcePosition[0];
+		//var newValue = this.state.data[0].sourcePosition[0] = oldLng + 0.1;
+		//this.setState({
+			//data: [
+				//{
+					//sourcePosition: [newValue, 52], 
+					//targetPosition: [9, 53], 
+					//color: [255, 128, 255]},
+				//{
+					//sourcePosition: [9, 52],
+					 //targetPosition: [10, 52], 
+					//color: [255, 0, 128]
+				//}
+			//] 
+		//});
 	}
 	test(e){
 		console.log('ttt');
@@ -80,24 +80,43 @@ class D4UMMAP extends Component {
 	}
   render() {
     const {viewport} = this.state;
-		var data = [
-			{sourcePosition: [9, 52], targetPosition: [9, 53], color: [0, 128, 255]},
-			{sourcePosition: [9, 52], targetPosition: [10, 52], color: [255, 0, 128]}
-    ];
-		const lineLayer = new LineLayer({
-			id: 'line-layer',
-			data: this.state.data,
-			strokeWidth: 5,
-			fp64: false,
-			getSourcePosition: d => d.sourcePosition,
-			getTargetPosition: d => d.targetPosition
-		});
-		var myData = 	[ 
-				{coordinates: [ 9,52] , icon: 'test', size: 60, color: [125,219,37]}
-			]
+		//const lineLayer = new LineLayer({
+			//id: 'line-layer',
+			//data: this.state.data,
+			//strokeWidth: 5,
+			//fp64: false,
+			//getSourcePosition: d => d.sourcePosition,
+			//getTargetPosition: d => d.targetPosition
+		//});
+		const calcPosition = (val) => {
+			let substrings = val.split(',')
+			var coordinate = new Array(parseFloat(substrings[0]),parseFloat(substrings[1]));
+			return coordinate 
+		}
+		const calcColor = (val) => {
+
+			switch(val){
+				case'fair':
+					return [140,140,230];
+				case'party':
+					return [219,100,40];
+				case'concert':
+					return [150,90,30];
+				case'football':
+					return [200,100,50];
+				case'other':
+					return [20,50,120];
+				case'show':
+					return [70,30,20];
+				case'comedy':
+					return [60,90,40];
+				default:
+					return [125,219,37];
+			}
+		}
     const layer = new IconLayer({
       id: 'icon',
-			data: myData,
+			data: this.state.data,
       iconAtlas: events,
       iconMapping:
 			{
@@ -105,18 +124,25 @@ class D4UMMAP extends Component {
 					"x": 0,
 					"y": 0,
 					"width": 118,
-					"height": 118,
+					"height": 130,
 					"anchorY":118, 
 					"mask":true 
 				}
 			} ,
       sizeScale:1 ,
-      getPosition: d => [9.7320,52.3759],
+			getColor: d => [125,219,37],
+      getPosition: d => calcPosition(d.coordinates),
       getIcon: d => 'test',
-			getSize: d=> d.size,
-				updateTrigger:{
-					getPosition: d => d.coordinates
-				}
+			getSize: d=> 50,
+			pickable: true,
+			updateTrigger:{
+				getPosition: d => d.coordinates
+			},
+			onClick: d => { 
+				console.log('onclick');
+				this.props.changeSelectedEvent(d.object)
+				console.log(d.object);
+			}
 
     });
 		
@@ -144,13 +170,12 @@ class D4UMMAP extends Component {
 		});
 		const scatterLayer = new ScatterplotLayer({
 			id: 'scatterplot-layer',
-			outline:false,
-			data: [
-				{position:[9.5,52],radius: 150 ,color:[0,128,255]},
-				{position:[9.2,51.9],radius: 30,color:[255,0,128] },
-				{position:[9.3,52.3],radius: 55 , color:[255,0,128]},
-			],
-			radiusScale: 100
+			outline:true,
+			data: this.state.data,
+			radiusScale: 1,
+      getPosition: d => calcPosition(d.coordinates),
+      getRadius: d => d.capacity/200,
+      getColor: d => calcColor()
 		});
     return (
 				<MapGL
@@ -158,7 +183,7 @@ class D4UMMAP extends Component {
 					mapStyle="mapbox://styles/mapbox/dark-v9" 
         onViewportChange={this._onViewportChange.bind(this)}
 				>
-				<DeckGL {...viewport} layers={[scatterLayer,lineLayer ,layer]} />
+				<DeckGL {...viewport} layers={[scatterLayer,layer]} />
 				</MapGL>
 			)
 		}
