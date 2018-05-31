@@ -309,7 +309,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent , changeFilter} = this.props; 
+		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent , changeFilter, filter, resetFilter, unselectSelectedEvent} = this.props; 
  		const renderD4UMMAP = (props) => {
       return (
         <D4UMMAP 
@@ -317,6 +317,7 @@ class App extends Component {
 					changeViewport ={changeViewport}
 					events= {events}
 					changeSelectedEvent = {changeSelectedEvent}
+					filter = {filter}
         />
       );
     }
@@ -338,7 +339,9 @@ class App extends Component {
 			return ( 
 							<Play 
 								changeFilter = {changeFilter} 
-								test = 'sdsdsd'
+								resetFilter = { resetFilter}
+								filter= {filter}
+								unselectSelectedEvent = {unselectSelectedEvent}
 							/>
 						 );
 		}

@@ -25,8 +25,8 @@ class D4UMMAP extends Component {
 	//}
   _resize() {
     this._onViewportChange({
-      width: window.innerWidth-40,
-      height: window.innerHeight-200
+      width: window.innerWidth,
+      height: window.innerHeight-150
     });
   }
   _onViewportChange(viewport) {
@@ -47,8 +47,10 @@ class D4UMMAP extends Component {
 			]
 			console.log('filer' :props.filter);
 
-		let since =new Date(2017,10,25,0).toISOString();
-				let until =new Date(2017,10,25,24).toISOString();
+			let since = props.filter.since;
+			let until = props.filter.until;
+		//let since =new Date(2017,10,25,0).toISOString();
+				//let until =new Date(2017,10,25,24).toISOString();
 					console.log(props.events);
 				let filteredEvents = props.events.filter( event => {
 					return ((Date.parse(event.start.replace('+01','Z'))) <= Date.parse(until)) && (Date.parse(event.start.replace('+01','Z')) >= Date.parse(since))

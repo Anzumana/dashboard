@@ -6,10 +6,12 @@ import store from './store'
 import {fetchResults} from './lib/service.js'
 
 const changeSelectedEvent = (val) => store.dispatch({type:'SELECT_EVENT', payload:val});
+const unselectSelectedEvent = (val) => {console.log('unselec');store.dispatch({type:'UNSELECT_EVENT', payload:val})};
 const changeCity = (val) => store.dispatch({type:'SELECT_CITY', payload:val});
 const changeViewport = (val) => store.dispatch({type:'SET_VIEWPORT', payload:val});
 const changeEventData = (val) => store.dispatch({type:'CHANGE_EVENTDATA', payload:'somevalue'});
 const changeFilter = (val) => store.dispatch({type:'SET_FILTER', payload:val});
+const resetFilter = () => store.dispatch({type:'RESET_FILTER',payload: {}});
 
 const render = () => {
 	const state =  store.getState();
@@ -25,6 +27,8 @@ const render = () => {
 			changeSelectedEvent = {changeSelectedEvent}
 			filter = {state.filter}
 			changeFilter = {changeFilter}
+			resetFilter = {resetFilter}
+			unselectSelectedEvent = {unselectSelectedEvent}
 		/>, document.getElementById('root'));
 }
 
