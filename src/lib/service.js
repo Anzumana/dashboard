@@ -16,8 +16,9 @@ export const fetchResults=(until) =>{
 	var header = new Headers();
 	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
 	console.log('fetchResults');
-	let url = 'https://d4umnode.hannit.de/events?location=' + '9.448464,52636607-11.163406,52.176500' + '&since=2017-12-05T19:30:00&until=' + until + 
-	+'&type=null'
+	console.log(until);
+	var since = new Date(2017,10,12).toISOString();
+	let url = 'https://d4umnode.hannit.de/events?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='+since +'&until=' + until +'&type=null'
 	return fetch(url,{
 		header:header,
 		mode:'cors',
@@ -25,3 +26,15 @@ export const fetchResults=(until) =>{
 	});
 }
 //'2017-12-05T19:30:00'
+export const getEvents = (since,until) => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	console.log('fetchResults');
+	let url = 'https://d4umnode.hannit.de/events?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='+ encodeURIComponent(since) + '&until=' + until + 
+	+'&type=null'
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}

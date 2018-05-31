@@ -9,6 +9,7 @@ const changeSelectedEvent = (val) => store.dispatch({type:'SELECT_EVENT', payloa
 const changeCity = (val) => store.dispatch({type:'SELECT_CITY', payload:val});
 const changeViewport = (val) => store.dispatch({type:'SET_VIEWPORT', payload:val});
 const changeEventData = (val) => store.dispatch({type:'CHANGE_EVENTDATA', payload:'somevalue'});
+const changeFilter = (val) => store.dispatch({type:'SET_FILTER', payload:val});
 
 const render = () => {
 	const state =  store.getState();
@@ -22,6 +23,8 @@ const render = () => {
 			events = {state.events}
 			selectEvent = {state.selectEvent}
 			changeSelectedEvent = {changeSelectedEvent}
+			filter = {state.filter}
+			changeFilter = {changeFilter}
 		/>, document.getElementById('root'));
 }
 

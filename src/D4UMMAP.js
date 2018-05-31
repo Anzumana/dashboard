@@ -45,14 +45,22 @@ class D4UMMAP extends Component {
 		var myData = 	[ 
 				{coordinates: [ 9,52] , icon: 'test', size: 60, color: [125,219,37]}
 			]
-			console.log(props.events);
-			//let filteredEvents = props.events.filter( event => event.start < props.until && event.start > props.since)
+			console.log('filer' :props.filter);
+
+		let since =new Date(2017,10,25,0).toISOString();
+				let until =new Date(2017,10,25,24).toISOString();
+					console.log(props.events);
+				let filteredEvents = props.events.filter( event => {
+					return ((Date.parse(event.start.replace('+01','Z'))) <= Date.parse(until)) && (Date.parse(event.start.replace('+01','Z')) >= Date.parse(since))
+				})
+				console.log(filteredEvents);
+				this.setState({
+					data:filteredEvents
+				})
+			
 			//this.setState({
-				//data:filteredEvents
+				//data:props.events
 			//})
-			this.setState({
-				data:props.events
-			})
 	}
 	update(e){
 		//console.log('test');
@@ -130,7 +138,7 @@ class D4UMMAP extends Component {
 				}
 			} ,
       sizeScale:1 ,
-			getColor: d => [125,219,37],
+			getColor: d => calcColor(d.category),
       getPosition: d => calcPosition(d.coordinates),
       getIcon: d => 'test',
 			getSize: d=> 50,
@@ -174,8 +182,8 @@ class D4UMMAP extends Component {
 			data: this.state.data,
 			radiusScale: 1,
       getPosition: d => calcPosition(d.coordinates),
-      getRadius: d => d.capacity/200,
-      getColor: d => calcColor()
+      getRadius: d => d.impact*1000,
+      getColor: d => calcColor(d.category)
 		});
     return (
 				<MapGL

@@ -24,9 +24,11 @@ class SideOverlay extends React.Component {
 			let time;
 			let date;
 			if(this.state.start){
-				const dateArray = this.state.start.split(' ')[0].split('-');
+				
+				debugger;
+				const dateArray = this.state.start.split('T')[0].split('-');
 				date = dateArray[2]+ '.' + dateArray[1] +'.' + dateArray[0];
-				time = this.state.start.split(' ')[1].substr(0,5);
+				time = (this.state.start.split('T')[1]).split('.')[0].substr(0,5);
 			}
 			return (
 				<div className="SideOverlay">

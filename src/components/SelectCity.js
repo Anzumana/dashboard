@@ -19,7 +19,6 @@ export default (props) => {
 			default:
 				props.changeViewport(props.cities[0].viewport);
 		}
-		//fetch api for selected region 
 	}
 	return(
 		<div className="SelectCity">

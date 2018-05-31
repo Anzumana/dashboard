@@ -6,6 +6,7 @@
 // Services
 	import {getTodo, fetchResults} from './lib/service'
 //Component
+	import Play from './components/Play'
 	import MakeMap from './components/Map.js'
 	import myScene  from './components/Scene'
 	import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
@@ -211,103 +212,104 @@ class  Home extends Component {
 	}
 }
 
-class DashboardWithSidebar extends Component {
-	constructor(){
-		super();
-		this.state = { 
-			visible: false 
-		}
-		this.toggleVisibility = this.toggleVisibility.bind(this);
-	}
-	toggleVisibility() {
-		this.setState({ visible: !this.state.visible })
-	}
+//class DashboardWithSidebar extends Component {
+	//constructor(){
+		//super();
+		//this.state = { 
+			//visible: false 
+		//}
+		//this.toggleVisibility = this.toggleVisibility.bind(this);
+	//}
+	//toggleVisibility() {
+		//this.setState({ visible: !this.state.visible })
+	//}
 
-	render() {
-		const { visible} = this.state
-		const { city,cities,viewport, changeViewport, changeEventData, selectEvent} = this.props; 
- 		const createD4UMMAP = (props) => {
-      return (
-        <D4UMMAP 
-					viewport= {viewport}
-					changeViewport ={changeViewport}
-					selectEvent = {selectEvent}
-        />
-      );
-    }
-		console.log(visible);
-		return (
-			<div id="d4um-container">
-			{cities[0].location}
-			{city}
-			{this.props.city}
-			<SelectCity 
-				changeCity ={this.props.changeCity} 
-				cities= {this.props.cities} 
-				changeViewport ={changeViewport}
-			/>
-				<Router>
-					<div style={{height:  +100 +'vh'}}>
-						<Button onClick={this.toggleVisibility}>
-							<Icon name='align justify' size="large" />
-						</Button>
-							<Sidebar.Pushable as={Segment}>
-							<Sidebar as={Menu} animation='overlay' direction='left' visible={visible} icon='labeled'  vertical inverted>
-								<Menu.Item name='home'>
-									<Icon name='cube' />
-									<Link to='/'>Dashboard
-									</Link>
-								</Menu.Item>
-								<Menu.Item name='barchart'>
-									<Icon name='bar chart' />
-									<Link to='/SimpleTreemap'>Treemap</Link><br/>
-								</Menu.Item>
-								<Menu.Item name='camera'>
-									<Icon name='line chart' />
-									<Link to='/SimpleLineChart'>LineChart</Link> <br/>
-								</Menu.Item>
-								<Menu.Item name='camera'>
-									<Icon name='calendar' />
-									<Link to='/bubbleChart'>BubbleChart</Link> <br/>
-								</Menu.Item>
-								<Menu.Item name='globe'>
-									<Icon name='globe' />
-									<Link to='/MakeMap'>Globe</Link> <br/>
-								</Menu.Item>
-								<Menu.Item name='map'>
-									<Icon name='map' />
-									<Link to='/myScene'>Map</Link><br/>
-								</Menu.Item>
-							</Sidebar>
-							<Sidebar.Pusher>
-								<Segment basic>
-									<Route exact path="/events" component={SelectCity}/>
-									<Route exact path="/events" component={SideOverlay}/>
-									<Route exact path="/events" render={createD4UMMAP}/>
-									<Route exact path="/events" component={Scatterplot}/>
-									<Route exact path="/" component={Home}/>
-									<Route path="/about" component={About}/>
-									<Route path="/bubbleChart" component={BubbleChart}/>
-									<Route path="/SimpleLineChart" component={SimpleLineChart}/>
-									<Route path="/SimpleTreemap" component={SimpleTreemap}/>
-									<Route path="/MakeMap" component={MakeMap}/>
-									<Route path="/myScene" component={myScene}/>
-								</Segment>
-							</Sidebar.Pusher>
-						</Sidebar.Pushable>
-					</div>
-				</Router>
-			</div>
-			)
-	}
-}
+	//render() {
+		//const { visible} = this.state
+		//const { city,cities,viewport, changeViewport, changeEventData, selectEvent, filter, changeFilter} = this.props; 
+     //const createD4UMMAP = (props) => {
+      //return (
+        //<D4UMMAP 
+					//viewport= {viewport}
+					//changeViewport ={changeViewport}
+					//selectEvent = {selectEvent}
+					//filter = { filter }
+        ///>
+      //);
+    //}
+		//console.log(visible);
+		//return (
+			//<div id="d4um-container">
+			//{cities[0].location}
+			//{city}
+			//{this.props.city}
+			//<SelectCity 
+				//changeCity ={this.props.changeCity} 
+				//cities= {this.props.cities} 
+				//changeViewport ={changeViewport}
+			///>
+				//<Router>
+					//<div style={{height:  +100 +'vh'}}>
+						//<Button onClick={this.toggleVisibility}>
+							//<Icon name='align justify' size="large" />
+						//</Button>
+							//<Sidebar.Pushable as={Segment}>
+							//<Sidebar as={Menu} animation='overlay' direction='left' visible={visible} icon='labeled'  vertical inverted>
+								//<Menu.Item name='home'>
+									//<Icon name='cube' />
+									//<Link to='/'>Dashboard
+									//</Link>
+								//</Menu.Item>
+								//<Menu.Item name='barchart'>
+									//<Icon name='bar chart' />
+									//<Link to='/SimpleTreemap'>Treemap</Link><br/>
+								//</Menu.Item>
+								//<Menu.Item name='camera'>
+									//<Icon name='line chart' />
+									//<Link to='/SimpleLineChart'>LineChart</Link> <br/>
+								//</Menu.Item>
+								//<Menu.Item name='camera'>
+									//<Icon name='calendar' />
+									//<Link to='/bubbleChart'>BubbleChart</Link> <br/>
+								//</Menu.Item>
+								//<Menu.Item name='globe'>
+									//<Icon name='globe' />
+									//<Link to='/MakeMap'>Globe</Link> <br/>
+								//</Menu.Item>
+								//<Menu.Item name='map'>
+									//<Icon name='map' />
+									//<Link to='/myScene'>Map</Link><br/>
+								//</Menu.Item>
+							//</Sidebar>
+							//<Sidebar.Pusher>
+								//<Segment basic>
+									//<Route exact path="/events" component={SelectCity}/>
+									//<Route exact path="/events" component={SideOverlay}/>
+									//<Route exact path="/events" render={createD4UMMAP}/>
+									//<Route exact path="/events" component={Scatterplot}/>
+									//<Route exact path="/" component={Home}/>
+									//<Route path="/about" component={About}/>
+									//<Route path="/bubbleChart" component={BubbleChart}/>
+									//<Route path="/SimpleLineChart" component={SimpleLineChart}/>
+									//<Route path="/SimpleTreemap" component={SimpleTreemap}/>
+									//<Route path="/MakeMap" component={MakeMap}/>
+									//<Route path="/myScene" component={myScene}/>
+								//</Segment>
+							//</Sidebar.Pusher>
+						//</Sidebar.Pushable>
+					//</div>
+				//</Router>
+			//</div>
+			//)
+	//}
+//}
 class App extends Component {
 	constructor(){
 		super();
 	}
 
 	render() {
-		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent} = this.props; 
+		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent , changeFilter} = this.props; 
  		const renderD4UMMAP = (props) => {
       return (
         <D4UMMAP 
@@ -332,6 +334,15 @@ class App extends Component {
 				<SideOverlay selectEvent={selectEvent}/>
 			);
 		}
+		const renderPlay = (props) => {
+			return ( 
+							<Play 
+								changeFilter = {changeFilter} 
+								test = 'sdsdsd'
+							/>
+						 );
+		}
+		
 		return (
 			<div id="d4um-container">
 				<Router>
@@ -339,6 +350,7 @@ class App extends Component {
 						<Route exact path="/" render={renderSelectCity}/>
 						<Route exact path="/" render={renderSideOverlay}/>
 						<Route exact path="/" render={renderD4UMMAP}/>
+						<Route exact path="/" render={renderPlay}/>
 					</div>
 				</Router>
 			</div>
