@@ -44,25 +44,30 @@ class D4UMMAP extends Component {
 		});
 		var myData = 	[ 
 				{coordinates: [ 9,52] , icon: 'test', size: 60, color: [125,219,37]}
-			]
-			console.log('filer' :props.filter);
+		]
+		console.log('filer' + props.filter);
 
-			let since = props.filter.since;
-			let until = props.filter.until;
+		let since = props.filter.since;
+		let until = props.filter.until;
 		//let since =new Date(2017,10,25,0).toISOString();
-				//let until =new Date(2017,10,25,24).toISOString();
-					console.log(props.events);
-				let filteredEvents = props.events.filter( event => {
-					return ((Date.parse(event.start.replace('+01','Z'))) <= Date.parse(until)) && (Date.parse(event.start.replace('+01','Z')) >= Date.parse(since))
-				})
-				console.log(filteredEvents);
-				this.setState({
-					data:filteredEvents
-				})
+		//let until =new Date(2017,10,25,24).toISOString();
+		console.log(props.events);
+		try{
+			let filteredEvents = props.events.filter( event => {
+				return ((Date.parse(event.start.replace('+01','Z'))) <= Date.parse(until)) && (Date.parse(event.start.replace('+01','Z')) >= Date.parse(since))
+			})
+			console.log(filteredEvents);
+			this.setState({
+				data:filteredEvents
+			})
+		}
+		catch(error){
+			console.log('D4UMMAP 65'+ error);
+			this.setState({
+				data:null
+			})
+		}
 			
-			//this.setState({
-				//data:props.events
-			//})
 	}
 	update(e){
 		//console.log('test');
