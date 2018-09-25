@@ -3,6 +3,6 @@ React component example:
  
 Generate a simple chart by using plain javascript data (usually an array of objects).
 ```js
-<SidebarBottomOverlay ></SidebarBottomOverlay>
+<SidebarOverlay ></SidebarOverlay>
 ```
 

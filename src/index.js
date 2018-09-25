@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './store'
-import {fetchResults} from './lib/service.js'
+import store from './store';
+import {fetchResults} from './lib/service.js';
+import { convertSubgraph } from './lib/utils.js';
 
 const changeSelectedEvent = (val) => store.dispatch({type:'SELECT_EVENT', payload:val});
 const unselectSelectedEvent = (val) => {console.log('unselec');store.dispatch({type:'UNSELECT_EVENT', payload:val})};
@@ -34,18 +35,29 @@ const render = () => {
 
 const init = (val) =>{
 const state = store.getState();
-fetchResults(new Date().toISOString()).then(res=> {
-	var b = res.json().then(data => { 
+fetch('http://localhost:8080/events').then(function(res){
+	res.json().then(data => {
+		data = data.map((element)=> {
+			element.affected_subgraph= convertSubgraph(element.affected_subgraph);
+			element.typically_affected_subgraph= convertSubgraph(element.typically_affected_subgraph);
+			return element;
+		} );
+
 		store.dispatch({type:'SET_EVENTDATA', payload: data});
 	});
-})
-.catch(error => console.log('Error:', error));
+});
+//fetchResults(new Date().toISOString()).then(res=> {
+	//var b = res.json().then(data => { 
+		//store.dispatch({type:'SET_EVENTDATA', payload: data});
+	//});
+//})
+//.catch(error => console.log('Error:', error));
 }
 init();
 render();
 store.subscribe(render);
 
-setTimeout(() => {
+//setTimeout(() => {
 	//store.dispatch({type:'SELECT_EVENT', payload: {
 		//capacity: 3500,
 		//category: 'concert',
@@ -56,4 +68,4 @@ setTimeout(() => {
 		//place: 'Kuppelsaal',
 		//start:'2017-12-27 20:00:00'
 	//}});
-}, 1000)
+//}, 1000)

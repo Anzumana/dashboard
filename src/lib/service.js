@@ -1,3 +1,4 @@
+import { moment } from 'moment';
 export const getTodo=() =>{
 	console.log('gettodo');
 	return fetch('http://localhost:8080/userBadges').then(res=>res.json());
@@ -12,12 +13,14 @@ export const getTodo=() =>{
 		//credentials:'include'
 	//});
 //}
+
 export const fetchResults=(until) =>{
 	var header = new Headers();
 	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
 	console.log('fetchResults');
 	console.log(until);
-	var since = new Date(2017,10,12).toISOString();
+	var since = moment(new Date(2017,10,12)).format();
+	var until = moment(until).format();
 	let url = 'https://d4umnode.hannit.de/events?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='+since +'&until=' + until +'&type=null'
 	return fetch(url,{
 		header:header,
@@ -25,8 +28,10 @@ export const fetchResults=(until) =>{
 		credentials:'include'
 	});
 }
-//'2017-12-05T19:30:00'
+
 export const getEvents = (since,until) => {
+	var since = moment(since).format();
+	var until = moment(until).format();
 	var header = new Headers();
 	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
 	console.log('fetchResults');

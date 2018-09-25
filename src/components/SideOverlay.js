@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../index.css'
+import  moment  from 'moment';
 
 class SideOverlay extends React.Component {
 	constructor(){
@@ -26,17 +27,15 @@ class SideOverlay extends React.Component {
 			let time;
 			let date;
 			if(this.state.start){
-				
-				const dateArray = this.state.start.split('T')[0].split('-');
-				date = dateArray[2]+ '.' + dateArray[1] +'.' + dateArray[0];
-				time = (this.state.start.split('T')[1]).split('.')[0].substr(0,5);
+				date = moment(this.state.start).format('DD.MM.YYYY');
+				time = moment(this.state.start).format('hh:mm');
 			}
 			return (
 				<div className="SideOverlay">
 				<div className="SideOverlay__title" >{this.state.name}</div>
 				<div className="SideOverlay__type">{this.state.place}</div>
+				<div className="SideOverlay__time"> Ab {time}</div>
 				<div className="SideOverlay__date">{date}</div>
-				<div className="SideOverlay__time"> {time}</div>
 				</div>
 			)
 		}

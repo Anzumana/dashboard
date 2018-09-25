@@ -318,6 +318,7 @@ class App extends Component {
 					events= {events}
 					changeSelectedEvent = {changeSelectedEvent}
 					filter = {filter}
+					selectEvent={selectEvent}
         />
       );
     }
