@@ -26,6 +26,7 @@ export default (props) => {
 		since.setDate(since.getDate() + 1);
 		until.setDate(until.getDate() + 1);
 		props.changeFilter({since:since.toISOString(), until: until.toISOString()});
+		props.unselectSelectedEvent();
 	}
 	const reset = () => {
 		props.resetFilter();
@@ -37,6 +38,7 @@ export default (props) => {
 		since.setDate(since.getDate() - 1);
 		until.setDate(until.getDate() - 1);
 		props.changeFilter({since:since.toISOString(), until: until.toISOString()});
+		props.unselectSelectedEvent();
 	}
 	//var intervalId = setInterval(this.update, 500);
 	const date = props.filter.since.substr(0,10).replace('-','.').replace('-','.');

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import MapGL from 'react-map-gl';
 import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer} from 'deck.gl'
 //import events from './assets/location-icon-atlas.png'; 
-import events from './assets/location-icon-atlas.png'; 
+//import events from './assets/location-icon-atlas.png'; 
+import events from './assets/location-icon-atlas_test.png'; 
 
 class D4UMMAP extends Component {
 
@@ -226,19 +227,19 @@ class D4UMMAP extends Component {
 		const calcColor = (val) => {
 			switch(val){
 				case'fair':
-					return [140,140,230];
+					return [77,210,180];
 				case'party':
-					return [219,100,40];
+					return [220,72,140];
 				case'concert':
-					return [150,90,30];
+					return [19,74,151];
 				case'football':
-					return [200,100,50];
+					return [65,111,12];
 				case'other':
-					return [20,50,120];
+					return [255,255,255];
 				case'show':
-					return [70,30,20];
+					return [184,45,139];
 				case'comedy':
-					return [60,90,40];
+					return [73,149,200];
 				default:
 					return [125,219,37];
 			}
@@ -252,17 +253,92 @@ class D4UMMAP extends Component {
 				"test": {
 					"x": 0,
 					"y": 0,
-					"width": 118,
-					"height": 130,
+					"width": 370,
+					"height": 95,
 					"anchorY":118, 
-					"mask":true 
-				}
+					"mask":false 
+				},
+				"theater": {
+					"x": 0,
+					"y": 0,
+					"width": 370,
+					"height": 95,
+					"anchorY":118, 
+					"mask":false 
+				},
+				"kino": {
+					"x": 0,
+					"y": 125,
+					"width": 370,
+					"height": 95,
+				},
+				"kabarett": {
+					"x": 0,
+					"y": 245,
+					"width": 370,
+					"height": 95,
+				},
+				"comedy": {
+					"x": 0,
+					"y": 370,
+					"width": 370,
+					"height": 95,
+				},
+				"show": {
+					"x": 0,
+					"y": 492,
+					"width": 370,
+					"height": 95,
+				},
+				"party": {
+					"x": 0,
+					"y": 618,
+					"width": 370,
+					"height": 95,
+				},
+				"concert": {
+					"x": 440,
+					"y": 0,
+					"width": 370,
+					"height": 95,
+					"anchorY":118, 
+					"mask":false 
+				},
+				"literature": {
+					"x": 440,
+					"y": 125,
+					"width": 370,
+					"height": 95,
+				},
+				"fair": {
+					"x": 440,
+					"y": 245,
+					"width": 370,
+					"height": 95,
+				},
+				"football": {
+					"x": 440,
+					"y": 370,
+					"width": 370,
+					"height": 95,
+				},
+				"art": {
+					"x": 440,
+					"y": 492,
+					"width": 370,
+					"height": 95,
+				},
+				"other": {
+					"x": 440,
+					"y": 618,
+					"width": 370,
+					"height": 95,
+				},
 			} ,
       sizeScale:1 ,
-			getColor: d => calcColor(d.category),
       getPosition: d => calcPosition(d.coordinates),
-      getIcon: d => 'test',
-			getSize: d=> 50,
+      getIcon: d => d.category,
+			getSize: d=> 100,
 			pickable: true,
 			updateTrigger:{
 				getPosition: d => d.coordinates
@@ -305,7 +381,7 @@ class D4UMMAP extends Component {
 				getPath: d => d.path,
 				getColor: d => [255,40,90,255],
 				getWidth: d => 1,
-				});
+			});
 			//const path1 = new PathLayer({
 				//id: 'path-layer',
 				//data: this.state.data[0].affected_subgraph,

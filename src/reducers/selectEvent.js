@@ -1,4 +1,6 @@
 const initialState = {
+};
+const testState = {
     id: 282,
     name: 'Wer der Herde folgt, sieht nur Ärsche',
     place: 'Theater am Aegi',
