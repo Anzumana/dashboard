@@ -35,7 +35,7 @@ const render = () => {
 
 const init = (val) =>{
 const state = store.getState();
-fetch('http://localhost:8080/events').then(function(res){
+fetch('http://localhost:6666/events').then(function(res){
 	res.json().then(data => {
 
 		store.dispatch({type:'SET_EVENTDATA', payload: data});
