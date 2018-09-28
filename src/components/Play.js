@@ -1,5 +1,6 @@
 import React , {Component } from 'react';
 import {getEvents } from '../lib/service.js'
+import  moment  from 'moment';
 
 	//update(){
 		//console.log('sdsd');
@@ -44,15 +45,10 @@ export default (props) => {
 	const date = props.filter.since.substr(0,10).replace('-','.').replace('-','.');
 	return(
 			<div className="Play">
-				<div className="Play__header">
-
+				<div className="Play__prev" onClick={prev}></div>
+				<div className="Play__currentDate">{moment(date).format('LL')}</div>
+				<div className="Play__next"  onClick={next}></div>
+				<div className="Play__reset" onClick={reset}></div>
 				</div>
-				<div className="Play__prev" onClick={prev}> Prev </div>
-				<div className="Play__display"> 
-				<div className="Play__currentDate">{date}</div>
-				<div className="Play__reset" onClick={reset}> Reset </div>
-				</div>
-				<div className="Play__next"  onClick={next}> Next </div>
-			</div>
 	)
 }

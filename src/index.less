@@ -23,10 +23,12 @@
 	/*color:black;*/
 }
 .SideOverlay{
+	top: 85px;
 	.flex();
+	align-items:center;
 	.flex-column();
 	backdrop-filter: blur(2px);
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: white;
 	font-size:12px;
 	width:20vw;
 	z-index:2;
@@ -35,7 +37,6 @@
 	overflow:hidden;
 
 	&__close{
-		.self-end();
 		color:#4a4a4a;
 		.f3();
 		.pr2();
@@ -44,26 +45,19 @@
 		color:white;
 	}
 	&__title{
-		.self-start();
 		.f4();
 		.ml2();
 	}
 	&__type{
-		.self-start();
 		.ml2();
 		.f5();
 	}
 	&__time{
-		.self-start();
 		.ml2();
 	}
 	&__date{
-		.self-start();
 		.ml2();
 	}
-}
-.SelectCity{
-	margin-bottom:20px;
 }
 .Scatterplot{
 	background-color:white;
@@ -76,45 +70,40 @@
 .Play{
 	justify-content:center;
 	.flex();
-		.pa2();
-		.ba();
-		.bw1();
-		.br3();
+	.pa2();
 	
 	&__next{
+		background-image: url("./assets/icons/next.svg");
+		background-repeat: no-repeat;
+		width:14px;
+		height:14px;
 		.ml2();
-		.bg-light-purple();
 		.pt3();
 		.pa2();
-		.ba();
-		.bw1();
-		.br3()
+		.pr5();
+		margin-top:10px;
 	}
 	&__prev{
-		.mr2();
-		.bg-light-purple();
+		.mr3();
+		margin-top:10px;
+		background-image: url("./assets/icons/prev.svg");
+		background-repeat: no-repeat;
+		width:14px;
+		height:14px;
 		.pa2();
-		.ba();
-		.bw1();
-		.br3()
 	}
 	&__currentDate{
+		.mr3();
 		.f3();
 		.pa2();
-		.ba();
-		.bw1();
-		.br3()
 	}
 	&__reset{
-		background-color:grey;
+		margin-top:10px;
+		width:17px;
+		height:17px;
+		background-image: url("./assets/icons/reload.svg");
+		background-repeat: no-repeat;
 		.pa2();
-		.ba();
-		.bw1();
-		.br3()
 	}
-	&__display{
-		.flex();
-	}
-
 	
 }
