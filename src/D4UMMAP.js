@@ -4,7 +4,7 @@ import MapGL from 'react-map-gl';
 import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer} from 'deck.gl'
 //import events from './assets/location-icon-atlas.png'; 
 //import events from './assets/location-icon-atlas.png'; 
-import events from './assets/location-icon-atlas_test.png'; 
+import events from './assets/location-icon-atlas.png'; 
 
 class D4UMMAP extends Component {
 
