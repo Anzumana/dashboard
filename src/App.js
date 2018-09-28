@@ -21,7 +21,6 @@
 	import BubbleChart from './components/BubbleChart';
 	import SimpleLineChart from './components/SimpleLineChart';
 	import SimpleTreemap from './components/SimpleTreemap';
-	import TemporalImpactChart from './components/temporalImpactChart';
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
