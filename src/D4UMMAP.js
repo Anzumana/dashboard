@@ -361,15 +361,6 @@ class D4UMMAP extends Component {
 				getRadius: d => d.impact*1000,
 				getColor: d => calcColor(d.category)
 		});
-		const pathLayer = new PathLayer({
-			id: 'path-layer',
-			data: this.state.test,
-			widthScale: 10,
-			widthMinPixels: 1,
-			getPath: d => d.path,
-			getColor: d => [255,40,90,255],
-			getWidth: d => 1,
-			});
 		if(this.state.data !== undefined){
 			console.log('here comes ourthis is our data');
 			console.log(this.props.selectEvent);
@@ -413,7 +404,7 @@ class D4UMMAP extends Component {
 					mapStyle="mapbox://styles/mapbox/dark-v9" 
         onViewportChange={this._onViewportChange.bind(this)}
 				>
-				<DeckGL {...viewport} layers={[scatterLayer,layer,pathLayer]} />
+				<DeckGL {...viewport} layers={[scatterLayer,layer]} />
 				</MapGL>
 			</div>
 			)
