@@ -355,6 +355,7 @@ class D4UMMAP extends Component {
 				id: 'scatterplot-layer',
 				outline:true,
 				data: this.state.data,
+				strokeWidth: 5,
 				radiusScale: 1,
 				getPosition: d => calcPosition(d.coordinates),
 				getRadius: d => d.impact*1000,
@@ -376,10 +377,10 @@ class D4UMMAP extends Component {
 			const path1 = new PathLayer({
 				id: 'path-layer',
 				data: this.props.selectEvent.typically_affected_subgraph,
-				widthScale: 1,
+				widthScale: 10,
 				widthMinPixels: 1,
 				getPath: d => d.path,
-				getColor: d => [255,40,90,255],
+				getColor: d => [255,255,255,255],
 				getWidth: d => 1,
 			});
 			//const path1 = new PathLayer({
@@ -404,6 +405,7 @@ class D4UMMAP extends Component {
 			</div>
 			)
 		}
+					//mapStyle="mapbox://styles/mapbox/bright-v8" 
     return (
 			<div>
 			{ this.state.data + 'sdsd' }

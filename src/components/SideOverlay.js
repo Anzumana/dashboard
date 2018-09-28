@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../index.css'
 import  moment  from 'moment';
+import {LineChart , Line , XAxis, YAxis,CartesianGrid, Tooltip, Legend} from 'recharts';
 
 class SideOverlay extends React.Component {
 	constructor(){
@@ -36,6 +37,14 @@ class SideOverlay extends React.Component {
 				<div className="SideOverlay__type">{this.state.place}</div>
 				<div className="SideOverlay__time"> Ab {time}</div>
 				<div className="SideOverlay__date">{date}</div>
+				<LineChart width={200} height={200} data={this.state.temporal_impacts}>
+					<Line type="basis" dataKey="temporal_impact" stroke="#000000" />
+					<XAxis dataKey="minute"/>
+					<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+					<YAxis dataKey="temporal_impact"/>
+					<Tooltip/>
+					<Legend />
+				</LineChart>
 				</div>
 			)
 		}

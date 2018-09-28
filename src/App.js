@@ -6,21 +6,22 @@
 // Services
 	import {getTodo, fetchResults} from './lib/service'
 //Component
-	import Play from './components/Play'
-	import MakeMap from './components/Map.js'
-	import myScene  from './components/Scene'
-	import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+	import Play from './components/Play';
+	import MakeMap from './components/Map.js';
+	import myScene  from './components/Scene';
+	import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react';
 	import { Progress } from 'react-sweet-progress';
 	import "react-sweet-progress/lib/style.css";
-	import { Statistic } from 'semantic-ui-react'
-	import SideOverlay from './components/SideOverlay.js'
-	import D4UMMAP from './D4UMMAP.js'
-	import Scatterplot from './components/Scatterplot.js'
-	import SelectCity from './components/SelectCity.js'
+	import { Statistic } from 'semantic-ui-react';
+	import SideOverlay from './components/SideOverlay.js';
+	import D4UMMAP from './D4UMMAP.js';
+	import Scatterplot from './components/Scatterplot.js';
+	import SelectCity from './components/SelectCity.js';
 	import About from './components/About';
-	import BubbleChart from './components/BubbleChart'
-	import SimpleLineChart from './components/SimpleLineChart'
-	import SimpleTreemap from './components/SimpleTreemap'
+	import BubbleChart from './components/BubbleChart';
+	import SimpleLineChart from './components/SimpleLineChart';
+	import SimpleTreemap from './components/SimpleTreemap';
+	import TemporalImpactChart from './components/temporalImpactChart';
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
@@ -351,10 +352,10 @@ class App extends Component {
 			<div id="d4um-container">
 				<Router>
 					<div>
-						<Route exact path="/" render={renderSelectCity}/>
 						<Route exact path="/" render={renderSideOverlay}/>
-						<Route exact path="/" render={renderD4UMMAP}/>
+						<Route exact path="/" render={renderSelectCity}/>
 						<Route exact path="/" render={renderPlay}/>
+						<Route exact path="/" render={renderD4UMMAP}/>
 					</div>
 				</Router>
 			</div>
