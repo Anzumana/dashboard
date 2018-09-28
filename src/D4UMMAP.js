@@ -408,7 +408,6 @@ class D4UMMAP extends Component {
 					//mapStyle="mapbox://styles/mapbox/bright-v8" 
     return (
 			<div>
-			{ this.state.data + 'sdsd' }
 				<MapGL
 					{...viewport}
 					mapStyle="mapbox://styles/mapbox/dark-v9" 
