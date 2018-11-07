@@ -41,17 +41,17 @@ const state = store.getState();
 		//store.dispatch({type:'SET_EVENTDATA', payload: data});
 	//});
 //});
-fetchResults(new Date().toISOString()).then(res=> {
-	var b = res.json().then(data => { 
-		data = data.map((element)=> {
-			element.affected_subgraph= convertSubgraph(element.affected_subgraph);
-			element.typically_affected_subgraph= convertSubgraph(element.typically_affected_subgraph);
-			return element;
-		} );
-		store.dispatch({type:'SET_EVENTDATA', payload: data});
-	});
-})
-.catch(error => console.log('Error:', error));
+//fetchResults(new Date().toISOString()).then(res=> {
+	//var b = res.json().then(data => { 
+		//data = data.map((element)=> {
+			//element.affected_subgraph= convertSubgraph(element.affected_subgraph);
+			//element.typically_affected_subgraph= convertSubgraph(element.typically_affected_subgraph);
+			//return element;
+		//} );
+		//store.dispatch({type:'SET_EVENTDATA', payload: data});
+	//});
+//})
+//.catch(error => console.log('Error:', error));
 }
 init();
 render();
