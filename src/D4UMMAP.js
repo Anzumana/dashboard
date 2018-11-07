@@ -367,7 +367,7 @@ class D4UMMAP extends Component {
 			console.log(this.state.data[0]);
 			const path1 = new PathLayer({
 				id: 'path-layer',
-				data: this.props.selectEvent.typically_affected_subgraph,
+				data: this.props.selectEvent.affected_subgraph,
 				widthScale: 10,
 				widthMinPixels: 1,
 				getPath: d => d.path,
