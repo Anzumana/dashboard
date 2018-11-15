@@ -30,8 +30,10 @@ export default (props) => {
 		props.unselectSelectedEvent();
 	}
 	const reset = () => {
-		props.resetFilter();
-		props.unselectSelectedEvent();
+		if(window.confirm('Sie sie sicher das sie zum ersten Event\nzurueck navigieren wollen?')){
+			props.resetFilter();
+			props.unselectSelectedEvent();
+		};
 	}
 	const prev = () => {
 		let since = new Date(props.filter.since);
@@ -42,13 +44,13 @@ export default (props) => {
 		props.unselectSelectedEvent();
 	}
 	//var intervalId = setInterval(this.update, 500);
-	const date = props.filter.since.substr(0,10).replace('-','.').replace('-','.');
+	const date = props.filter.until.substr(0,10).replace('-','.').replace('-','.');
 	return(
 			<div className="Play">
 				<div className="Play__prev" onClick={prev}></div>
 				<div className="Play__currentDate">{moment(date).format('LL')}</div>
 				<div className="Play__next"  onClick={next}></div>
-				<div className="Play__reset" onClick={reset}></div>
+				<div className="Play__reset"  onClick={reset}></div>
 				</div>
 	)
 }
