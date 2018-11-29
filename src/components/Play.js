@@ -1,23 +1,6 @@
-import React , {Component } from 'react';
+import React from 'react';
 import {getEvents } from '../lib/service.js'
 import  moment  from 'moment';
-
-	//update(){
-		//console.log('sdsd');
-		//let since =new Date(2017,10,12,0);
-			//let until =new Date(2017,10,12,24);
-			//since.setDate(since.getDate() + 2);
-			//until.setDate(until.getDate() + 2);
-		//getEvents( since.toISOString(),until.toISOString()).then(res=> {
-			//var b = res.json().then(data => { 
-				//console.log(data);
-			//});
-		//})
-		//.catch(error => console.log('Error:', error));
-	//}
-
-
-
 
 export default (props) => {
 
