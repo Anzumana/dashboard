@@ -1,33 +1,43 @@
 import React ,{ Component } from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react'
-export default (props) => {
 
-	const switchCity= (event,data)=>{
-		props.changeCity(data.value);
-		console.log(data.value);
-		switch(data.value){
-			case 'hannover':
-				props.changeViewport(props.cities[0].viewport);
-						break;
-			case 'braunschweig':
-				props.changeViewport(props.cities[1].viewport);
-						break;
-			case 'wolfsburg':
-				props.changeViewport(props.cities[2].viewport);
-				break;
-			default:
-				props.changeViewport(props.cities[0].viewport);
-		}
+class SelectCity extends React.Component{
+	constructor(){
+		super();
 	}
-	return(
-		<div className="SelectCity">
-			<Dropdown 
-				placeholder='Select City'
-				onChange={switchCity} 
-				options={props.cities} 
-				fluid selection 
-			/>
-		</div>
-	)
+
+	render(){
+		const switchCity= (event,data)=>{
+			this.props.changeCity(data.value);
+			console.log(data.value);
+			switch(data.value){
+				case 'hannover':
+					this.props.changeViewport(this.props.cities[0].viewport);
+							break;
+				case 'braunschweig':
+					this.props.changeViewport(this.props.cities[1].viewport);
+							break;
+				case 'wolfsburg':
+					this.props.changeViewport(this.props.cities[2].viewport);
+					break;
+				default:
+					this.props.changeViewport(this.props.cities[0].viewport);
+			}
+		}
+		return(
+			<div className="SelectCity">
+				<Dropdown 
+					placeholder='Select City'
+					onChange={switchCity} 
+					options={this.props.cities} 
+					fluid selection 
+				/>
+			</div>
+		)
+	}
 }
+export default connect(
+	(state) => state.selectCity
+)(SelectCity)

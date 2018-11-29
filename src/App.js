@@ -1,7 +1,9 @@
 // libraries
+	import store from './store';
 	import React, { Component } from 'react';
 	import { BrowserRouter  as Router , Route , Link} from 'react-router-dom';
-	//Styling
+	import {connect} from 'react-redux';
+//Styling
 	import './App.css';
 // Services
 	import {getTodo, fetchResults} from './lib/service'
@@ -21,17 +23,10 @@
 	import BubbleChart from './components/BubbleChart';
 	import SimpleLineChart from './components/SimpleLineChart';
 	import SimpleTreemap from './components/SimpleTreemap';
+
 class BadgesStatistic extends React.Component {
 	constructor(){
 		super();
-		this.test.bind(this);
-		this.show2.bind(this);
-	}
-	test(){
-		console.log('ttttt');
-	}
-	show2(){
-		console.log('show2');
 	}
 	render(){
 		return (
@@ -95,15 +90,11 @@ class Test extends React.Component {
 		d:['sdfsdf','sdfsdf']};
 	}
 	componentWillMount(){
-		console.log('component will mount');
 		this.setState({m:2});
 		getTodo().then((res)=> this.setState({d:res}));
 		this.fetchTest= this.fetchTest.bind(this);
 
 	}	
-	componentDidMount(){
-	console.log('component did mount');
-	}
 	fetchTest(){
 		fetchResults().then(res=> {
 			var b = res.json().then(data => { console.log(data)});
@@ -121,7 +112,6 @@ class Test extends React.Component {
 		)
 	}
 }
-
 class Guage extends React.Component {
 	constructor(){
 		super();
@@ -140,7 +130,6 @@ class Guage extends React.Component {
 		)
 	}
 }
-
 class Greeting extends React.Component {
 	render(){
 		return (
@@ -151,7 +140,6 @@ class Greeting extends React.Component {
 		)
 	}
 }
-
 class  Home extends Component {
 	constructor(){
 		super();
@@ -211,7 +199,6 @@ class  Home extends Component {
 			)
 	}
 }
-
 //class DashboardWithSidebar extends Component {
 	//constructor(){
 		//super();
@@ -307,7 +294,14 @@ class App extends Component {
 	constructor(){
 		super();
 	}
-
+	componentWillMount(){
+		console.log('component will mount');
+		fetch('http://localhost:8080/events').then(function(res){
+			res.json().then(data => {
+				store.dispatch({type:'SET_EVENTDATA', payload: data});
+			});
+		});
+	}
 	render() {
 		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent , changeFilter, filter, resetFilter, unselectSelectedEvent} = this.props; 
  		const renderD4UMMAP = (props) => {
@@ -324,11 +318,11 @@ class App extends Component {
     }
  		const renderSelectCity = (props) => {
       return (
-			<SelectCity 
+				<SelectCity
 				changeCity ={changeCity} 
 				cities= {cities} 
 				changeViewport ={changeViewport}
-			/>
+				/>
       );
     }
 		const renderSideOverlay = (props) => {
@@ -361,4 +355,17 @@ class App extends Component {
 			)
 	}
 }
-export default App;
+const mapDispatchToProps = (dispatch) =>{
+	return {
+		changeSelectedEvent : (val) => dispatch({type:'SELECT_EVENT', payload:val}),
+		unselectSelectedEvent : (val) => dispatch({type:'UNSELECT_EVENT', payload:val}),
+		changeCity : (val) => dispatch({type:'SELECT_CITY', payload:val}),
+		changeViewport : (val) => dispatch({type:'SET_VIEWPORT', payload:val}),
+		changeEventData : (val) => dispatch({type:'CHANGE_EVENTDATA', payload:'somevalue'}),
+		changeFilter : (val) => dispatch({type:'SET_FILTER', payload:val}),
+		resetFilter : () => dispatch({type:'RESET_FILTER',payload: {}})
+	}
+};
+const mapStateToProps = (state) => state
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
+export default ConnectedApp

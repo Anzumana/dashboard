@@ -50,6 +50,7 @@
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
     "react-map-gl": "^3.3.4",
+    "react-redux": "^5.1.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
     "react-sweet-progress": "^1.1.0",
@@ -78,7 +79,8 @@
     "prepush": "npm run test && pull-request-status",
     "commitmsg": "validate-commit-msg",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "flow": "flow"
   },
   "devDependencies": {
     "@projektionisten/pull-request-status": "^1.0.5",

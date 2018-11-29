@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import store from './store';
-import {fetchResults} from './lib/service.js';
+import { fetchResults } from './lib/service.js';
 import { convertSubgraph } from './lib/utils.js';
+import { Provider } from 'react-redux';
 
 const changeSelectedEvent = (val) => store.dispatch({type:'SELECT_EVENT', payload:val});
 const unselectSelectedEvent = (val) => {console.log('unselec');store.dispatch({type:'UNSELECT_EVENT', payload:val})};
@@ -13,34 +14,28 @@ const changeViewport = (val) => store.dispatch({type:'SET_VIEWPORT', payload:val
 const changeEventData = (val) => store.dispatch({type:'CHANGE_EVENTDATA', payload:'somevalue'});
 const changeFilter = (val) => store.dispatch({type:'SET_FILTER', payload:val});
 const resetFilter = () => store.dispatch({type:'RESET_FILTER',payload: {}});
+		//changeCity={changeCity}
+		//changeViewport = {changeViewport}
+		//changeSelectedEvent = {changeSelectedEvent}
+		//changeFilter = {changeFilter}
+		//resetFilter = {resetFilter}
+		//unselectSelectedEvent = {unselectSelectedEvent}
 
-const render = () => {
-	const state =  store.getState();
-	ReactDOM.render(
-		<App 
-			city ={state.selectCity.city} 
-			cities = {state.selectCity.cities} 
-			changeCity={changeCity}
-			viewport ={state.viewport}
-			changeViewport = {changeViewport}
-			events = {state.events}
-			selectEvent = {state.selectEvent}
-			changeSelectedEvent = {changeSelectedEvent}
-			filter = {state.filter}
-			changeFilter = {changeFilter}
-			resetFilter = {resetFilter}
-			unselectSelectedEvent = {unselectSelectedEvent}
-		/>, document.getElementById('root'));
-}
+ReactDOM.render(
+<Provider store={store}>
+	<App 
+	/>
+</Provider>
+, document.getElementById('root'));
 
-const init = (val) =>{
-const state = store.getState();
+//const init = (val) =>{
+//const state = store.getState();
 //fetch('http://localhost:8080/events').then(function(res){
 	//res.json().then(data => {
-
 		//store.dispatch({type:'SET_EVENTDATA', payload: data});
 	//});
 //});
+//init();
 //fetchResults(new Date().toISOString()).then(res=> {
 	//var b = res.json().then(data => { 
 		//data = data.map((element)=> {
@@ -52,11 +47,8 @@ const state = store.getState();
 	//});
 //})
 //.catch(error => console.log('Error:', error));
-}
-init();
-render();
-store.subscribe(render);
-
+//}
+//init();
 //setTimeout(() => {
 	//store.dispatch({type:'SELECT_EVENT', payload: {
 		//capacity: 3500,
