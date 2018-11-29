@@ -166,7 +166,7 @@ class D4UMMAP extends Component {
     this.setState({
       viewport: {...this.state.viewport, ...viewport}
     });
-		this.props.changeViewport(viewport);
+		this.state.changeViewport(viewport);
 
   }
 	
