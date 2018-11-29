@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../index.css'
 import  moment  from 'moment';
-import {LineChart , Line , XAxis, YAxis,CartesianGrid, Tooltip, Legend} from 'recharts';
+import {Label,LineChart , Line , XAxis, YAxis,CartesianGrid, Tooltip, Legend} from 'recharts';
 
 class SideOverlay extends React.Component {
 	constructor(){
@@ -14,14 +14,10 @@ class SideOverlay extends React.Component {
 	}
 	
 	componentWillReceiveProps(props){
-		console.log('will receive props');
-		console.log(props);
 		this.setState(props.selectEvent);
 	}
 	
 	render(){
-		console.log('render call');
-		console.log(this.state)
 		if(this.state === null){
 			return (<div> </div>);
 		}else {
@@ -37,13 +33,16 @@ class SideOverlay extends React.Component {
 				<div className="SideOverlay__type">{this.state.place}</div>
 				<div className="SideOverlay__time"> Ab {time}</div>
 				<div className="SideOverlay__date">{date}</div>
-				<LineChart width={200} height={200} data={this.state.temporal_impacts}>
-					<Line type="basis" dataKey="temporal_impact" stroke="#000000" />
-					<XAxis dataKey="minute"/>
-					<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-					<YAxis dataKey="temporal_impact"/>
+				<LineChart width={300} height={200} data={this.state.temporal_impacts} >
+					<Line type="basis" dataKey="temporal_impact" stroke="#000000" dot={false}/>
+					<XAxis dataKey="minute">
+						<Label value="Temporal Impact" offset={-1} position="insideBottom" />
+					</XAxis>
+						<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+						<YAxis dataKey="temporal_impact">
+							<Label value="Zeit"  angle={-90}position="center" />
+						</YAxis>
 					<Tooltip/>
-					<Legend />
 				</LineChart>
 				</div>
 			)
