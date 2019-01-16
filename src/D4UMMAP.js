@@ -59,139 +59,258 @@ class D4UMMAP extends Component {
 		console.log('renderLayers');
 		console.log(this.state);
 		console.log('returning layers');
-		return [
-			new IconLayer({
-				id: 'icon',
-				data: this.state.data,
-				iconAtlas: events,
-				iconMapping:
-				{
-					"test": {
-						"x": 0,
-						"y": 0,
-						"width": 370,
-						"height": 95,
-						"anchorY":118, 
-						"mask":false 
-					},
-					"theater": {
-						"x": 0,
-						"y": 0,
-						"width": 370,
-						"height": 95,
-						"anchorY":118, 
-						"mask":false 
-					},
-					"kino": {
-						"x": 0,
-						"y": 125,
-						"width": 370,
-						"height": 95,
-					},
-					"kabarett": {
-						"x": 0,
-						"y": 245,
-						"width": 370,
-						"height": 95,
-					},
-					"comedy": {
-						"x": 0,
-						"y": 370,
-						"width": 370,
-						"height": 95,
-					},
-					"show": {
-						"x": 0,
-						"y": 492,
-						"width": 370,
-						"height": 95,
-					},
-					"party": {
-						"x": 0,
-						"y": 618,
-						"width": 370,
-						"height": 95,
-					},
-					"concert": {
-						"x": 440,
-						"y": 0,
-						"width": 370,
-						"height": 95,
-						"anchorY":118, 
-						"mask":false 
-					},
-					"literature": {
-						"x": 440,
-						"y": 125,
-						"width": 370,
-						"height": 95,
-					},
-					"fair": {
-						"x": 440,
-						"y": 245,
-						"width": 370,
-						"height": 95,
-					},
-					"football": {
-						"x": 440,
-						"y": 370,
-						"width": 370,
-						"height": 95,
-					},
-					"art": {
-						"x": 440,
-						"y": 492,
-						"width": 370,
-						"height": 95,
-					},
-					"other": {
-						"x": 440,
-						"y": 618,
-						"width": 370,
-						"height": 95,
-					},
-				} ,
-				sizeScale:1 ,
-				getPosition: d => this.calcPosition(d.coordinates),
-				getIcon: d => d.category,
-				getSize: d=> 100,
-				pickable: true,
-				updateTrigger:{
-					getPosition: d => d.coordinates
-				},
-				onClick: d => { 
-					this.props.changeSelectedEvent(d.object)
-				}
-			}),
-			new ScatterplotLayer({
-					id: 'scatterplot-layer',
-					outline:true,
+		if(this.state.selectEvent){
+			return [
+				new IconLayer({
+					id: 'icon',
 					data: this.state.data,
-					strokeWidth: 5,
-					radiusScale: 1,
+					iconAtlas: events,
+					iconMapping:
+					{
+						"test": {
+							"x": 0,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"theater": {
+							"x": 0,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"kino": {
+							"x": 0,
+							"y": 125,
+							"width": 370,
+							"height": 95,
+						},
+						"kabarett": {
+							"x": 0,
+							"y": 245,
+							"width": 370,
+							"height": 95,
+						},
+						"comedy": {
+							"x": 0,
+							"y": 370,
+							"width": 370,
+							"height": 95,
+						},
+						"show": {
+							"x": 0,
+							"y": 492,
+							"width": 370,
+							"height": 95,
+						},
+						"party": {
+							"x": 0,
+							"y": 618,
+							"width": 370,
+							"height": 95,
+						},
+						"concert": {
+							"x": 440,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"literature": {
+							"x": 440,
+							"y": 125,
+							"width": 370,
+							"height": 95,
+						},
+						"fair": {
+							"x": 440,
+							"y": 245,
+							"width": 370,
+							"height": 95,
+						},
+						"football": {
+							"x": 440,
+							"y": 370,
+							"width": 370,
+							"height": 95,
+						},
+						"art": {
+							"x": 440,
+							"y": 492,
+							"width": 370,
+							"height": 95,
+						},
+						"other": {
+							"x": 440,
+							"y": 618,
+							"width": 370,
+							"height": 95,
+						},
+					} ,
+					sizeScale:1 ,
 					getPosition: d => this.calcPosition(d.coordinates),
-					getRadius: d => d.impact*1000,
-					getColor: d => this.calcColor(d.category)
-			}),
-			new PathLayer({
-				id: 'path-layer',
-				data: convertSubgraph(this.state.selectEvent.affected_subgraph),
-				widthScale: 10,
-				widthMinPixels: 1,
-				getPath: d => d.path,
-				getColor: d => [255,255,255,255],
-				getWidth: d => 1,
-			}),
-			new PathLayer({
-				id: 'typically_affected_sugraph',
-				data: convertSubgraph(this.state.selectEvent.typically_affected_subgraph),
-				widthScale: 10,
-				widthMinPixels: 1,
-				getPath: d => d.path,
-				getColor: d => [150,49,49,255],
-				getWidth: d => 1,
-			})
-		];
+					getIcon: d => d.category,
+					getSize: d=> 100,
+					pickable: true,
+					updateTrigger:{
+						getPosition: d => d.coordinates
+					},
+					onClick: d => { 
+						this.props.changeSelectedEvent(d.object)
+					}
+				}),
+				new ScatterplotLayer({
+						id: 'scatterplot-layer',
+						outline:true,
+						data: this.state.data,
+						strokeWidth: 5,
+						radiusScale: 1,
+						getPosition: d => this.calcPosition(d.coordinates),
+						getRadius: d => d.impact*1000,
+						getColor: d => this.calcColor(d.category)
+				}),
+				new PathLayer({
+					id: 'path-layer',
+					data: convertSubgraph(this.state.selectEvent.affected_subgraph),
+					widthScale: 10,
+					widthMinPixels: 1,
+					getPath: d => d.path,
+					getColor: d => [255,255,255,255],
+					getWidth: d => 1,
+				}),
+				new PathLayer({
+					id: 'typically_affected_sugraph',
+					data: convertSubgraph(this.state.selectEvent.typically_affected_subgraph),
+					widthScale: 10,
+					widthMinPixels: 1,
+					getPath: d => d.path,
+					getColor: d => [150,49,49,255],
+					getWidth: d => 1,
+				})
+			];
+		} else {
+			return [
+				new IconLayer({
+					id: 'icon',
+					data: this.state.data,
+					iconAtlas: events,
+					iconMapping:
+					{
+						"test": {
+							"x": 0,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"theater": {
+							"x": 0,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"kino": {
+							"x": 0,
+							"y": 125,
+							"width": 370,
+							"height": 95,
+						},
+						"kabarett": {
+							"x": 0,
+							"y": 245,
+							"width": 370,
+							"height": 95,
+						},
+						"comedy": {
+							"x": 0,
+							"y": 370,
+							"width": 370,
+							"height": 95,
+						},
+						"show": {
+							"x": 0,
+							"y": 492,
+							"width": 370,
+							"height": 95,
+						},
+						"party": {
+							"x": 0,
+							"y": 618,
+							"width": 370,
+							"height": 95,
+						},
+						"concert": {
+							"x": 440,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"literature": {
+							"x": 440,
+							"y": 125,
+							"width": 370,
+							"height": 95,
+						},
+						"fair": {
+							"x": 440,
+							"y": 245,
+							"width": 370,
+							"height": 95,
+						},
+						"football": {
+							"x": 440,
+							"y": 370,
+							"width": 370,
+							"height": 95,
+						},
+						"art": {
+							"x": 440,
+							"y": 492,
+							"width": 370,
+							"height": 95,
+						},
+						"other": {
+							"x": 440,
+							"y": 618,
+							"width": 370,
+							"height": 95,
+						},
+					} ,
+					sizeScale:1 ,
+					getPosition: d => this.calcPosition(d.coordinates),
+					getIcon: d => d.category,
+					getSize: d=> 100,
+					pickable: true,
+					updateTrigger:{
+						getPosition: d => d.coordinates
+					},
+					onClick: d => { 
+						this.props.changeSelectedEvent(d.object)
+					}
+				}),
+				new ScatterplotLayer({
+						id: 'scatterplot-layer',
+						outline:true,
+						data: this.state.data,
+						strokeWidth: 5,
+						radiusScale: 1,
+						getPosition: d => this.calcPosition(d.coordinates),
+						getRadius: d => d.impact*1000,
+						getColor: d => this.calcColor(d.category)
+				})
+			];
+		}
+
 	}
 
   _onViewportChange(viewport) {

@@ -8,18 +8,13 @@ class SideOverlay extends React.Component {
 	constructor(){
 		super();
 	}
-	componentWillMount(){
-	}
-	componentDidMount(){
-	}
-	
 	componentWillReceiveProps(props){
 		this.setState(props.selectEvent);
 	}
 	
 	render(){
-		if(this.state === null){
-			return (<div> </div>);
+		if(this.props.selectEvent === null){
+			return null;
 		}else {
 			let time;
 			let date;
