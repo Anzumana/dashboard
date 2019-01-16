@@ -2,7 +2,7 @@ import { convertSubgraph } from './lib/utils.js';
 import {connect} from 'react-redux';
 import React, { Component } from 'react';
 import MapGL from 'react-map-gl';
-import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer} from 'deck.gl'
+import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer, GeoJsonLayer} from 'deck.gl'
 import events from './assets/location-icon-atlas.png'; 
 
 class D4UMMAP extends Component {
@@ -57,123 +57,180 @@ class D4UMMAP extends Component {
 
 	_renderLayers(){
 		console.log('renderLayers');
-		console.log(this.state);
-		console.log('returning layers');
-		if(this.state.selectEvent){
-			return [
-				new IconLayer({
-					id: 'icon',
-					data: this.state.data,
-					iconAtlas: events,
-					iconMapping:
-					{
-						"test": {
-							"x": 0,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"theater": {
-							"x": 0,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"kino": {
-							"x": 0,
-							"y": 125,
-							"width": 370,
-							"height": 95,
-						},
-						"kabarett": {
-							"x": 0,
-							"y": 245,
-							"width": 370,
-							"height": 95,
-						},
-						"comedy": {
-							"x": 0,
-							"y": 370,
-							"width": 370,
-							"height": 95,
-						},
-						"show": {
-							"x": 0,
-							"y": 492,
-							"width": 370,
-							"height": 95,
-						},
-						"party": {
-							"x": 0,
-							"y": 618,
-							"width": 370,
-							"height": 95,
-						},
-						"concert": {
-							"x": 440,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"literature": {
-							"x": 440,
-							"y": 125,
-							"width": 370,
-							"height": 95,
-						},
-						"fair": {
-							"x": 440,
-							"y": 245,
-							"width": 370,
-							"height": 95,
-						},
-						"football": {
-							"x": 440,
-							"y": 370,
-							"width": 370,
-							"height": 95,
-						},
-						"art": {
-							"x": 440,
-							"y": 492,
-							"width": 370,
-							"height": 95,
-						},
-						"other": {
-							"x": 440,
-							"y": 618,
-							"width": 370,
-							"height": 95,
-						},
-					} ,
-					sizeScale:1 ,
-					getPosition: d => this.calcPosition(d.coordinates),
-					getIcon: d => d.category,
-					getSize: d=> 100,
-					pickable: true,
-					updateTrigger:{
-						getPosition: d => d.coordinates
+		let layers = [];
+		layers.push(
+			new IconLayer({
+				id: 'icon',
+				data: this.state.data,
+				iconAtlas: events,
+				iconMapping:
+				{
+					"test": {
+						"x": 0,
+						"y": 0,
+						"width": 370,
+						"height": 95,
+						"anchorY":118, 
+						"mask":false 
 					},
+					"theater": {
+						"x": 0,
+						"y": 0,
+						"width": 370,
+						"height": 95,
+						"anchorY":118, 
+						"mask":false 
+					},
+					"kino": {
+						"x": 0,
+						"y": 125,
+						"width": 370,
+						"height": 95,
+					},
+					"kabarett": {
+						"x": 0,
+						"y": 245,
+						"width": 370,
+						"height": 95,
+					},
+					"comedy": {
+						"x": 0,
+						"y": 370,
+						"width": 370,
+						"height": 95,
+					},
+					"show": {
+						"x": 0,
+						"y": 492,
+						"width": 370,
+						"height": 95,
+					},
+					"party": {
+						"x": 0,
+						"y": 618,
+						"width": 370,
+						"height": 95,
+					},
+					"concert": {
+						"x": 440,
+						"y": 0,
+						"width": 370,
+						"height": 95,
+						"anchorY":118, 
+						"mask":false 
+					},
+					"literature": {
+						"x": 440,
+						"y": 125,
+						"width": 370,
+						"height": 95,
+					},
+					"fair": {
+						"x": 440,
+						"y": 245,
+						"width": 370,
+						"height": 95,
+					},
+					"football": {
+						"x": 440,
+						"y": 370,
+						"width": 370,
+						"height": 95,
+					},
+					"art": {
+						"x": 440,
+						"y": 492,
+						"width": 370,
+						"height": 95,
+					},
+					"other": {
+						"x": 440,
+						"y": 618,
+						"width": 370,
+						"height": 95,
+					},
+				} ,
+				sizeScale:1 ,
+				getPosition: d => this.calcPosition(d.coordinates),
+				getIcon: d => d.category,
+				getSize: d=> 100,
+				pickable: true,
+				updateTrigger:{
+					getPosition: d => d.coordinates
+				},
+				onHover: d => { 
+					this.props.changeSelectedEvent(d.object)
+				}
+			}),
+			new ScatterplotLayer({
+					id: 'scatterplot-layer',
+					outline:true,
+					data: this.state.data,
+					strokeWidth: 5,
+					radiusScale: 1,
+					getPosition: d => this.calcPosition(d.coordinates),
+					getRadius: d => d.impact*1000,
+					getColor: d => this.calcColor(d.category)
+			})
+		);
+		console.log(this.props);
+		console.log('returning layers');
+		if(this.props.traffic){
+			layers.push(
+				new GeoJsonLayer({
+					id: 'traffic_layer',
+					data: this.props.traffic,
+					pickable: true,
+					stroked: false,
+					filled: true,
+					extruded: true,
+					lineWidthScale: 20,
+					lineWidthMinPixels: 2,
+					getFillColor: [50, 160, 180, 200],
+					getLineColor:[50, 160, 180, 200],
+					getRadius: 100,
+					getLineWidth: 1,
+					getElevation: 30,
 					onClick: d => { 
+						console.log('we clicked it ');
+					},
+					onHover: d => {
+						console.log('we hovered');
+						this.props.changeSelectedEvent(d.object)
+						//[> Update tooltip
+							 //http://deck.gl/#/documentation/developer-guide/adding-interactivity?section=example-display-a-tooltip-for-hovered-object
+						//*/
+					}
+				})
+			);
+		}
+		if(this.props.roadwork){
+			console.log('we have some roadwork');
+			layers.push(
+				new GeoJsonLayer({
+					id: 'roadwork_layer',
+					data: this.props.roadwork,
+					pickable: true,
+					stroked: false,
+					filled: true,
+					extruded: true,
+					lineWidthScale: 20,
+					lineWidthMinPixels: 2,
+					getFillColor: [204, 0, 204, 200],
+					getLineColor:[204, 0, 204, 200],
+					getRadius: 100,
+					getLineWidth: 1,
+					getElevation: 30,
+					onHover: d => {
+						console.log('we hovered ');
 						this.props.changeSelectedEvent(d.object)
 					}
-				}),
-				new ScatterplotLayer({
-						id: 'scatterplot-layer',
-						outline:true,
-						data: this.state.data,
-						strokeWidth: 5,
-						radiusScale: 1,
-						getPosition: d => this.calcPosition(d.coordinates),
-						getRadius: d => d.impact*1000,
-						getColor: d => this.calcColor(d.category)
-				}),
+				})
+			);
+		}
+		if(this.state.selectEvent && this.state.selectEvent.type != 'Feature'){
+			console.log('we triggered this');
+			layers.push(
 				new PathLayer({
 					id: 'path-layer',
 					data: convertSubgraph(this.state.selectEvent.affected_subgraph),
@@ -192,125 +249,9 @@ class D4UMMAP extends Component {
 					getColor: d => [150,49,49,255],
 					getWidth: d => 1,
 				})
-			];
-		} else {
-			return [
-				new IconLayer({
-					id: 'icon',
-					data: this.state.data,
-					iconAtlas: events,
-					iconMapping:
-					{
-						"test": {
-							"x": 0,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"theater": {
-							"x": 0,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"kino": {
-							"x": 0,
-							"y": 125,
-							"width": 370,
-							"height": 95,
-						},
-						"kabarett": {
-							"x": 0,
-							"y": 245,
-							"width": 370,
-							"height": 95,
-						},
-						"comedy": {
-							"x": 0,
-							"y": 370,
-							"width": 370,
-							"height": 95,
-						},
-						"show": {
-							"x": 0,
-							"y": 492,
-							"width": 370,
-							"height": 95,
-						},
-						"party": {
-							"x": 0,
-							"y": 618,
-							"width": 370,
-							"height": 95,
-						},
-						"concert": {
-							"x": 440,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"literature": {
-							"x": 440,
-							"y": 125,
-							"width": 370,
-							"height": 95,
-						},
-						"fair": {
-							"x": 440,
-							"y": 245,
-							"width": 370,
-							"height": 95,
-						},
-						"football": {
-							"x": 440,
-							"y": 370,
-							"width": 370,
-							"height": 95,
-						},
-						"art": {
-							"x": 440,
-							"y": 492,
-							"width": 370,
-							"height": 95,
-						},
-						"other": {
-							"x": 440,
-							"y": 618,
-							"width": 370,
-							"height": 95,
-						},
-					} ,
-					sizeScale:1 ,
-					getPosition: d => this.calcPosition(d.coordinates),
-					getIcon: d => d.category,
-					getSize: d=> 100,
-					pickable: true,
-					updateTrigger:{
-						getPosition: d => d.coordinates
-					},
-					onClick: d => { 
-						this.props.changeSelectedEvent(d.object)
-					}
-				}),
-				new ScatterplotLayer({
-						id: 'scatterplot-layer',
-						outline:true,
-						data: this.state.data,
-						strokeWidth: 5,
-						radiusScale: 1,
-						getPosition: d => this.calcPosition(d.coordinates),
-						getRadius: d => d.impact*1000,
-						getColor: d => this.calcColor(d.category)
-				})
-			];
-		}
-
+			);
+		} 
+		return layers;
 	}
 
   _onViewportChange(viewport) {

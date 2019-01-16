@@ -15,7 +15,11 @@ export default (state = initalState, action) =>{
 	switch(action.type){
 
 		case 'SELECT_EVENT':
-			return Object.assign({},  action.payload );
+			if(!action.payload){
+				return initalState;
+			} else{
+				return Object.assign({},  action.payload );
+			};
 
 		case 'UNSELECT_EVENT':
 			return initalState;
