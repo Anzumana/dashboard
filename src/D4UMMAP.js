@@ -14,6 +14,7 @@ class D4UMMAP extends Component {
 			selectEvent: this.props.selectEvent
 		};
 		this.test = this.test.bind(this);
+	
 	}
 
 	componentDidMount(){ 
@@ -56,8 +57,44 @@ class D4UMMAP extends Component {
 	}
 
 	_renderLayers(){
-		console.log('renderLayers');
 		let layers = [];
+		const testLinesData = [
+			{
+				name:'Test',
+				color:[255,0,0],
+				path:[
+					[8.5446034,52.194516500000006],
+					[8.5437438,52.194518900000006],
+					[8.5413435,52.19448310000001],
+					[8.5397423,52.1944481],
+					[8.5384442,52.194395500000006],
+					[8.5349027,52.1942171],
+					[8.5311003,52.193928500000005],
+					[8.5273184,52.193589800000005],
+					[8.5248936,52.1933695],
+					[8.524400100000001,52.1933202],
+					[8.523177,52.1932084],
+					[8.521240500000001,52.1930308],
+					[8.5189713,52.1928105],
+					[8.515473700000001,52.192508000000004],
+					[8.5126681,52.1922975],
+					[8.510570600000001,52.1921692],
+					[8.5092885,52.1921101],
+					[8.5070194,52.1920311],
+					[8.5047663,52.1920081],
+					[8.504144100000001,52.1920081],
+					[8.5006626,52.1921265],
+					[8.498608,52.1922712],
+					[8.4965954,52.192492200000004],
+					[8.4946377,52.1927694],
+					[8.492337000000001,52.1931919],
+					[8.4901161,52.193662200000006],
+					[8.4864844,52.194579600000004],
+					[8.4836452,52.1953265],
+					[8.477604900000001,52.1967744],
+					[8.4763534,52.197020900000005]]
+				}
+			]
 		layers.push(
 			new IconLayer({
 				id: 'icon',
@@ -158,7 +195,7 @@ class D4UMMAP extends Component {
 				updateTrigger:{
 					getPosition: d => d.coordinates
 				},
-				onHover: d => { 
+				onClick: d => { 
 					this.props.changeSelectedEvent(d.object)
 				}
 			}),
@@ -171,10 +208,17 @@ class D4UMMAP extends Component {
 					getPosition: d => this.calcPosition(d.coordinates),
 					getRadius: d => d.impact*1000,
 					getColor: d => this.calcColor(d.category)
-			})
+			}),
+				new PathLayer({
+					id: 'path-layer4',
+					data: testLinesData,
+					widthScale: 10,
+					widthMinPixels: 10,
+					getPath: d => d.path,
+					getColor: d => [255,0,255,255],
+					getWidth: d => 1,
+				})
 		);
-		console.log(this.props);
-		console.log('returning layers');
 		if(this.props.traffic){
 			layers.push(
 				new GeoJsonLayer({
@@ -186,7 +230,7 @@ class D4UMMAP extends Component {
 					extruded: true,
 					lineWidthScale: 20,
 					lineWidthMinPixels: 2,
-					getFillColor: [50, 160, 180, 200],
+					getFillColor: [0, 0, 255, 200],
 					getLineColor:[50, 160, 180, 200],
 					getRadius: 100,
 					getLineWidth: 1,
@@ -205,7 +249,6 @@ class D4UMMAP extends Component {
 			);
 		}
 		if(this.props.roadwork){
-			console.log('we have some roadwork');
 			layers.push(
 				new GeoJsonLayer({
 					id: 'roadwork_layer',
@@ -262,7 +305,6 @@ class D4UMMAP extends Component {
   }
 	
 	componentWillReceiveProps(props){
-		console.log('componentWillReceiveProps');
 		this.setState({
 			viewport: {...this.state.viewport , ...props.viewport},
 			selectEvent: props.selectEvent
@@ -288,7 +330,6 @@ class D4UMMAP extends Component {
 		}
 	}
 	test(value){
-	console.log(value);
 		this.setState({
 			mapStyle:"mapbox://styles/" + value
 		})
@@ -322,7 +363,7 @@ class D4UMMAP extends Component {
 				<div className="MapFilterContainer">
 					{buttons.map( value => 
 						<div className="MapTile" >
-							<div className={value.split('/')[1]}onClick={() => this.test(value)}> </div>
+							<div className={value.split('/')[1]} onClick={() => this.test(value)}> </div>
 							<div className="MapTile__title"> {value} </div>
 						</div>
 					)}

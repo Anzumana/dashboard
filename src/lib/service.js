@@ -38,3 +38,14 @@ export const getEvents = (since,until) => {
 		credentials:'include'
 	});
 }
+export const getTraffic = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	console.log('fetchResults');
+	let url = 'https://d4umnode.hannit.de/traffic';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}

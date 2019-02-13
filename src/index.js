@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import store from './store';
-import { fetchResults } from './lib/service.js';
+import { fetchResults ,getTraffic} from './lib/service.js';
 import { convertSubgraph } from './lib/utils.js';
 import { Provider } from 'react-redux';
 

@@ -1,6 +1,6 @@
 const initialState = {
-	latitude: 52.385932,
-	longitude: 9.739497,
+	latitude: 52.197020900000005,
+	longitude: 8.4763534,
 	zoom: 12,
 	width:1040 ,
 	height:618,

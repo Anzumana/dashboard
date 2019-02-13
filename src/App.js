@@ -6,7 +6,7 @@
 //Styling
 	import './App.css';
 // Services
-	import {getTodo, fetchResults} from './lib/service'
+	import {getTodo, fetchResults, getTraffic} from './lib/service'
 //Component
 	import Play from './components/Play';
 	import MakeMap from './components/Map.js';
@@ -167,15 +167,12 @@ class  Home extends Component {
 	}
 	update( e ) {
 		this.setState({currentEvent: e.type})
-		console.log('sdsd');
 	}
 	test(){
 		var incrementValue = this.state.value  + 1
 		this.setState({value: incrementValue})
-		console.log('tsetset');
 	}
 	switchCity(event,data){
-		console.log(data.value);
 		this.setState({city:data.value});
 		//fetch api for selected region 
 	}
@@ -224,7 +221,6 @@ class  Home extends Component {
         ///>
       //);
     //}
-		//console.log(visible);
 		//return (
 			//<div id="d4um-container">
 			//{cities[0].location}
@@ -295,12 +291,18 @@ class App extends Component {
 		super();
 	}
 	componentWillMount(){
-		console.log('component will mount');
-		fetch('http://localhost:8080/events').then(function(res){
+		fetch('http://d4umnode.hannit.de/events').then(function(res){
 			res.json().then(data => {
 				store.dispatch({type:'SET_EVENTDATA', payload: data});
 			});
 		});
+		getTraffic().then(function(res){
+			console.log('get traffic');
+			console.log('getTraffic inside app component'+ res);
+			console.log(res);
+		}
+		);
+		
 	}
 	render() {
 		const { city,cities,viewport, changeViewport , changeCity, events, selectEvent, changeSelectedEvent , changeFilter, filter, resetFilter, unselectSelectedEvent} = this.props; 

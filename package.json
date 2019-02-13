@@ -36,6 +36,7 @@
     "jest-cli": "^23.6.0",
     "less-watch-compiler": "^1.11.0",
     "mapbox-gl": "^0.44.2",
+    "material-ui-datetimepicker": "^1.0.7",
     "moment": "^2.22.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
