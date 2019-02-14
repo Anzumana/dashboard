@@ -53,8 +53,8 @@ const initalState = {
   };
 export default function(state = initalState, action){
 	switch(action.type){
-		case 'TEST':
-			return null;
+		case '[TRAFFIC]:SET':
+			return Object.assign({},action.payload);
 		default:
 			 return state;
 	}

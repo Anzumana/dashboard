@@ -296,12 +296,19 @@ class App extends Component {
 				store.dispatch({type:'SET_EVENTDATA', payload: data});
 			});
 		});
-		getTraffic().then(function(res){
-			console.log('get traffic');
-			console.log('getTraffic inside app component'+ res);
-			console.log(res);
-		}
-		);
+		//every 5 minutes 300000
+			setInterval(() =>{
+				console.log('test');
+				getTraffic().then((res) =>{
+					console.log('get traffic');
+					console.log('getTraffic inside app component'+ res);
+					res.json().then((json) => { 
+						console.log(json)
+						store.dispatch({type: '[TRAFFIC]:SET',payload:json});
+					});
+				}
+				);
+			},300000);
 		
 	}
 	render() {
