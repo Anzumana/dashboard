@@ -291,7 +291,7 @@ class App extends Component {
 		super();
 	}
 	componentWillMount(){
-		fetch('http://d4umnode.hannit.de/events').then(function(res){
+		fetch('https://d4umnode.hannit.de/events').then(function(res){
 			res.json().then(data => {
 				store.dispatch({type:'SET_EVENTDATA', payload: data});
 			});
