@@ -15,3 +15,5 @@ npm run d4ummaster
 or 
 npm run d4umstaging 
 if you want to deploy the respective website
+[jest error fix](https://github.com/expo/expo/issues/2192)
+	
