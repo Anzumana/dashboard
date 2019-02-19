@@ -299,7 +299,7 @@ class D4UMMAP extends Component {
 				}),
 				new PathLayer({
 					id: 'typically_affected_sugraph',
-					data: convertSubgraph(this.state.selectEvent.typically_affected_subgraph),
+					data: convertSubgraph(this.state.selectEvent.affected_subgraph),
 					widthScale: 10,
 					widthMinPixels: 1,
 					getPath: d => d.path,
