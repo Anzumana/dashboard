@@ -6,7 +6,7 @@
 //Styling
 	import './App.css';
 // Services
-	import {getTodo, fetchResults, getTraffic} from './lib/service'
+	import {getTodo, fetchResults, getTraffic, getEvents} from './lib/service'
 //Component
 	import Play from './components/Play';
 	import MakeMap from './components/Map.js';
@@ -291,24 +291,33 @@ class App extends Component {
 		super();
 	}
 	componentWillMount(){
-		fetch('https://d4umnode.hannit.de/events').then(function(res){
-			res.json().then(data => {
-				store.dispatch({type:'SET_EVENTDATA', payload: data});
+		//fetch('https://d4umnode.hannit.de/events').then(function(res){
+			//res.json().then(data => {
+				//store.dispatch({type:'SET_EVENTDATA', payload: data});
+			//});
+		//});
+		getEvents().then((res) =>{
+			console.log('get traffic');
+			console.log('getTraffic inside app component'+ res);
+			res.json().then((json) => { 
+				console.log(json)
+				store.dispatch({type: 'SET_EVENTDATA',payload:json});
 			});
-		});
+		}
+		);
 		//every 5 minutes 300000
-			setInterval(() =>{
-				console.log('test');
-				getTraffic().then((res) =>{
-					console.log('get traffic');
-					console.log('getTraffic inside app component'+ res);
-					res.json().then((json) => { 
-						console.log(json)
-						store.dispatch({type: '[TRAFFIC]:SET',payload:json});
-					});
-				}
-				);
-			},300000);
+		setInterval(() =>{
+			console.log('test');
+			getTraffic().then((res) =>{
+				console.log('get traffic');
+				console.log('getTraffic inside app component'+ res);
+				res.json().then((json) => { 
+					console.log(json)
+					store.dispatch({type: '[TRAFFIC]:SET',payload:json});
+				});
+			}
+			);
+		},300000);
 		
 	}
 	render() {
