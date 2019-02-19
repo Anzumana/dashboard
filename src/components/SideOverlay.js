@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import '../index.css'
 import  moment  from 'moment';
 import {Label,LineChart , Line , XAxis, YAxis,CartesianGrid, Tooltip, Legend} from 'recharts';
+import renderHTML from 'react-render-html';
 
 class SideOverlay extends React.Component {
 	constructor(){
@@ -21,8 +22,8 @@ class SideOverlay extends React.Component {
 			console.log(this.props.selectEvent.type);
 			return (
 				<div className="SideOverlay">
-					<div className="SideOverlay__title" >{this.props.selectEvent.properties.ROAD}</div>
-					<div className="SideOverlay__description" >{this.props.selectEvent.properties.LOCATION_DESCRIPTION}</div>
+					<div className="SideOverlay__title" >{renderHTML(this.props.selectEvent.properties.ROAD) }</div>
+					<div className="SideOverlay__description" >{renderHTML(this.props.selectEvent.properties.LOCATION_DESCRIPTION)}</div>
 				</div>
 			);
 		}

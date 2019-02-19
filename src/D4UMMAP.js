@@ -197,6 +197,12 @@ class D4UMMAP extends Component {
 				},
 				onClick: d => { 
 					this.props.changeSelectedEvent(d.object)
+				},
+				onHover: d => { 
+					if(d.object === undefined){
+						return;
+					}
+					this.props.changeSelectedEvent(d.object)
 				}
 			}),
 			new ScatterplotLayer({
@@ -230,20 +236,22 @@ class D4UMMAP extends Component {
 					extruded: true,
 					lineWidthScale: 20,
 					lineWidthMinPixels: 2,
-					getFillColor: [0, 0, 255, 200],
-					getLineColor:[50, 160, 180, 200],
+					getFillColor: [179, 0, 71, 200],
+					getLineColor:[179, 0, 71, 200],
 					getRadius: 100,
 					getLineWidth: 1,
 					getElevation: 30,
-					onClick: d => { 
-						console.log('we clicked it ');
-					},
-					onHover: d => {
-						console.log('we hovered');
+					onClick: d => {
 						this.props.changeSelectedEvent(d.object)
 						//[> Update tooltip
 							 //http://deck.gl/#/documentation/developer-guide/adding-interactivity?section=example-display-a-tooltip-for-hovered-object
 						//*/
+					},
+					onHover: d => {
+						if(d.object === undefined){
+							return;
+						}
+						this.props.changeSelectedEvent(d.object)
 					}
 				})
 			);
@@ -259,12 +267,18 @@ class D4UMMAP extends Component {
 					extruded: true,
 					lineWidthScale: 20,
 					lineWidthMinPixels: 2,
-					getFillColor: [204, 0, 204, 200],
-					getLineColor:[204, 0, 204, 200],
+					getFillColor: [0, 0, 255, 200],
+					getLineColor:[0, 0, 255, 200],
 					getRadius: 100,
 					getLineWidth: 1,
 					getElevation: 30,
+					onClick: d => {
+						this.props.changeSelectedEvent(d.object)
+					},
 					onHover: d => {
+						if(d.object == undefined){
+							return;
+						}
 						console.log('we hovered ');
 						this.props.changeSelectedEvent(d.object)
 					}
