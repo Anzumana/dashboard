@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import MapGL from 'react-map-gl';
 import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer, GeoJsonLayer} from 'deck.gl'
 import events from './assets/location-icon-atlas.png'; 
+import store from './store';
 
 class D4UMMAP extends Component {
 
@@ -57,6 +58,7 @@ class D4UMMAP extends Component {
 	}
 
 	_renderLayers(){
+		console.log('renderLayers call');
 		let layers = [];
 		const testLinesData = [
 			{
@@ -285,25 +287,32 @@ class D4UMMAP extends Component {
 				})
 			);
 		}
-		if(this.state.selectEvent && this.state.selectEvent.type != 'Feature'){
+		console.log(this.props.layer);
+		console.log(this.props.layer == 'affected_subgraph');
+		if(this.props.layer == 'affected_subgraph' && this.state.selectEvent && this.state.selectEvent.type != 'Feature'){
 			console.log('we triggered this');
 			layers.push(
 				new PathLayer({
 					id: 'path-layer',
 					data: convertSubgraph(this.state.selectEvent.affected_subgraph),
 					widthScale: 10,
-					widthMinPixels: 1,
+					widthMinPixels: 2,
 					getPath: d => d.path,
-					getColor: d => [255,255,255,255],
+					getColor: d => [0,0,0,255],
 					getWidth: d => 1,
-				}),
+				})
+			);
+		} 
+		if(this.props.layer =='typically_affected_subgraph' && this.state.selectEvent && this.state.selectEvent.type != 'Feature'){
+			console.log('we triggered this');
+			layers.push(
 				new PathLayer({
-					id: 'typically_affected_sugraph',
-					data: convertSubgraph(this.state.selectEvent.affected_subgraph),
+					id: 'path-layer',
+					data: convertSubgraph(this.state.selectEvent.typically_affected_subgraph),
 					widthScale: 10,
-					widthMinPixels: 1,
+					widthMinPixels: 2,
 					getPath: d => d.path,
-					getColor: d => [150,49,49,255],
+					getColor: d => [0,0,0,255],
 					getWidth: d => 1,
 				})
 			);
@@ -344,9 +353,22 @@ class D4UMMAP extends Component {
 		}
 	}
 	test(value){
-		this.setState({
-			mapStyle:"mapbox://styles/" + value
-		})
+		switch(value) {
+			case 'typically_affected_subgraph' :
+				store.dispatch({
+					type: '[LAYER]:typically_affected_subgraph'
+				});
+				break;
+			case 'affected_subgraph':
+				store.dispatch({
+					type: '[LAYER]:affected_subgraph'
+				});
+				break;
+			default:
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+		}
 	}
   render() {
 		const {viewport} = this.state;
@@ -383,12 +405,12 @@ class D4UMMAP extends Component {
 					)}
 				</div>
 				<h1 className="MapHeader"> Data </h1>
-				<div className="MapFilterContainer">
-						<div className="MapTile" >
+				<div className="MapFilterContainer" >
+						<div className="MapTile" onClick = {() =>this.test('affected_subgraph')} >
 							<div className="dark-v9"></div>
 							<div className="MapTile__title"> affected Subgraph</div>
 						</div>
-						<div className="MapTile" >
+						<div className="MapTile" onClick = {() =>this.test('typically_affected_subgraph')} >
 							<div className="dark-v9"></div>
 							<div className="MapTile__title"> typically affected Subgraph</div>
 						</div>

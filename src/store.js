@@ -7,6 +7,7 @@ import filterReducer from './reducers/filter'
 import trafficReducer from './reducers/traffic'
 import roadworkReducer from './reducers/roadwork'
 import dataReducer from './reducers/data'
+import layerReducer from './reducers/layer'
 import { composeWithDevTools} from 'redux-devtools-extension'
 
 const reducer = combineReducers({
@@ -17,7 +18,8 @@ const reducer = combineReducers({
 	filter: filterReducer,
 	traffic: trafficReducer,
 	roadwork: roadworkReducer,
-	data: dataReducer
+	data: dataReducer,
+	layer: layerReducer
 });
 export default createStore(
 	reducer,
