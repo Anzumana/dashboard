@@ -30,7 +30,9 @@ export const getEvents = (since,until) => {
 	var header = new Headers();
 	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
 	console.log('fetchResults');
-	let url = 'https://d4umnode.hannit.de/events?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='+ encodeURIComponent(since) + '&until=' + until + 
+	var since = new Date(2017,10,12).toISOString();
+	var until = new Date().toISOString();
+	let url = 'https://d4umnode.hannit.de/test?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='+ encodeURIComponent(since) + '&until=' + until + 
 	+'&type=null'
 	return fetch(url,{
 		header:header,
