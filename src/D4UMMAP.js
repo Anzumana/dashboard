@@ -5,6 +5,7 @@ import MapGL from 'react-map-gl';
 import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer, GeoJsonLayer} from 'deck.gl'
 import events from './assets/location-icon-atlas.png'; 
 import store from './store';
+import { Droppable, Draggable} from 'react-beautiful-dnd';
 
 class D4UMMAP extends Component {
 
@@ -396,25 +397,52 @@ class D4UMMAP extends Component {
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
 				<h1 className="MapHeader"> Map Filters </h1>
-				<div className="MapFilterContainer">
-					{buttons.map( value => 
-						<div className="MapTile" >
+				<Droppable droppableId='filter' direction="horizontal">
+				{(provided) => (
+				<div className="MapFilterContainer"
+					ref={provided.innerRef}
+					{...provided.droppableProps}
+					>
+					{buttons.map( (value,index) => 
+					<Draggable draggableId={value} index={index}>
+						{(provided) => (
+						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 							<div className={value.split('/')[1]} onClick={() => this.test(value)}> </div>
 							<div className="MapTile__title"> {value} </div>
 						</div>
+						)}
+					</Draggable>
 					)}
 				</div>
+				)}
+				</Droppable>
 				<h1 className="MapHeader"> Data </h1>
-				<div className="MapFilterContainer" >
-						<div className="MapTile" onClick = {() =>this.test('affected_subgraph')} >
-							<div className="dark-v9"></div>
-							<div className="MapTile__title"> affected Subgraph</div>
-						</div>
-						<div className="MapTile" onClick = {() =>this.test('typically_affected_subgraph')} >
-							<div className="dark-v9"></div>
-							<div className="MapTile__title"> typically affected Subgraph</div>
-						</div>
+				<Droppable droppableId='test' direction="horizontal">
+				{(provided) => (
+				<div className="MapFilterContainer" 
+					ref={provided.innerRef}
+					{...provided.droppableProps}
+					>
+					<Draggable draggableId="dark" index={1}>
+						{(provided) => (
+							<div className="MapTile" onClick = {() =>this.test('affected_subgraph')} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+								<div className="dark-v9"></div>
+								<div className="MapTile__title"> affected Subgraph</div>
+							</div>
+						)}
+					</Draggable>
+					<Draggable draggableId="light" index={2}>
+						{(provided) => (
+							<div className="MapTile" onClick = {() =>this.test('typically_affected_subgraph')}{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+								<div className="dark-v9"></div>
+								<div className="MapTile__title"> typically affected Subgraph</div>
+							</div>
+						)}
+					</Draggable>
+					{provided.placeholder}
 				</div>
+				)}
+				</Droppable>
 			</div>
 			)
 		}

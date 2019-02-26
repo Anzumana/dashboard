@@ -23,6 +23,7 @@
 	import BubbleChart from './components/BubbleChart';
 	import SimpleLineChart from './components/SimpleLineChart';
 	import SimpleTreemap from './components/SimpleTreemap';
+	import {DragDropContext} from 'react-beautiful-dnd';
 
 class BadgesStatistic extends React.Component {
 	constructor(){
@@ -290,6 +291,9 @@ class App extends Component {
 	constructor(){
 		super();
 	}
+	onDragEnd(result){
+		console.log(result);
+	}
 	componentWillMount(){
 		//fetch('https://d4umnode.hannit.de/events').then(function(res){
 			//res.json().then(data => {
@@ -361,6 +365,7 @@ class App extends Component {
 		
 		return (
 			<div id="d4um-container">
+			<DragDropContext onDragEnd={this.onDragEnd}>
 				<Router>
 					<div>
 						<Route exact path="/" render={renderSideOverlay}/>
@@ -369,6 +374,7 @@ class App extends Component {
 						<Route exact path="/" render={renderD4UMMAP}/>
 					</div>
 				</Router>
+			</DragDropContext>
 			</div>
 			)
 	}
