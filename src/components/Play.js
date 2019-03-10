@@ -1,7 +1,13 @@
 import React from 'react';
 import {getEvents } from '../lib/service.js'
 import  moment  from 'moment';
-
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate,
+} from 'react-day-picker/moment';
+import 'moment/locale/de';
 export default (props) => {
 
 	const next = () =>{
@@ -29,11 +35,32 @@ export default (props) => {
 	//var intervalId = setInterval(this.update, 500);
 	const date = props.filter.until.substr(0,10).replace('-','.').replace('-','.');
 	return(
+		<div>
+		  <DayPickerInput
+		        formatDate={formatDate}
+		        parseDate={parseDate}
+		        format="LL"
+		        placeholder={`${formatDate(new Date(), 'LL', 'de')}`}
+		        dayPickerProps={{
+						locale: 'de',
+						localeUtils: MomentLocaleUtils,
+					}}
+			/>
+		<DayPickerInput
+		formatDate={formatDate}
+		parseDate={parseDate}
+		placeholder={`${formatDate(new Date(), 'LL', 'de')}`}
+		dayPickerProps={{
+			locale: 'de',
+			localeUtils: MomentLocaleUtils,
+		}}
+		/>
 			<div className="Play">
 				<div className="Play__prev" onClick={prev}></div>
 				<div className="Play__currentDate">{moment(date).format('LL')}</div>
 				<div className="Play__next"  onClick={next}></div>
 				<div className="Play__reset"  onClick={reset}></div>
 				</div>
+		</div>
 	)
 }
