@@ -51,3 +51,14 @@ export const getTraffic = () => {
 		credentials:'include'
 	});
 }
+export const getRoadwork = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	console.log('fetchResults');
+	let url = 'https://d4umnode.hannit.de/roadwork';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}

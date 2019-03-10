@@ -244,24 +244,18 @@ class D4UMMAP extends Component {
 							"y": 0,
 							"width": 170,
 							"height": 174,
-							"anchorY":0, 
-							"mask":false 
 						},
 						"traffic-yellow": {
 							"x": 220,
 							"y": 0,
 							"width": 170,
 							"height": 174,
-							"anchorY":0, 
-							"mask":false 
 						},
 						"roadwork-red": {
 							"x": 414,
 							"y": 0,
 							"width": 170,
 							"height": 174,
-							"anchorY":118, 
-							"mask":false 
 						},
 						"roadwork-man": {
 							"x": 612,
@@ -276,7 +270,7 @@ class D4UMMAP extends Component {
 				getSize: d=> 100,
 				pickable: true,
 				updateTrigger:{
-					getPosition: d => d.coordinates
+					getPosition: d => d.geometry.coordinates
 				},
 				onClick: d => { 
 					this.props.changeSelectedEvent(d.object)
@@ -311,31 +305,74 @@ class D4UMMAP extends Component {
 		}
 		if(this.props.roadwork){
 			layers.push(
-				new GeoJsonLayer({
-					id: 'roadwork_layer',
-					data: this.props.roadwork,
+				new IconLayer({
+					id: 'icon-roadwork',
+					data: this.props.roadwork.features,
+					iconAtlas: roadwork,
+					iconMapping:
+						{
+							"traffic-blue": {
+								"x": 0,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"traffic-yellow": {
+								"x": 220,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"roadwork-red": {
+								"x": 414,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"roadwork-man": {
+								"x": 612,
+								"y": 0,
+								"width": 157,
+								"height": 174,
+							},
+						} ,
+					sizeScale:1 ,
+					getPosition: d => d.geometry.coordinates,
+					getIcon: d => 'roadwork-man',
+					getSize: d=> 100,
 					pickable: true,
-					stroked: false,
-					filled: true,
-					extruded: true,
-					lineWidthScale: 20,
-					lineWidthMinPixels: 2,
-					getFillColor: [0, 0, 255, 200],
-					getLineColor:[0, 0, 255, 200],
-					getRadius: 100,
-					getLineWidth: 1,
-					getElevation: 30,
-					onClick: d => {
+					updateTrigger:{
+						getPosition: d => d.geometry.coordinates
+					},
+					onClick: d => { 
 						this.props.changeSelectedEvent(d.object)
 					},
-					onHover: d => {
-						if(d.object == undefined){
+					onHover: d => { 
+						if(d.object === undefined){
 							return;
 						}
-						console.log('we hovered ');
 						this.props.changeSelectedEvent(d.object)
 					}
-				})
+				}),
+				new ScatterplotLayer({
+						id: 'scatterplot-layer',
+						outline:true,
+						data: this.state.filteredEvents,
+						strokeWidth: 5,
+						radiusScale: 1,
+						getPosition: d => this.calcPosition(d.coordinates),
+						getRadius: d => d.impact*1000,
+						getColor: d => this.calcColor(d.category)
+				}),
+					new PathLayer({
+						id: 'path-layer4',
+						data: testLinesData,
+						widthScale: 10,
+						widthMinPixels: 10,
+						getPath: d => d.path,
+						getColor: d => [255,0,255,255],
+						getWidth: d => 1,
+					})
 			);
 		}
 		console.log(this.props.layer);

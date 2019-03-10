@@ -652,11 +652,11 @@ const initalState = {
     type: 'FeatureCollection'
 };
 
-export default function(state = initalState , action){
+export default function(state = initalState, action){
 	switch(action.type){
-		case 'test':
-			return state;
+		case '[ROADWORK]:SET':
+			return Object.assign({},action.payload);
 		default:
-			return state;
+			 return state;
 	}
-};
+}
