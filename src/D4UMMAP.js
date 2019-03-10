@@ -16,6 +16,8 @@ class D4UMMAP extends Component {
 			selectEvent: this.props.selectEvent
 		};
 		this.test = this.test.bind(this);
+		console.log(this.props.traffic.features);
+		console.log(' HERE IS OUR CONSTRUICTOR');
 	
 	}
 
@@ -101,7 +103,7 @@ class D4UMMAP extends Component {
 		layers.push(
 			new IconLayer({
 				id: 'icon',
-				data: this.state.data,
+				data: this.state.filteredEvents,
 				iconAtlas: events,
 				iconMapping:
 				{
@@ -211,7 +213,7 @@ class D4UMMAP extends Component {
 			new ScatterplotLayer({
 					id: 'scatterplot-layer',
 					outline:true,
-					data: this.state.data,
+					data: this.state.filteredEvents,
 					strokeWidth: 5,
 					radiusScale: 1,
 					getPosition: d => this.calcPosition(d.coordinates),
@@ -229,6 +231,136 @@ class D4UMMAP extends Component {
 				})
 		);
 		if(this.props.traffic){
+		layers.push(
+			new IconLayer({
+				id: 'icon-traffic',
+				data: this.props.traffic.features,
+				iconAtlas: events,
+				iconMapping:
+					{
+						"test": {
+							"x": 0,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"theater": {
+							"x": 0,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"kino": {
+							"x": 0,
+							"y": 125,
+							"width": 370,
+							"height": 95,
+						},
+						"kabarett": {
+							"x": 0,
+							"y": 245,
+							"width": 370,
+							"height": 95,
+						},
+						"comedy": {
+							"x": 0,
+							"y": 370,
+							"width": 370,
+							"height": 95,
+						},
+						"show": {
+							"x": 0,
+							"y": 492,
+							"width": 370,
+							"height": 95,
+						},
+						"party": {
+							"x": 0,
+							"y": 618,
+							"width": 370,
+							"height": 95,
+						},
+						"concert": {
+							"x": 440,
+							"y": 0,
+							"width": 370,
+							"height": 95,
+							"anchorY":118, 
+							"mask":false 
+						},
+						"literature": {
+							"x": 440,
+							"y": 125,
+							"width": 370,
+							"height": 95,
+						},
+						"fair": {
+							"x": 440,
+							"y": 245,
+							"width": 370,
+							"height": 95,
+						},
+						"football": {
+							"x": 440,
+							"y": 370,
+							"width": 370,
+							"height": 95,
+						},
+						"art": {
+							"x": 440,
+							"y": 492,
+							"width": 370,
+							"height": 95,
+						},
+						"other": {
+							"x": 440,
+							"y": 618,
+							"width": 370,
+							"height": 95,
+						},
+					} ,
+				sizeScale:1 ,
+				getPosition: d => d.geometry.coordinates,
+				getIcon: d => 'theater',
+				getSize: d=> 100,
+				pickable: true,
+				updateTrigger:{
+					getPosition: d => d.coordinates
+				},
+				onClick: d => { 
+					this.props.changeSelectedEvent(d.object)
+				},
+				onHover: d => { 
+					if(d.object === undefined){
+						return;
+					}
+					this.props.changeSelectedEvent(d.object)
+				}
+			}),
+			new ScatterplotLayer({
+					id: 'scatterplot-layer',
+					outline:true,
+					data: this.state.filteredEvents,
+					strokeWidth: 5,
+					radiusScale: 1,
+					getPosition: d => this.calcPosition(d.coordinates),
+					getRadius: d => d.impact*1000,
+					getColor: d => this.calcColor(d.category)
+			}),
+				new PathLayer({
+					id: 'path-layer4',
+					data: testLinesData,
+					widthScale: 10,
+					widthMinPixels: 10,
+					getPath: d => d.path,
+					getColor: d => [255,0,255,255],
+					getWidth: d => 1,
+				})
+		);
 			layers.push(
 				new GeoJsonLayer({
 					id: 'traffic_layer',
@@ -341,7 +473,7 @@ class D4UMMAP extends Component {
 				return ((Date.parse(event.start.replace('+01','Z'))) <= Date.parse(until)) && (Date.parse(event.start.replace('+01','Z')) >= Date.parse(since))
 			})
 			this.setState({
-				data:filteredEvents,
+				filteredEvents:filteredEvents,
 				selectEvent: props.selectEvent
 			})
 			this._renderLayers();
