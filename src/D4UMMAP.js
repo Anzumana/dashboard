@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import MapGL from 'react-map-gl';
 import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer, GeoJsonLayer} from 'deck.gl'
 import events from './assets/location-icon-atlas.png'; 
+import roadwork from './assets/roadwork.png'; 
 import store from './store';
 import { Droppable, Draggable} from 'react-beautiful-dnd';
 
@@ -235,97 +236,43 @@ class D4UMMAP extends Component {
 			new IconLayer({
 				id: 'icon-traffic',
 				data: this.props.traffic.features,
-				iconAtlas: events,
+				iconAtlas: roadwork,
 				iconMapping:
 					{
-						"test": {
+						"traffic-blue": {
 							"x": 0,
 							"y": 0,
-							"width": 370,
-							"height": 95,
+							"width": 170,
+							"height": 174,
+							"anchorY":0, 
+							"mask":false 
+						},
+						"traffic-yellow": {
+							"x": 220,
+							"y": 0,
+							"width": 170,
+							"height": 174,
+							"anchorY":0, 
+							"mask":false 
+						},
+						"roadwork-red": {
+							"x": 414,
+							"y": 0,
+							"width": 170,
+							"height": 174,
 							"anchorY":118, 
 							"mask":false 
 						},
-						"theater": {
-							"x": 0,
+						"roadwork-man": {
+							"x": 612,
 							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"kino": {
-							"x": 0,
-							"y": 125,
-							"width": 370,
-							"height": 95,
-						},
-						"kabarett": {
-							"x": 0,
-							"y": 245,
-							"width": 370,
-							"height": 95,
-						},
-						"comedy": {
-							"x": 0,
-							"y": 370,
-							"width": 370,
-							"height": 95,
-						},
-						"show": {
-							"x": 0,
-							"y": 492,
-							"width": 370,
-							"height": 95,
-						},
-						"party": {
-							"x": 0,
-							"y": 618,
-							"width": 370,
-							"height": 95,
-						},
-						"concert": {
-							"x": 440,
-							"y": 0,
-							"width": 370,
-							"height": 95,
-							"anchorY":118, 
-							"mask":false 
-						},
-						"literature": {
-							"x": 440,
-							"y": 125,
-							"width": 370,
-							"height": 95,
-						},
-						"fair": {
-							"x": 440,
-							"y": 245,
-							"width": 370,
-							"height": 95,
-						},
-						"football": {
-							"x": 440,
-							"y": 370,
-							"width": 370,
-							"height": 95,
-						},
-						"art": {
-							"x": 440,
-							"y": 492,
-							"width": 370,
-							"height": 95,
-						},
-						"other": {
-							"x": 440,
-							"y": 618,
-							"width": 370,
-							"height": 95,
+							"width": 157,
+							"height": 174,
 						},
 					} ,
 				sizeScale:1 ,
 				getPosition: d => d.geometry.coordinates,
-				getIcon: d => 'theater',
+				getIcon: d => 'traffic-yellow',
 				getSize: d=> 100,
 				pickable: true,
 				updateTrigger:{
@@ -361,35 +308,6 @@ class D4UMMAP extends Component {
 					getWidth: d => 1,
 				})
 		);
-			layers.push(
-				new GeoJsonLayer({
-					id: 'traffic_layer',
-					data: this.props.traffic,
-					pickable: true,
-					stroked: false,
-					filled: true,
-					extruded: true,
-					lineWidthScale: 20,
-					lineWidthMinPixels: 2,
-					getFillColor: [179, 0, 71, 200],
-					getLineColor:[179, 0, 71, 200],
-					getRadius: 100,
-					getLineWidth: 1,
-					getElevation: 30,
-					onClick: d => {
-						this.props.changeSelectedEvent(d.object)
-						//[> Update tooltip
-							 //http://deck.gl/#/documentation/developer-guide/adding-interactivity?section=example-display-a-tooltip-for-hovered-object
-						//*/
-					},
-					onHover: d => {
-						if(d.object === undefined){
-							return;
-						}
-						this.props.changeSelectedEvent(d.object)
-					}
-				})
-			);
 		}
 		if(this.props.roadwork){
 			layers.push(
