@@ -8,6 +8,16 @@ import trafficReducer from './reducers/traffic'
 import roadworkReducer from './reducers/roadwork'
 import dataReducer from './reducers/data'
 import layerReducer from './reducers/layer'
+import motorwayReducer from './reducers/motorway'
+import motorwayLinkReducer from './reducers/motorway_link'
+import primaryReducer from './reducers/primary'
+import secondaryReducer from './reducers/secondary'
+import tertiaryReducer from './reducers/tertiary'
+import trunkReducer from './reducers/trunk'
+import primaryLinkReducer from './reducers/primary_link'
+import secondaryLinkReducer from './reducers/secondary_link'
+import tertiaryLinkReducer from './reducers/tertiary_link'
+import trunkLinkReducer from './reducers/trunk_link'
 import { composeWithDevTools} from 'redux-devtools-extension'
 
 const reducer = combineReducers({
@@ -19,7 +29,17 @@ const reducer = combineReducers({
 	traffic: trafficReducer,
 	roadwork: roadworkReducer,
 	data: dataReducer,
-	layer: layerReducer
+	layer: layerReducer,
+	motorway: motorwayReducer,
+	primary: primaryReducer,
+	secondary: secondaryReducer,
+	tertiary: tertiaryReducer,
+	trunk: trunkReducer,
+	motorwayLink: motorwayLinkReducer,
+	primaryLink: primaryLinkReducer,
+	secondaryLink: secondaryLinkReducer,
+	tertiaryLink: tertiaryLinkReducer,
+	trunkLink: trunkLinkReducer
 });
 export default createStore(
 	reducer,

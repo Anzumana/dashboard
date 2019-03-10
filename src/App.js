@@ -6,7 +6,7 @@
 //Styling
 	import './App.css';
 // Services
-	import {getTodo, fetchResults, getTraffic, getEvents, getRoadwork} from './lib/service';
+	import {getTodo, fetchResults, getTraffic, getEvents, getRoadwork, getMotorway, getMotorwayLink,getPrimary, getSecondary,getTertiary,getTrunk,getTrunkLink,getPrimaryLink,getSecondaryLink,getTertiaryLink} from './lib/service';
 //Component
 	import Play from './components/Play';
 	import MakeMap from './components/Map.js';
@@ -304,6 +304,66 @@ class App extends Component {
 		getTraffic().then((res) =>{
 			res.json().then((json) => { 
 				store.dispatch({type: '[TRAFFIC]:SET',payload:json});
+			});
+		}
+		);
+		getPrimary().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[PRIMARY]:SET',payload:json});
+			});
+		}
+		);
+		getSecondary().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[SECONDARY]:SET',payload:json});
+			});
+		}
+		);
+		//getTertiary().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[TERTIARY]:SET',payload:json});
+			//});
+		//}
+		//);
+		//getTrunk().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[TRUNK]:SET',payload:json});
+			//});
+		//}
+		//);
+		getMotorway().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[MOTORWAY]:SET',payload:json});
+			});
+		}
+		);
+		getPrimaryLink().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[PRIMARY_LINK]:SET',payload:json});
+			});
+		}
+		);
+		getSecondaryLink().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[SECONDARY_LINK]:SET',payload:json});
+			});
+		}
+		);
+		getTertiaryLink().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[TERTIARY_LINK]:SET',payload:json});
+			});
+		}
+		);
+		getTrunkLink().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[TRUNK_LINK]:SET',payload:json});
+			});
+		}
+		);
+		getMotorwayLink().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[MOTORWAY_LINK]:SET',payload:json});
 			});
 		}
 		);

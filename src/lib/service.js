@@ -62,3 +62,103 @@ export const getRoadwork = () => {
 		credentials:'include'
 	});
 }
+export const getMotorway = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/motorway';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getMotorwayLink = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/motorway_link';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getPrimary = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/primary';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getPrimaryLink = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/primary_link';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getSecondary = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/secondary';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getSecondaryLink = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/secondary_link';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getTertiary = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/tertiary';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getTertiaryLink = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/tertiary_link';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getTrunk = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/trunk';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}
+export const getTrunkLink = () => {
+	var header = new Headers();
+	header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
+	let url = 'https://d4umnode.hannit.de/trunk_link';
+	return fetch(url,{
+		header:header,
+		mode:'cors',
+		credentials:'include'
+	});
+}

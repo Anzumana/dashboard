@@ -23,4 +23,16 @@ const convertSubgraph = (affected_subgraph) => {
 		})
 	return result;
 }
-export { convertLineString, convertSubgraph }
+const convertCoordinatesToPath = ( coordinates ) => {
+	var result = []
+	var result = coordinates.split('|').map(x => {
+		var array = x.split(' ')
+		var tmp = [];
+		tmp.push( Number(array[1]));
+		tmp.push(Number(array[0]));
+		return tmp;
+	});
+	result.pop();
+	return result;
+}
+export { convertLineString, convertSubgraph , convertCoordinatesToPath}
