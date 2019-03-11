@@ -159,6 +159,10 @@ class  Home extends Component {
 				 {
 					 text: 'Braunschweig',
 					 value: 'braunschweig',
+				 },
+				 {
+					 text: 'Bielefeld',
+					 value: 'bielefeld',
 				 }
 			]
 		};
@@ -174,6 +178,9 @@ class  Home extends Component {
 		this.setState({value: incrementValue})
 	}
 	switchCity(event,data){
+		console.log('SWITCH CITYYYYYY ');
+		console.log(event);
+		console.log(data);
 		this.setState({city:data.value});
 		//fetch api for selected region 
 	}

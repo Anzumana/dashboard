@@ -39,6 +39,19 @@ const initialState = {
 				bearing: -49.63659663812949,
 				transitionDuration:3000
 			}
+		},
+		{
+			text: 'Aktuelle Verkehrslage -Auszug',
+			value: 'bielefeld',
+			location:'8.611414,52.489153-10.967783,52.291364',
+			viewport:{
+				latitude: 52.08291796567653,
+				longitude: 8.667069429652617,
+				zoom: 11.74,
+				pitch: 51,
+				bearing: 0,
+				transitionDuration:3000
+			}
 		}
 		
 	]
