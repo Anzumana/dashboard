@@ -63,16 +63,23 @@ class D4UMMAP extends Component {
 
 	_renderLayers(){
 		console.log('RENDERlAYERS CALL');
-		console.log(this.props.motorway);
 		let layers = [];
 		if(this.props.motorway){
 			var testLinesData = this.props.motorway;
 				layers.push(
 						new PathLayer({
-							id: 'motorway-path',
+							id: 'motorway',
 							data: this.props.motorway,
 							widthScale: 1,
 							widthMinPixels: 5,
+							pickable: true,
+							onHover: d => { 
+								console.log('hover');
+							if(d.object === undefined){
+								return;
+							}
+							this.props.changeSelectedEvent(d.object)
+							},
 							getPath: d => { 
 								d.coordinates 
 							},
@@ -81,49 +88,64 @@ class D4UMMAP extends Component {
 						})
 				);
 		}
-
 		if(this.props.primary){
 			var testLinesData = this.props.primary;
 				layers.push(
 						new PathLayer({
-							id: 'motorway-path',
+							id: 'primary',
 							data: this.props.primary,
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
 								d.coordinates 
 							},
-							getColor: d => [255,40,255,255],
-							getWidth: d => 2,
-						})
-				);
-		}
-
-		if(this.props.secondary){
-			var testLinesData = this.props.secondary;
-				layers.push(
-						new PathLayer({
-							id: 'motorway-path',
-							data: this.props.secondary,
-							widthScale: 1,
-							widthMinPixels: 5,
-							getPath: d => { 
-								d.coordinates 
+							pickable: true,
+							onHover: d => { 
+								console.log('hover');
+							if(d.object === undefined){
+								return;
+							}
+							this.props.changeSelectedEvent(d.object)
 							},
 							getColor: d => [255,40,255,255],
 							getWidth: d => 2,
 						})
 				);
 		}
+		if(this.props.secondary){
+			var testLinesData = this.props.secondary;
+				layers.push(
+						new PathLayer({
+							id: 'secondary',
+							data: this.props.secondary,
+							widthScale: 1,
+							widthMinPixels: 5,
+							getPath: d => { 
+								d.coordinates 
+							},
+							getColor: d => [40,40,40,255],
+							getWidth: d => 10,
+						})
+				);
+		}
 		if(this.props.motorwayLink){
 				layers.push(
 						new PathLayer({
-							id: 'motorwayLink-path',
+							id: 'motorwayLink',
 							data: this.props.motorwayLink,
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
 								d.coordinates 
+							},
+							pickable: true,
+							onHover: d => { 
+								console.log('hover');
+							if(d.object === undefined){
+								return;
+							}
+								debugger;
+							this.props.changeSelectedEvent(d.object)
 							},
 							getColor: d => [255,40,255,255],
 							getWidth: d => 2,
@@ -133,7 +155,7 @@ class D4UMMAP extends Component {
 		if(this.props.primaryLink){
 				layers.push(
 						new PathLayer({
-							id: 'motorwayLink-path',
+							id: 'primaryLink',
 							data: this.props.primaryLink,
 							widthScale: 1,
 							widthMinPixels: 5,
@@ -145,12 +167,10 @@ class D4UMMAP extends Component {
 						})
 				);
 		}
-
-
 		if(this.props.secondaryLink){
 				layers.push(
 						new PathLayer({
-							id: 'motorwayLink-path',
+							id: 'secondaryLink',
 							data: this.props.secondaryLink,
 							widthScale: 1,
 							widthMinPixels: 5,
@@ -162,11 +182,10 @@ class D4UMMAP extends Component {
 						})
 				);
 		}
-
 		if(this.props.tertiaryLink){
 				layers.push(
 						new PathLayer({
-							id: 'motorwayLink-path',
+							id: 'tertiaryLink',
 							data: this.props.tertiaryLink,
 							widthScale: 1,
 							widthMinPixels: 5,
@@ -178,11 +197,10 @@ class D4UMMAP extends Component {
 						})
 				);
 		}
-
 		if(this.props.trunkLink){
 				layers.push(
 						new PathLayer({
-							id: 'motorwayLink-path',
+							id: 'trunkLink',
 							data: this.props.trunk,
 							widthScale: 1,
 							widthMinPixels: 5,
@@ -190,47 +208,10 @@ class D4UMMAP extends Component {
 								d.coordinates 
 							},
 							getColor: d => [255,40,255,255],
-							getWidth: d => 2,
+							getWidth: d => 1,
 						})
 				);
 		}
-		//var testLinesData = [
-			//{
-				//name:'Test',
-				//color:[255,40,250],
-				//path:[
-					//[8.5446034,52.194516500000006],
-					//[8.5437438,52.194518900000006],
-					//[8.5413435,52.19448310000001],
-					//[8.5397423,52.1944481],
-					//[8.5384442,52.194395500000006],
-					//[8.5349027,52.1942171],
-					//[8.5311003,52.193928500000005],
-					//[8.5273184,52.193589800000005],
-					//[8.5248936,52.1933695],
-					//[8.524400100000001,52.1933202],
-					//[8.523177,52.1932084],
-					//[8.521240500000001,52.1930308],
-					//[8.5189713,52.1928105],
-					//[8.515473700000001,52.192508000000004],
-					//[8.5126681,52.1922975],
-					//[8.510570600000001,52.1921692],
-					//[8.5092885,52.1921101],
-					//[8.5070194,52.1920311],
-					//[8.5047663,52.1920081],
-					//[8.504144100000001,52.1920081],
-					//[8.5006626,52.1921265],
-					//[8.498608,52.1922712],
-					//[8.4965954,52.192492200000004],
-					//[8.4946377,52.1927694],
-					//[8.492337000000001,52.1931919],
-					//[8.4901161,52.193662200000006],
-					//[8.4864844,52.194579600000004],
-					//[8.4836452,52.1953265],
-					//[8.477604900000001,52.1967744],
-					//[8.4763534,52.197020900000005]]
-				//}
-			//]
 		layers.push(
 			new IconLayer({
 				id: 'icon',
@@ -582,6 +563,76 @@ class D4UMMAP extends Component {
 					type: '[LAYER]:affected_subgraph'
 				});
 				break;
+			case 'none':
+				store.dispatch({
+					type: '[LAYER]:none'
+				});
+				break;
+			case' buildinds':
+			this.setState({
+				mapStyle:"mapbox://styles/taal/" + value
+			})
+			break;
+			case	"streets":
+				value = "mapbox/streets-v10";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "outdoors":
+				value = "mapbox/outdoors-v10";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "light":
+				value = "mapbox/light-v9";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "dark":
+				value = "mapbox/dark-v9";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "satellite":
+				value = "mapbox/satellite-v9";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "satellite-streets":
+				value = "mapbox/satellite-streets-v10";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "navigation-preview-day":
+				value = "mapbox/navigation-preview-day-v4";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "navigation-preview-night":
+			value = "mapbox/navigation-preview-night-v4";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "navigation-guidance-day":
+			value = "mapbox/navigation-guidance-day-v4";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
+			case "navigation-guidance-night":
+			value = "mapbox/navigation-guidance-night-v4";
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+			break;
 			default:
 			this.setState({
 				mapStyle:"mapbox://styles/" + value
@@ -591,17 +642,17 @@ class D4UMMAP extends Component {
   render() {
 		const {viewport} = this.state;
 					const buttons = [
-						"mapbox/streets-v10",
-						"mapbox/outdoors-v10",
-						"mapbox/light-v9",
-						"mapbox/dark-v9",
-						"mapbox/satellite-v9",
-						"mapbox/satellite-streets-v10",
-						"mapbox/navigation-preview-day-v4",
-						"mapbox/navigation-preview-night-v4",
-						"mapbox/navigation-guidance-day-v4",
-						"mapbox/navigation-guidance-night-v4",
-						"taal/cjoiinpu74zx12st9k4rtfvju"
+						"streets",
+						"outdoors",
+						"light",
+						"dark",
+						"satellite",
+						"satellite-streets",
+						"navigation-preview-day",
+						"navigation-preview-night",
+						"navigation-guidance-day",
+						"navigation-guidance-night",
+						"buildings"
 					];
 			return (
 			<div>
@@ -613,7 +664,7 @@ class D4UMMAP extends Component {
 				>
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
-				<h1 className="MapHeader"> Map Filters </h1>
+				<h1 className="MapHeader"> Map Options </h1>
 				<Droppable droppableId='filter' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer"
@@ -624,7 +675,7 @@ class D4UMMAP extends Component {
 					<Draggable draggableId={value} index={index}>
 						{(provided) => (
 						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-							<div className={value.split('/')[1]} onClick={() => this.test(value)}> </div>
+							<div className={value} onClick={() => this.test(value)}> </div>
 							<div className="MapTile__title"> {value} </div>
 						</div>
 						)}
@@ -640,20 +691,27 @@ class D4UMMAP extends Component {
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 					>
-					<Draggable draggableId="dark" index={1}>
+					<Draggable draggableId="typicall" index={1}>
 						{(provided) => (
 							<div className="MapTile" onClick = {() =>this.test('affected_subgraph')} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-								<div className="dark-v9"></div>
+								<div className="dark"></div>
 								<div className="MapTile__title"> affected Subgraph</div>
 							</div>
 						)}
 					</Draggable>
-					<Draggable draggableId="light" index={2}>
+					<Draggable draggableId="affected" index={2}>
 						{(provided) => (
 							<div className="MapTile" onClick = {() =>this.test('typically_affected_subgraph')}{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-								<div className="dark-v9"></div>
+								<div className="dark"></div>
 								<div className="MapTile__title"> typically affected Subgraph</div>
 							</div>
+						)}
+					</Draggable>
+					<Draggable draggableId="none" index={3}>
+						{(provided) => (
+							<div className="MapTile" onClick = {() =>this.test('none')}{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+								<div className="dark"></div>
+								<div className="MapTile__title"> None</div> </div>
 						)}
 					</Draggable>
 					{provided.placeholder}

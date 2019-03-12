@@ -36,25 +36,6 @@ export default (props) => {
 	const date = props.filter.until.substr(0,10).replace('-','.').replace('-','.');
 	return(
 		<div>
-		  <DayPickerInput
-		        formatDate={formatDate}
-		        parseDate={parseDate}
-		        format="LL"
-		        placeholder={`${formatDate(new Date(), 'LL', 'de')}`}
-		        dayPickerProps={{
-						locale: 'de',
-						localeUtils: MomentLocaleUtils,
-					}}
-			/>
-		<DayPickerInput
-		formatDate={formatDate}
-		parseDate={parseDate}
-		placeholder={`${formatDate(new Date(), 'LL', 'de')}`}
-		dayPickerProps={{
-			locale: 'de',
-			localeUtils: MomentLocaleUtils,
-		}}
-		/>
 			<div className="Play">
 				<div className="Play__prev" onClick={prev}></div>
 				<div className="Play__currentDate">{moment(date).format('LL')}</div>

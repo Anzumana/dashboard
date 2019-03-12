@@ -5,6 +5,8 @@ export default function(state = initialState , action){
 			return 'typically_affected_subgraph';
 		case '[LAYER]:affected_subgraph':
 			return 'affected_subgraph';
+		case '[LAYER]:none':
+			return 'none'
 		default:
 			return state;
 	}
