@@ -17,8 +17,15 @@ class SideOverlay extends React.Component {
 		if(this.props.selectEvent === null){
 			return null;
 		}
+		if(this.props.selectEvent.type == 'traffic'){
+				return (		<div className="SideOverlay">
+						<div className="SideOverlay__title" >SpeedLimit: {this.props.selectEvent.speedLimit}</div>
+						<div className="SideOverlay__description" >Current Speed: {this.props.selectEvent.currentSpeed}</div>
+						<div className="SideOverlay__description" >quantity of meassurments: {this.props.selectEvent.totalMeasurements}</div>
+					</div>
+				)
+		}
 		if(this.props.selectEvent.type === 'Feature'){
-			console.log('help');
 			console.log(this.props.selectEvent.type);
 			return (
 				<div className="SideOverlay">
@@ -43,11 +50,11 @@ class SideOverlay extends React.Component {
 				<LineChart width={300} height={200} data={this.props.selectEvent.temporal_impacts} >
 					<Line type="basis" dataKey="temporal_impact" stroke="#000000" dot={false}/>
 					<XAxis dataKey="minute">
-						<Label value="Temporal Impact" offset={-1} position="insideBottom" />
+						<Label value="zeit" offset={-1} position="insideBottom" />
 					</XAxis>
 						<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
 						<YAxis dataKey="temporal_impact">
-							<Label value="Zeit"  angle={-90}position="center" />
+							<Label value="temporal_impact"  angle={-90}position="center" />
 						</YAxis>
 					<Tooltip/>
 				</LineChart>

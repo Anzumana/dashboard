@@ -302,101 +302,101 @@ class App extends Component {
 		console.log(result);
 	}
 	componentWillMount(){
-		getRoadwork().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[ROADWORK]:SET',payload:json});
-			});
-		}
-		);
-		getTraffic().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[TRAFFIC]:SET',payload:json});
-			});
-		}
-		);
+		//getRoadwork().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[ROADWORK]:SET',payload:json});
+			//});
+		//}
+		//);
+		//getTraffic().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[TRAFFIC]:SET',payload:json});
+			//});
+		//}
+		//);
 		getPrimary().then((res) =>{
 			res.json().then((json) => { 
 				store.dispatch({type: '[PRIMARY]:SET',payload:json});
 			});
 		}
 		);
-		getSecondary().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[SECONDARY]:SET',payload:json});
-			});
-		}
-		);
-		//getTertiary().then((res) =>{
+		//getSecondary().then((res) =>{
 			//res.json().then((json) => { 
-				//store.dispatch({type: '[TERTIARY]:SET',payload:json});
+				//store.dispatch({type: '[SECONDARY]:SET',payload:json});
 			//});
 		//}
 		//);
-		//getTrunk().then((res) =>{
+		////getTertiary().then((res) =>{
+			////res.json().then((json) => { 
+				////store.dispatch({type: '[TERTIARY]:SET',payload:json});
+			////});
+		////}
+		////);
+		////getTrunk().then((res) =>{
+			////res.json().then((json) => { 
+				////store.dispatch({type: '[TRUNK]:SET',payload:json});
+			////});
+		////}
+		////);
+		//getMotorway().then((res) =>{
 			//res.json().then((json) => { 
-				//store.dispatch({type: '[TRUNK]:SET',payload:json});
+				//store.dispatch({type: '[MOTORWAY]:SET',payload:json});
 			//});
 		//}
 		//);
-		getMotorway().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[MOTORWAY]:SET',payload:json});
-			});
-		}
-		);
-		getPrimaryLink().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[PRIMARY_LINK]:SET',payload:json});
-			});
-		}
-		);
-		getSecondaryLink().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[SECONDARY_LINK]:SET',payload:json});
-			});
-		}
-		);
-		getTertiaryLink().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[TERTIARY_LINK]:SET',payload:json});
-			});
-		}
-		);
-		getTrunkLink().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[TRUNK_LINK]:SET',payload:json});
-			});
-		}
-		);
-		getMotorwayLink().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[MOTORWAY_LINK]:SET',payload:json});
-			});
-		}
-		);
+		//getPrimaryLink().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[PRIMARY_LINK]:SET',payload:json});
+			//});
+		//}
+		//);
+		//getSecondaryLink().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[SECONDARY_LINK]:SET',payload:json});
+			//});
+		//}
+		//);
+		//getTertiaryLink().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[TERTIARY_LINK]:SET',payload:json});
+			//});
+		//}
+		//);
+		//getTrunkLink().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[TRUNK_LINK]:SET',payload:json});
+			//});
+		//}
+		//);
+		//getMotorwayLink().then((res) =>{
+			//res.json().then((json) => { 
+				//store.dispatch({type: '[MOTORWAY_LINK]:SET',payload:json});
+			//});
+		//}
+		//);
 		getEvents().then((res) =>{
 			res.json().then((json) => { 
 				store.dispatch({type: 'SET_EVENTDATA',payload:json});
 			});
 		}
 		);
-		//every 5 minutes  = 300000
-		setInterval(() =>{
-			getTraffic().then((res) =>{
-				res.json().then((json) => { 
-					store.dispatch({type: '[TRAFFIC]:SET',payload:json});
-				});
-			}
-			);
-		},300000);
-		setInterval(() =>{
-			getRoadwork().then((res) =>{
-				res.json().then((json) => { 
-					store.dispatch({type: '[ROADWORK]:SET',payload:json});
-				});
-			}
-			);
-		},300000);
+		////every 5 minutes  = 300000
+		//setInterval(() =>{
+			//getTraffic().then((res) =>{
+				//res.json().then((json) => { 
+					//store.dispatch({type: '[TRAFFIC]:SET',payload:json});
+				//});
+			//}
+			//);
+		//},300000);
+		//setInterval(() =>{
+			//getRoadwork().then((res) =>{
+				//res.json().then((json) => { 
+					//store.dispatch({type: '[ROADWORK]:SET',payload:json});
+				//});
+			//}
+			//);
+		//},300000);
 		
 	}
 	render() {

@@ -21,6 +21,9 @@ class D4UMMAP extends Component {
 		console.log(' HERE IS OUR CONSTRUICTOR');
 	
 	}
+	onDragEnd(result) {
+		console.log(result);
+	};
 
 	componentDidMount(){ 
     window.addEventListener('resize', this._resize.bind(this));
@@ -30,7 +33,7 @@ class D4UMMAP extends Component {
   _resize() {
     this._onViewportChange({
       width: window.innerWidth,
-      height: window.innerHeight-600
+      height: window.innerHeight-500
     });
   }
 
@@ -64,8 +67,78 @@ class D4UMMAP extends Component {
 	_renderLayers(){
 		console.log('RENDERlAYERS CALL');
 		let layers = [];
+		if(this.props.primary){
+				layers.push(
+						new PathLayer({
+							id: 'primary',
+							data: this.props.primary,
+							widthScale: 1,
+							widthMinPixels: 5,
+							getPath: d => { 
+								return d.coordinates;
+							},
+							pickable: true,
+							onHover: d => { 
+								console.log('hover');
+								if(d.object === undefined){
+									return;
+								}
+							this.props.changeSelectedEvent(d.object)
+								console.log(d.object);
+							},
+							getColor: d => {
+								if((d.currentSpeed/d.speedLimit) > 1){
+									return [80,40,255,255];
+								}
+								if((d.currentSpeed/d.speedLimit) < 1 && d.currentSpeed/d.speedLimit > 0.6){
+									return [255,255,0,255];
+								}
+								if((d.currentSpeed/d.speedLimit) < 0.6){
+									return [255,40,255,255];
+								}
+							},
+							getWidth: d => 2,
+						})
+				);
+		}
+		if(this.props.secondary){
+				layers.push(
+						new PathLayer({
+							id: 'secondary',
+							data: this.props.motorwayLink,
+							widthScale: 1,
+							widthMinPixels: 5,
+							getPath: d => { 
+								return d.coordinates;
+							},
+							pickable: true,
+							onHover: d => { 
+							if(d.object === undefined){
+								return;
+							}
+							this.props.changeSelectedEvent(d.object)
+							},
+							getColor: d => [255,40,255,255],
+							getWidth: d => 2,
+						})
+				);
+		}
+		if(this.props.tertiary){
+				layers.push(
+						new PathLayer({
+							id: 'tertiary',
+							data: this.props.tertiary,
+							widthScale: 1,
+							widthMinPixels: 5,
+							getPath: d => { 
+								return d.coordinates;
+							},
+							getColor: d => [255,40,255,255],
+							getWidth: d => 2,
+						})
+				);
+		}
 		if(this.props.motorway){
-			var testLinesData = this.props.motorway;
 				layers.push(
 						new PathLayer({
 							id: 'motorway',
@@ -88,46 +161,6 @@ class D4UMMAP extends Component {
 						})
 				);
 		}
-		if(this.props.primary){
-			var testLinesData = this.props.primary;
-				layers.push(
-						new PathLayer({
-							id: 'primary',
-							data: this.props.primary,
-							widthScale: 1,
-							widthMinPixels: 5,
-							getPath: d => { 
-								d.coordinates 
-							},
-							pickable: true,
-							onHover: d => { 
-								console.log('hover');
-							if(d.object === undefined){
-								return;
-							}
-							this.props.changeSelectedEvent(d.object)
-							},
-							getColor: d => [255,40,255,255],
-							getWidth: d => 2,
-						})
-				);
-		}
-		if(this.props.secondary){
-			var testLinesData = this.props.secondary;
-				layers.push(
-						new PathLayer({
-							id: 'secondary',
-							data: this.props.secondary,
-							widthScale: 1,
-							widthMinPixels: 5,
-							getPath: d => { 
-								d.coordinates 
-							},
-							getColor: d => [40,40,40,255],
-							getWidth: d => 10,
-						})
-				);
-		}
 		if(this.props.motorwayLink){
 				layers.push(
 						new PathLayer({
@@ -136,15 +169,13 @@ class D4UMMAP extends Component {
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
-								d.coordinates 
+								return d.coordinates;
 							},
 							pickable: true,
 							onHover: d => { 
-								console.log('hover');
 							if(d.object === undefined){
 								return;
 							}
-								debugger;
 							this.props.changeSelectedEvent(d.object)
 							},
 							getColor: d => [255,40,255,255],
@@ -160,7 +191,7 @@ class D4UMMAP extends Component {
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
-								d.coordinates 
+								return d.coordinates;
 							},
 							getColor: d => [255,40,255,255],
 							getWidth: d => 2,
@@ -175,7 +206,7 @@ class D4UMMAP extends Component {
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
-								d.coordinates 
+								return d.coordinates;
 							},
 							getColor: d => [255,40,255,255],
 							getWidth: d => 2,
@@ -190,7 +221,7 @@ class D4UMMAP extends Component {
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
-								d.coordinates 
+								return d.coordinates;
 							},
 							getColor: d => [255,40,255,255],
 							getWidth: d => 2,
@@ -205,12 +236,138 @@ class D4UMMAP extends Component {
 							widthScale: 1,
 							widthMinPixels: 5,
 							getPath: d => { 
-								d.coordinates 
+								return d.coordinates 
 							},
 							getColor: d => [255,40,255,255],
 							getWidth: d => 1,
 						})
 				);
+		}
+		if(this.props.traffic){
+			layers.push(
+				new IconLayer({
+					id: 'icon-traffic',
+					data: this.props.traffic.features,
+					iconAtlas: roadwork,
+					iconMapping:
+						{
+							"traffic-blue": {
+								"x": 0,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"traffic-yellow": {
+								"x": 220,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"roadwork-red": {
+								"x": 414,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"roadwork-man": {
+								"x": 612,
+								"y": 0,
+								"width": 157,
+								"height": 174,
+							},
+						} ,
+					sizeScale:1 ,
+					getPosition: d => d.geometry.coordinates,
+					getIcon: d => 'traffic-yellow',
+					getSize: d=> 100,
+					pickable: true,
+					updateTrigger:{
+						getPosition: d => d.geometry.coordinates
+					},
+					onClick: d => { 
+						this.props.changeSelectedEvent(d.object)
+					},
+					onHover: d => { 
+						if(d.object === undefined){
+							return;
+						}
+						this.props.changeSelectedEvent(d.object)
+					}
+				}),
+				new ScatterplotLayer({
+						id: 'scatterplot-layer',
+						outline:true,
+						data: this.state.filteredEvents,
+						strokeWidth: 5,
+						radiusScale: 1,
+						getPosition: d => this.calcPosition(d.coordinates),
+						getRadius: d => d.impact*1000,
+						getColor: d => this.calcColor(d.category)
+				})
+			);
+		}
+		if(this.props.roadwork){
+			layers.push(
+				new IconLayer({
+					id: 'icon-roadwork',
+					data: this.props.roadwork.features,
+					iconAtlas: roadwork,
+					iconMapping:
+						{
+							"traffic-blue": {
+								"x": 0,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"traffic-yellow": {
+								"x": 220,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"roadwork-red": {
+								"x": 414,
+								"y": 0,
+								"width": 170,
+								"height": 174,
+							},
+							"roadwork-man": {
+								"x": 612,
+								"y": 0,
+								"width": 157,
+								"height": 174,
+							},
+						} ,
+					sizeScale:1 ,
+					getPosition: d => d.geometry.coordinates,
+					getIcon: d => 'roadwork-man',
+					getSize: d=> 100,
+					pickable: true,
+					updateTrigger:{
+						getPosition: d => d.geometry.coordinates
+					},
+					onClick: d => { 
+						this.props.changeSelectedEvent(d.object)
+					},
+					onHover: d => { 
+						if(d.object === undefined){
+							return;
+						}
+						this.props.changeSelectedEvent(d.object)
+					}
+				}),
+				new ScatterplotLayer({
+						id: 'scatterplot-layer',
+						outline:true,
+						data: this.state.filteredEvents,
+						strokeWidth: 5,
+						radiusScale: 1,
+						getPosition: d => this.calcPosition(d.coordinates),
+						getRadius: d => d.impact*1000,
+						getColor: d => this.calcColor(d.category)
+				}),
+			);
 		}
 		layers.push(
 			new IconLayer({
@@ -331,161 +488,8 @@ class D4UMMAP extends Component {
 					getPosition: d => this.calcPosition(d.coordinates),
 					getRadius: d => d.impact*1000,
 					getColor: d => this.calcColor(d.category)
-			}),
-				new PathLayer({
-					id: 'path-layer4',
-					data: testLinesData,
-					widthScale: 10,
-					widthMinPixels: 2,
-					getPath: d => { d.coordinates},
-					getColor: d => [255,40,255,255],
-					getWidth: d => 1,
-				})
+			})
 		);
-		if(this.props.traffic){
-		layers.push(
-			new IconLayer({
-				id: 'icon-traffic',
-				data: this.props.traffic.features,
-				iconAtlas: roadwork,
-				iconMapping:
-					{
-						"traffic-blue": {
-							"x": 0,
-							"y": 0,
-							"width": 170,
-							"height": 174,
-						},
-						"traffic-yellow": {
-							"x": 220,
-							"y": 0,
-							"width": 170,
-							"height": 174,
-						},
-						"roadwork-red": {
-							"x": 414,
-							"y": 0,
-							"width": 170,
-							"height": 174,
-						},
-						"roadwork-man": {
-							"x": 612,
-							"y": 0,
-							"width": 157,
-							"height": 174,
-						},
-					} ,
-				sizeScale:1 ,
-				getPosition: d => d.geometry.coordinates,
-				getIcon: d => 'traffic-yellow',
-				getSize: d=> 100,
-				pickable: true,
-				updateTrigger:{
-					getPosition: d => d.geometry.coordinates
-				},
-				onClick: d => { 
-					this.props.changeSelectedEvent(d.object)
-				},
-				onHover: d => { 
-					if(d.object === undefined){
-						return;
-					}
-					this.props.changeSelectedEvent(d.object)
-				}
-			}),
-			new ScatterplotLayer({
-					id: 'scatterplot-layer',
-					outline:true,
-					data: this.state.filteredEvents,
-					strokeWidth: 5,
-					radiusScale: 1,
-					getPosition: d => this.calcPosition(d.coordinates),
-					getRadius: d => d.impact*1000,
-					getColor: d => this.calcColor(d.category)
-			}),
-				new PathLayer({
-					id: 'path-layer4',
-					data: testLinesData,
-					widthScale: 10,
-					widthMinPixels: 2,
-					getPath: d => d.coordinates,
-					getColor: d => [255,40,255,255],
-					getWidth: d => 1,
-				})
-		);
-		}
-		if(this.props.roadwork){
-			layers.push(
-				new IconLayer({
-					id: 'icon-roadwork',
-					data: this.props.roadwork.features,
-					iconAtlas: roadwork,
-					iconMapping:
-						{
-							"traffic-blue": {
-								"x": 0,
-								"y": 0,
-								"width": 170,
-								"height": 174,
-							},
-							"traffic-yellow": {
-								"x": 220,
-								"y": 0,
-								"width": 170,
-								"height": 174,
-							},
-							"roadwork-red": {
-								"x": 414,
-								"y": 0,
-								"width": 170,
-								"height": 174,
-							},
-							"roadwork-man": {
-								"x": 612,
-								"y": 0,
-								"width": 157,
-								"height": 174,
-							},
-						} ,
-					sizeScale:1 ,
-					getPosition: d => d.geometry.coordinates,
-					getIcon: d => 'roadwork-man',
-					getSize: d=> 100,
-					pickable: true,
-					updateTrigger:{
-						getPosition: d => d.geometry.coordinates
-					},
-					onClick: d => { 
-						this.props.changeSelectedEvent(d.object)
-					},
-					onHover: d => { 
-						if(d.object === undefined){
-							return;
-						}
-						this.props.changeSelectedEvent(d.object)
-					}
-				}),
-				new ScatterplotLayer({
-						id: 'scatterplot-layer',
-						outline:true,
-						data: this.state.filteredEvents,
-						strokeWidth: 5,
-						radiusScale: 1,
-						getPosition: d => this.calcPosition(d.coordinates),
-						getRadius: d => d.impact*1000,
-						getColor: d => this.calcColor(d.category)
-				}),
-					new PathLayer({
-						id: 'path-layer4',
-						data: testLinesData,
-						widthScale: 10,
-						widthMinPixels: 2,
-						getPath: d => d.coordinates,
-						getColor: d => [0,40,255,255],
-						getWidth: d => 1,
-					})
-			);
-		}
 		console.log(this.props.layer);
 		console.log(this.props.layer == 'affected_subgraph');
 		if(this.props.layer == 'affected_subgraph' && this.state.selectEvent && this.state.selectEvent.type != 'Feature'){
@@ -664,6 +668,7 @@ class D4UMMAP extends Component {
 				>
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
+				<h1 className="MapHeader"> Active Options </h1>
 				<h1 className="MapHeader"> Map Options </h1>
 				<Droppable droppableId='filter' direction="horizontal">
 				{(provided) => (

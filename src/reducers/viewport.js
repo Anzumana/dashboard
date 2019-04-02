@@ -1,10 +1,10 @@
 const initialState = {
-	latitude: 52.413830,
-	longitude: 10.773462,
-	zoom: 12,
+	latitude: 52.08291796567653,
+	longitude: 8.667069429652617,
+	zoom: 10,
 	width:1040 ,
 	height:618,
-	pitch: 0,
+	pitch: 51,
 	bearing: 0
 };
 // values for deck gl testing with their sample data
