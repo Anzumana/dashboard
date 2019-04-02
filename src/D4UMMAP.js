@@ -6,6 +6,7 @@ import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer, GeoJsonLayer}
 import events from './assets/location-icon-atlas.png'; 
 import roadwork from './assets/roadwork.png'; 
 import store from './store';
+import { isUndefined } from 'util';
 import { Droppable, Draggable} from 'react-beautiful-dnd';
 
 class D4UMMAP extends Component {
@@ -80,7 +81,7 @@ class D4UMMAP extends Component {
 							pickable: true,
 							onHover: d => { 
 								console.log('hover');
-								if(d.object === undefined){
+								if(isUndefined(d.object)){
 									return;
 								}
 							this.props.changeSelectedEvent(d.object)
@@ -113,7 +114,7 @@ class D4UMMAP extends Component {
 							},
 							pickable: true,
 							onHover: d => { 
-							if(d.object === undefined){
+							if(isUndefined(d.object)){
 								return;
 							}
 							this.props.changeSelectedEvent(d.object)
@@ -148,7 +149,7 @@ class D4UMMAP extends Component {
 							pickable: true,
 							onHover: d => { 
 								console.log('hover');
-							if(d.object === undefined){
+							if(isUndefined(d.object)){
 								return;
 							}
 							this.props.changeSelectedEvent(d.object)
@@ -173,7 +174,7 @@ class D4UMMAP extends Component {
 							},
 							pickable: true,
 							onHover: d => { 
-							if(d.object === undefined){
+							if(isUndefined(d.object)){
 								return;
 							}
 							this.props.changeSelectedEvent(d.object)
@@ -288,7 +289,7 @@ class D4UMMAP extends Component {
 						this.props.changeSelectedEvent(d.object)
 					},
 					onHover: d => { 
-						if(d.object === undefined){
+						if(isUndefined(d.object)){
 							return;
 						}
 						this.props.changeSelectedEvent(d.object)
@@ -351,7 +352,7 @@ class D4UMMAP extends Component {
 						this.props.changeSelectedEvent(d.object)
 					},
 					onHover: d => { 
-						if(d.object === undefined){
+						if(isUndefined(d.object)){
 							return;
 						}
 						this.props.changeSelectedEvent(d.object)
@@ -473,7 +474,7 @@ class D4UMMAP extends Component {
 					this.props.changeSelectedEvent(d.object)
 				},
 				onHover: d => { 
-					if(d.object === undefined){
+					if(isUndefined(d.object)){
 						return;
 					}
 					this.props.changeSelectedEvent(d.object)
