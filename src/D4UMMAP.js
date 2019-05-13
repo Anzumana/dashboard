@@ -5,9 +5,11 @@ import MapGL from 'react-map-gl';
 import DeckGL, {LineLayer ,IconLayer, ScatterplotLayer, PathLayer, GeoJsonLayer} from 'deck.gl'
 import events from './assets/location-icon-atlas.png'; 
 import roadwork from './assets/roadwork.png'; 
+import Paper from './components/Paper';
 import store from './store';
 import { isUndefined } from 'util';
-import { Droppable, Draggable} from 'react-beautiful-dnd';
+import { Droppable, Draggable} from 'react-beautiful-dnd'
+import Card from './components/MaterialCardComplexInteraction';
 
 class D4UMMAP extends Component {
 
@@ -33,7 +35,7 @@ class D4UMMAP extends Component {
 
   _resize() {
     this._onViewportChange({
-      width: window.innerWidth,
+      width: window.innerWidth - 800,
       height: window.innerHeight-500
     });
   }
@@ -669,8 +671,27 @@ class D4UMMAP extends Component {
 				>
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
-				<h1 className="MapHeader"> Active Options </h1>
-				<h1 className="MapHeader"> Map Options </h1>
+				<Paper className="Paper" title={'Active Options'} description={'Drag your selections here'}/>
+				<Droppable droppableId='active' direction="horizontal">
+				{(provided) => (
+				<div className="MapFilterContainer"
+					ref={provided.innerRef}
+					{...provided.droppableProps}
+					>
+					{buttons.map( (value,index) => 
+					<Draggable draggableId={value+ 'ssdsd'} index={index}>
+						{(provided) => (
+						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+							<div className={value} onClick={() => this.test(value)}> </div>
+							<div className="MapTile__title"> {value} </div>
+						</div>
+						)}
+					</Draggable>
+					)}
+				</div>
+				)}
+				</Droppable>
+				<Paper className="Paper" title={'Map Options'} description={'Drag your prefered mapstyle onto the active options panel'}/>
 				<Droppable droppableId='filter' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer"
@@ -690,7 +711,7 @@ class D4UMMAP extends Component {
 				</div>
 				)}
 				</Droppable>
-				<h1 className="MapHeader"> Data </h1>
+				<Paper className="Paper" title={'Data'} description={'Drag the Datapoints you are interested in onto the options panel '}/>
 				<Droppable droppableId='test' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer" 

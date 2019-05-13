@@ -4,6 +4,8 @@ import '../index.css'
 import  moment  from 'moment';
 import {Label,LineChart , Line , XAxis, YAxis,CartesianGrid, Tooltip, Legend} from 'recharts';
 import renderHTML from 'react-render-html';
+import Card from './MaterialCardComplexInteraction.js';
+import SimpleCard from './MaterialCardSimpleCard';
 
 class SideOverlay extends React.Component {
 	constructor(){
@@ -32,6 +34,11 @@ class SideOverlay extends React.Component {
 					<div className="SideOverlay__title" >{renderHTML(this.props.selectEvent.properties.ROAD) }</div>
 					<div className="SideOverlay__description" >{renderHTML(this.props.selectEvent.properties.LOCATION_DESCRIPTION)}</div>
 				</div>
+			);
+		}
+		if(this.props.selectEvent.type=== 'DEFAULT'){
+			return (
+				<Card tile={this.props.selectEvent}/>
 			);
 		}
 		if(this.props.selectEvent.type !== 'Feature'){

@@ -299,6 +299,10 @@ class App extends Component {
 		super();
 	}
 	onDragEnd(result){
+		//store.dispatch({type: 'UNSELECT_EVENT'});
+	}
+	onDragStart(result){
+		store.dispatch({type: 'SELECT_EVENT',payload:result});
 		console.log(result);
 	}
 	componentWillMount(){
@@ -440,13 +444,13 @@ class App extends Component {
 		
 		return (
 			<div id="d4um-container">
-			<DragDropContext onDragEnd={this.onDragEnd}>
+			<DragDropContext onDragEnd={this.onDragEnd} onDragStart={this.onDragStart}>
 				<Router>
 					<div>
-						<Route exact path="/" render={renderSideOverlay}/>
-						<Route exact path="/" render={renderSelectCity}/>
-						<Route exact path="/" render={renderPlay}/>
 						<Route exact path="/" render={renderD4UMMAP}/>
+						<Route exact path="/" render={renderSideOverlay}/>
+						<Route exact path="/" render={renderPlay}/>
+						<Route exact path="/" render={renderSelectCity}/>
 					</div>
 				</Router>
 			</DragDropContext>
