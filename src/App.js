@@ -295,11 +295,46 @@ class  Home extends Component {
 	//}
 //}
 class App extends Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
+		this.onDragEnd = this.onDragEnd.bind(this);
 	}
 	onDragEnd(result){
-		//store.dispatch({type: 'UNSELECT_EVENT'});
+		const { destination, source , draggableId } = result;
+
+		if(!destination){
+			return;
+		}
+		if(
+			destination.droppableId === source.droppableId &&
+			destination.index === source.index
+		) {
+			return;
+		}
+
+		
+		console.log(this.props);
+		const column = this.props.layers.columns[source.droppableId]
+		const newTaskIds = Array.from(column.taskIds);
+		newTaskIds.splice(source.index,1);
+		newTaskIds.splice(destination.index,0,draggableId);
+		
+		const newColumn = {
+			...column,
+			taskIds:newTaskIds,
+		};			
+
+		const newState ={
+			...this.props.layers,
+			columns: {
+				...this.props.layers.columns,
+				[newColumn.id]: newColumn
+			}
+		};
+
+		store.dispatch({type: 'REORDER', payload: newState})
+		console.log('state', newState);
+		console.log('onDragEnd',result);
 	}
 	onDragStart(result){
 		store.dispatch({type: 'SELECT_EVENT',payload:result});

@@ -661,6 +661,7 @@ class D4UMMAP extends Component {
 						"navigationGuidanceNight",
 					];
 		const activeOptions = ['dark'];
+		console.log(Object.getOwnPropertyNames(this.props.layers.activeOptions));
 			return (
 			<div>
 				<MapGL
@@ -672,13 +673,13 @@ class D4UMMAP extends Component {
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
 				<Paper className="Paper" title={'Active Options'} description={'Drag your selections here'}/>
-				<Droppable droppableId='active' direction="horizontal">
+				<Droppable droppableId='activeOptions' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer"
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 					>
-					{activeOptions.map( (value,index) => 
+					{this.props.layers.columns.activeOptions.taskIds.map( (value,index) => 
 					<Draggable draggableId={value+ 'ssdsd'} index={index}>
 						{(provided) => (
 						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
@@ -693,13 +694,13 @@ class D4UMMAP extends Component {
 				)}
 				</Droppable>
 				<Paper className="Paper" title={'Map Options'} description={'Drag your prefered mapstyle onto the active options panel'}/>
-				<Droppable droppableId='filter' direction="horizontal">
+				<Droppable droppableId='mapOptions' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer"
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 					>
-					{buttons.map( (value,index) => 
+					{this.props.layers.columns.mapOptions.taskIds.map( (value,index) => 
 					<Draggable draggableId={value} index={index}>
 						{(provided) => (
 						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
