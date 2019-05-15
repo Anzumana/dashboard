@@ -26,6 +26,7 @@ import navigationPreviewDay from '../assets/navigation-preview-day-v4.png';
 import navigationPreviewNight from '../assets/navigation-preview-night-v4.png';
 import navigationGuidanceDay from '../assets/navigation-guidance-day-v4.png';
 import navigationGuidanceNight from '../assets/navigation-guidance-night-v4.png';
+import camelCase from '../lib/utils';
 
 const styles = theme => ({
   card: {
@@ -71,18 +72,18 @@ class RecipeReviewCard extends React.Component {
 			light: light,
 			dark: dark,
 			satellite: satellite,
-			'satellite-streets': satelliteStreets,
-			'navigation-preview-day': navigationPreviewDay,
-			'navigation-preview-night': navigationPreviewNight,
-			'navigation-guidance-day': navigationGuidanceDay,
-			'navigation-guidance-night': navigationGuidanceNight,
+			'satelliteStreets': satelliteStreets,
+			'navigationPreviewDay': navigationPreviewDay,
+			'navigationPreviewNight': navigationPreviewNight,
+			'navigationGuidanceDay': navigationGuidanceDay,
+			'navigationGuidanceNight': navigationGuidanceNight,
 			affected: dark,
 			typicall: streets,
 			none: light,
 			buildings: outdoors
 		}
 		const { classes } = this.props;
-		const thumbnail = this.props.tile.draggableId + '';
+		
 
     return (
       <Card className={classes.card + ' ' + 'Card'}>
@@ -102,7 +103,7 @@ class RecipeReviewCard extends React.Component {
         />
         <CardMedia
           className={classes.media}
-          image={images[thumbnail]}
+          image={images[this.props.tile.draggableId]}
           title="sdsdPaella dish"
         />
         <CardContent>

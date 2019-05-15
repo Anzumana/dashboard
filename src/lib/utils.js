@@ -35,4 +35,7 @@ const convertCoordinatesToPath = ( coordinates ) => {
 	result.pop();
 	return result;
 }
-export { convertLineString, convertSubgraph , convertCoordinatesToPath}
+const splitCamelCase = (string) => {
+	return string.toString().replace(/([a-z])([A-Z])/g, '$1 $2');
+}
+export { convertLineString, convertSubgraph , convertCoordinatesToPath, splitCamelCase}

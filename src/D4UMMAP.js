@@ -9,7 +9,7 @@ import Paper from './components/Paper';
 import store from './store';
 import { isUndefined } from 'util';
 import { Droppable, Draggable} from 'react-beautiful-dnd'
-import Card from './components/MaterialCardComplexInteraction';
+import { splitCamelCase } from './lib/utils';
 
 class D4UMMAP extends Component {
 
@@ -575,7 +575,7 @@ class D4UMMAP extends Component {
 					type: '[LAYER]:none'
 				});
 				break;
-			case' buildinds':
+			case' buildings':
 			this.setState({
 				mapStyle:"mapbox://styles/taal/" + value
 			})
@@ -610,31 +610,31 @@ class D4UMMAP extends Component {
 				mapStyle:"mapbox://styles/" + value
 			})
 			break;
-			case "satellite-streets":
+			case "satelliteStreets":
 				value = "mapbox/satellite-streets-v10";
 			this.setState({
 				mapStyle:"mapbox://styles/" + value
 			})
 			break;
-			case "navigation-preview-day":
+			case "navigationPreviewDay":
 				value = "mapbox/navigation-preview-day-v4";
 			this.setState({
 				mapStyle:"mapbox://styles/" + value
 			})
 			break;
-			case "navigation-preview-night":
+			case "navigationPreviewNight":
 			value = "mapbox/navigation-preview-night-v4";
 			this.setState({
 				mapStyle:"mapbox://styles/" + value
 			})
 			break;
-			case "navigation-guidance-day":
+			case "navigationGuidanceDay":
 			value = "mapbox/navigation-guidance-day-v4";
 			this.setState({
 				mapStyle:"mapbox://styles/" + value
 			})
 			break;
-			case "navigation-guidance-night":
+			case "navigationGuidanceNight":
 			value = "mapbox/navigation-guidance-night-v4";
 			this.setState({
 				mapStyle:"mapbox://styles/" + value
@@ -654,13 +654,13 @@ class D4UMMAP extends Component {
 						"light",
 						"dark",
 						"satellite",
-						"satellite-streets",
-						"navigation-preview-day",
-						"navigation-preview-night",
-						"navigation-guidance-day",
-						"navigation-guidance-night",
-						"buildings"
+						"satelliteStreets",
+						"navigationPreviewDay",
+						"navigationPreviewNight",
+						"navigationGuidanceDay",
+						"navigationGuidanceNight",
 					];
+		const activeOptions = ['dark'];
 			return (
 			<div>
 				<MapGL
@@ -678,12 +678,12 @@ class D4UMMAP extends Component {
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 					>
-					{buttons.map( (value,index) => 
+					{activeOptions.map( (value,index) => 
 					<Draggable draggableId={value+ 'ssdsd'} index={index}>
 						{(provided) => (
 						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 							<div className={value} onClick={() => this.test(value)}> </div>
-							<div className="MapTile__title"> {value} </div>
+							<div className="MapTile__title"> {splitCamelCase(value)} </div>
 						</div>
 						)}
 					</Draggable>
@@ -703,7 +703,7 @@ class D4UMMAP extends Component {
 						{(provided) => (
 						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 							<div className={value} onClick={() => this.test(value)}> </div>
-							<div className="MapTile__title"> {value} </div>
+							<div className="MapTile__title"> {splitCamelCase(value)} </div>
 						</div>
 						)}
 					</Draggable>
@@ -732,13 +732,6 @@ class D4UMMAP extends Component {
 								<div className="dark"></div>
 								<div className="MapTile__title"> typically affected Subgraph</div>
 							</div>
-						)}
-					</Draggable>
-					<Draggable draggableId="none" index={3}>
-						{(provided) => (
-							<div className="MapTile" onClick = {() =>this.test('none')}{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-								<div className="dark"></div>
-								<div className="MapTile__title"> None</div> </div>
 						)}
 					</Draggable>
 					{provided.placeholder}
