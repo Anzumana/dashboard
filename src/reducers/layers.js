@@ -1,10 +1,10 @@
 const initalState= {
 	activeOptions:{
-		 'dark': { id: 'dark' , path: 'Take out the garbage' }
 	},
 	mapOptions:{
 		'streets': { id: 'streets' , path: 'Take out the garbage' },
 		'outdoors': { id: 'outdoors' , path: 'Watch my favorite show' },
+		'dark': { id: 'dark' , path: 'Take out the garbage' },
 		'light': { id: 'light' , path: 'Charge my phone' },
 		'satelliteStreets': { id: 'satelliteStreets' , path: 'Cook dinner' },
 		'satelliteStreets': { id: 'satelliteStreets', path: 'test path' },
@@ -21,7 +21,7 @@ const initalState= {
 		'activeOptions': {
 			id: 'activeOptions',
 			title: 'Map Options',
-			taskIds: ['dark'] 
+			taskIds: [] 
 		},
 		'mapOptions': {
 			id: 'mapOptions',

@@ -314,26 +314,55 @@ class App extends Component {
 
 		
 		console.log(this.props);
-		const column = this.props.layers.columns[source.droppableId]
-		const newTaskIds = Array.from(column.taskIds);
-		newTaskIds.splice(source.index,1);
-		newTaskIds.splice(destination.index,0,draggableId);
-		
-		const newColumn = {
-			...column,
-			taskIds:newTaskIds,
-		};			
+		const start = this.props.layers.columns[source.droppableId]
+		const finish = this.props.layers.columns[destination.droppableId]
+		// move items inside of a columns
+		if(start === finish) {
+			const newTaskIds = Array.from(start.taskIds);
+			newTaskIds.splice(source.index,1);
+			newTaskIds.splice(destination.index,0,draggableId);
+			
+			const newColumn = {
+				...start,
+				taskIds:newTaskIds,
+			};			
 
-		const newState ={
+			const newState ={
+				...this.props.layers,
+				columns: {
+					...this.props.layers.columns,
+					[newColumn.id]: newColumn
+				}
+			};
+			store.dispatch({type: 'REORDER', payload: newState})
+		console.log('state', newState);
+			return;
+		}
+		// move items between columns
+		const startTaskIds = Array.from(start.taskIds);
+		startTaskIds.splice(source.index,1)
+		const newStart = {
+			...start,
+			taskIds: startTaskIds,
+		};
+
+		const finishTaskIds = Array.from(finish.taskIds);
+		finishTaskIds.splice(destination.index,0,draggableId);
+		const newFinish = {
+			...finish,
+			taskIds: finishTaskIds,
+		};
+
+		const newState = {
 			...this.props.layers,
 			columns: {
 				...this.props.layers.columns,
-				[newColumn.id]: newColumn
-			}
+				[newStart.id]: newStart,
+				[newFinish.id]: newFinish,
+			},
 		};
-
 		store.dispatch({type: 'REORDER', payload: newState})
-		console.log('state', newState);
+
 		console.log('onDragEnd',result);
 	}
 	onDragStart(result){

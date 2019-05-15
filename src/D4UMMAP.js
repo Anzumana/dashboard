@@ -660,7 +660,7 @@ class D4UMMAP extends Component {
 						"navigationGuidanceDay",
 						"navigationGuidanceNight",
 					];
-		const activeOptions = ['dark'];
+		const activeOptions = this.props.layers.columns.activeOptions.taskIds;
 		console.log(Object.getOwnPropertyNames(this.props.layers.activeOptions));
 			return (
 			<div>
@@ -680,7 +680,7 @@ class D4UMMAP extends Component {
 					{...provided.droppableProps}
 					>
 					{this.props.layers.columns.activeOptions.taskIds.map( (value,index) => 
-					<Draggable draggableId={value+ 'ssdsd'} index={index}>
+					<Draggable draggableId={value} index={index}>
 						{(provided) => (
 						<div className="MapTile" {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 							<div className={value} onClick={() => this.test(value)}> </div>
