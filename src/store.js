@@ -18,6 +18,7 @@ import primaryLinkReducer from './reducers/primary_link'
 import secondaryLinkReducer from './reducers/secondary_link'
 import tertiaryLinkReducer from './reducers/tertiary_link'
 import trunkLinkReducer from './reducers/trunk_link'
+import layersReducer from './reducers/layers';
 import { composeWithDevTools} from 'redux-devtools-extension'
 
 const reducer = combineReducers({
@@ -39,7 +40,8 @@ const reducer = combineReducers({
 	primaryLink: primaryLinkReducer,
 	secondaryLink: secondaryLinkReducer,
 	tertiaryLink: tertiaryLinkReducer,
-	trunkLink: trunkLinkReducer
+	trunkLink: trunkLinkReducer,
+	layers: layersReducer
 });
 export default createStore(
 	reducer,

@@ -688,6 +688,7 @@ class D4UMMAP extends Component {
 						)}
 					</Draggable>
 					)}
+					{provided.placeholder}
 				</div>
 				)}
 				</Droppable>
@@ -708,16 +709,14 @@ class D4UMMAP extends Component {
 						)}
 					</Draggable>
 					)}
+					{provided.placeholder}
 				</div>
 				)}
 				</Droppable>
 				<Paper className="Paper" title={'Data'} description={'Drag the Datapoints you are interested in onto the options panel '}/>
 				<Droppable droppableId='test' direction="horizontal">
 				{(provided) => (
-				<div className="MapFilterContainer" 
-					ref={provided.innerRef}
-					{...provided.droppableProps}
-					>
+				<div className="MapFilterContainer" ref={provided.innerRef} {...provided.droppableProps} >
 					<Draggable draggableId="typicall" index={1}>
 						{(provided) => (
 							<div className="MapTile" onClick = {() =>this.test('affected_subgraph')} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
