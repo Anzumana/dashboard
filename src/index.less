@@ -78,11 +78,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 	.br4();
 }
 .Play{
+	margin-top: 1vh;
 	background-color:white;
 	justify-content:center;
 	.flex();
 	.pa2();
-	border-radius:10px;
+	border-radius:2px;
 	
 	&__next{
 		background-image: url("./assets/icons/next.svg");
@@ -239,4 +240,16 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 	right:18px;
 	top:11px;
 	z-index:2;// mapox legend is z-index 1
+}
+.ActiveOptions__Date{
+}
+.ActiveOptions__Viewport{
+}
+.ActiveOptions__Container{
+	display:flex;
+}
+/*Material UI Augmentations*/
+.Paper{
+	min-width:30vw;
+	margin-right: 1vw;
 }

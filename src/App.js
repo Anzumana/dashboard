@@ -481,29 +481,10 @@ class App extends Component {
         />
       );
     }
- 		const renderSelectCity = (props) => {
-      return (
-				<SelectCity
-				changeCity ={changeCity} 
-				cities= {cities} 
-				changeViewport ={changeViewport}
-				/>
-      );
-    }
 		const renderSideOverlay = (props) => {
 			return (
 				<SideOverlay selectEvent={selectEvent}/>
 			);
-		}
-		const renderPlay = (props) => {
-			return ( 
-							<Play 
-								changeFilter = {changeFilter} 
-								resetFilter = { resetFilter}
-								filter= {filter}
-								unselectSelectedEvent = {unselectSelectedEvent}
-							/>
-						 );
 		}
 		
 		return (
@@ -513,8 +494,6 @@ class App extends Component {
 					<div>
 						<Route exact path="/" render={renderD4UMMAP}/>
 						<Route exact path="/" render={renderSideOverlay}/>
-						<Route exact path="/" render={renderPlay}/>
-						<Route exact path="/" render={renderSelectCity}/>
 					</div>
 				</Router>
 			</DragDropContext>
@@ -535,4 +514,4 @@ const mapDispatchToProps = (dispatch) =>{
 };
 const mapStateToProps = (state) => state
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
-export default ConnectedApp
+export default ConnectedApp 

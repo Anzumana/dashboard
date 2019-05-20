@@ -14,8 +14,11 @@ const initalState= {
 		'navigationGuidanceNight': { id: 'navigationGuidanceNight', path: 'test path' },
 	},
 	dataOptions:{
-		 'affected': { id: 'affected' , path: 'Take out the garbage' },
-		 'typicall': { id: 'typicall' , path: 'Take out the garbage' },
+		'affected': { id: 'affected' , path: 'Take out the garbage' },
+		'typicall': { id: 'typicall' , path: 'Take out the garbage' },
+		'roadwork': { id: 'roadwork' , path: 'Take out the garbage' },
+		'trafficWarnings': { id: 'roadwork' , path: 'Take out the garbage' },
+		'futureEvents08/2017-01/2018':{ id: 'roadwork' , path: 'Take out the garbage' } 
 	},
 	columns:{
 		'activeOptions': {
@@ -42,7 +45,7 @@ const initalState= {
 		'dataOptions': {
 			id: 'dataOptions',
 			title: 'Data Options',
-			taskIds: ['typicallyAffectedSubgraph','affectedSubgraph'] 
+			taskIds: ['typicallyAffectedSubgraph','affectedSubgraph', 'raodwork','trafficWarnings','futureEvents08/2017-01/2018'] 
 		}
 	},
 	columnOrder: ['activeOptions','mapOptions','dataOptions']

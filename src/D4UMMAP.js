@@ -10,6 +10,9 @@ import store from './store';
 import { isUndefined } from 'util';
 import { Droppable, Draggable} from 'react-beautiful-dnd'
 import { splitCamelCase } from './lib/utils';
+//Component
+import Play from './components/Play';
+import SelectCity from './components/SelectCity.js';
 
 class D4UMMAP extends Component {
 
@@ -671,7 +674,22 @@ class D4UMMAP extends Component {
 				>
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
-				<Paper className="Paper" title={'Active Options'} description={'Drag your selections here'}/>
+				<div className="ActiveOptions__Container">
+					<Paper className="Paper" title={'Active Options'} description={'Drag your selections here'}/>
+					<div>
+						<Play 
+							changeFilter = {(val) => store.dispatch({type:'SET_FILTER', payload:val})} 
+							resetFilter = { () => store.dispatch({type:'RESET_FILTER',payload: {}})}
+							filter= {this.props.filter}
+							unselectSelectedEvent = {(val) => store.dispatch({type:'UNSELECT_EVENT', payload:val})}
+						/>
+						<SelectCity
+						changeCity ={(val) => store.dispatch({type:'SELECT_CITY', payload:val})} 
+						cities= {this.props.cities} 
+						changeViewport ={(val) => store.dispatch({type:'SET_VIEWPORT', payload:val})}
+						/>
+					</div>
+				</div>
 				<Droppable droppableId='activeOptions' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer"
