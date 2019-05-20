@@ -560,12 +560,12 @@ class D4UMMAP extends Component {
 	}
 	test(value){
 		switch(value) {
-			case 'typically_affected_subgraph' :
+			case 'typicallyAffectedSubgraph' :
 				store.dispatch({
 					type: '[LAYER]:typically_affected_subgraph'
 				});
 				break;
-			case 'affected_subgraph':
+			case 'affectedSubgraph':
 				store.dispatch({
 					type: '[LAYER]:affected_subgraph'
 				});
@@ -661,7 +661,6 @@ class D4UMMAP extends Component {
 						"navigationGuidanceNight",
 					];
 		const activeOptions = this.props.layers.columns.activeOptions.taskIds;
-		console.log(Object.getOwnPropertyNames(this.props.layers.activeOptions));
 			return (
 			<div>
 				<MapGL
@@ -696,10 +695,7 @@ class D4UMMAP extends Component {
 				<Paper className="Paper" title={'Map Options'} description={'Drag your prefered mapstyle onto the active options panel'}/>
 				<Droppable droppableId='mapOptions' direction="horizontal">
 				{(provided) => (
-				<div className="MapFilterContainer"
-					ref={provided.innerRef}
-					{...provided.droppableProps}
-					>
+				<div className="MapFilterContainer" ref={provided.innerRef} {...provided.droppableProps}>
 					{this.props.layers.columns.mapOptions.taskIds.map( (value,index) => 
 					<Draggable draggableId={value} index={index}>
 						{(provided) => (
@@ -715,25 +711,19 @@ class D4UMMAP extends Component {
 				)}
 				</Droppable>
 				<Paper className="Paper" title={'Data'} description={'Drag the Datapoints you are interested in onto the options panel '}/>
-				<Droppable droppableId='test' direction="horizontal">
+				<Droppable droppableId='dataOptions' direction="horizontal">
 				{(provided) => (
 				<div className="MapFilterContainer" ref={provided.innerRef} {...provided.droppableProps} >
-					<Draggable draggableId="typicall" index={1}>
-						{(provided) => (
-							<div className="MapTile" onClick = {() =>this.test('affected_subgraph')} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-								<div className="dark"></div>
-								<div className="MapTile__title"> affected Subgraph</div>
-							</div>
-						)}
-					</Draggable>
-					<Draggable draggableId="affected" index={2}>
-						{(provided) => (
-							<div className="MapTile" onClick = {() =>this.test('typically_affected_subgraph')}{...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-								<div className="dark"></div>
-								<div className="MapTile__title"> typically affected Subgraph</div>
-							</div>
-						)}
-					</Draggable>
+					{this.props.layers.columns.dataOptions.taskIds.map( (value,index) => 
+						<Draggable draggableId={value} index={index}>
+							{(provided) => (
+								<div className="MapTile" onClick = {() =>this.test(value)} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+									<div className="dark"></div>
+									<div className="MapTile__title"> {splitCamelCase(value)}</div>
+								</div>
+							)}
+						</Draggable>
+					)}
 					{provided.placeholder}
 				</div>
 				)}

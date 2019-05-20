@@ -42,7 +42,7 @@ const initalState= {
 		'dataOptions': {
 			id: 'dataOptions',
 			title: 'Data Options',
-			taskIds: ['affected','typicall'] 
+			taskIds: ['typicallyAffectedSubgraph','affectedSubgraph'] 
 		}
 	},
 	columnOrder: ['activeOptions','mapOptions','dataOptions']
