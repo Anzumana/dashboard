@@ -14,6 +14,7 @@ const convertLineString =  (inputString) =>{
 	return result;
 }
 const convertSubgraph = (affected_subgraph) => {
+	if(affected_subgraph){
 	var result=[];
 	affected_subgraph = affected_subgraph.map((element)=>
 		{
@@ -22,6 +23,7 @@ const convertSubgraph = (affected_subgraph) => {
 			result.push(myElement);
 		})
 	return result;
+	}
 }
 const convertCoordinatesToPath = ( coordinates ) => {
 	var result = []
