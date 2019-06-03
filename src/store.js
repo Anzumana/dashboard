@@ -19,6 +19,7 @@ import secondaryLinkReducer from './reducers/secondary_link'
 import tertiaryLinkReducer from './reducers/tertiary_link'
 import trunkLinkReducer from './reducers/trunk_link'
 import layersReducer from './reducers/layers';
+import mapStyleReducer from './reducers/mapStyle';
 import { composeWithDevTools} from 'redux-devtools-extension'
 
 const reducer = combineReducers({
@@ -41,7 +42,8 @@ const reducer = combineReducers({
 	secondaryLink: secondaryLinkReducer,
 	tertiaryLink: tertiaryLinkReducer,
 	trunkLink: trunkLinkReducer,
-	layers: layersReducer
+	layers: layersReducer,
+	mapStyle: mapStyleReducer
 });
 export default createStore(
 	reducer,

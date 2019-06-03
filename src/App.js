@@ -298,6 +298,7 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		this.onDragEnd = this.onDragEnd.bind(this);
+		this.test = this.test.bind(this);
 	}
 	onDragEnd(result){
 		const { destination, source , draggableId } = result;
@@ -361,9 +362,74 @@ class App extends Component {
 				[newFinish.id]: newFinish,
 			},
 		};
+		// if source from map options and target active otions
+		console.log(newState);
+		if(destination.droppableId === 'activeOptions' && source.droppableId === 'mapOptions'){
+			newState.columns['activeOptions'].taskIds.forEach((element,index) => {
+				console.log(element)
+				if(newState.tasks[element].type === 'mapOptions' && element !== draggableId){
+				var removedItem = 	newState.columns['activeOptions'].taskIds.splice(index,1)[0];
+				newState.columns['mapOptions'].taskIds.push(removedItem);
+				}
+			});
+		}
 		store.dispatch({type: 'REORDER', payload: newState})
+		this.test(result.draggableId);
 
 		console.log('onDragEnd',result);
+	}
+	test(value){
+		switch(value) {
+			case 'typicallyAffectedSubgraph' :
+				store.dispatch({
+					type: '[LAYER]:typically_affected_subgraph'
+				});
+				break;
+			case 'affectedSubgraph':
+				store.dispatch({
+					type: '[LAYER]:affected_subgraph'
+				});
+				break;
+			case 'none':
+				store.dispatch({
+					type: '[LAYER]:none'
+				});
+				break;
+			case	"streets":
+				store.dispatch({type: '[mapStyle] street'});
+				break;
+			case "outdoors":
+				store.dispatch({type: '[mapStyle] outdoors'});
+			break;
+			case "light":
+				store.dispatch({type: '[mapStyle] light'});
+				break;
+			case "dark":
+				store.dispatch({type: '[mapStyle] dark'});
+				break;
+			case "satellite":
+				store.dispatch({type: '[mapStyle] satellite'});
+				break;
+			case "satelliteStreets":
+				store.dispatch({type: '[mapStyle] satelliteStreets'});
+				break;
+			case "navigationPreviewDay":
+				store.dispatch({type: '[mapStyle] navigationPreviewDay'});
+				break;
+			case "navigationPreviewNight":
+				store.dispatch({type: '[mapStyle] navigationPreviewNight'});
+				break;
+			case "navigationGuidanceDay":
+				store.dispatch({type: '[mapStyle] navigationPreviewNight'});
+				break;
+			case "navigationGuidanceNight":
+				store.dispatch({type: '[mapStyle] navigationGuidanceNight'});
+				break;
+			default:
+			this.setState({
+				mapStyle:"mapbox://styles/" + value
+			})
+		}
 	}
 	onDragStart(result){
 		store.dispatch({type: 'SELECT_EVENT',payload:result});

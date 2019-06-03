@@ -1,36 +1,32 @@
 const initalState= {
-	activeOptions:{
-	},
-	mapOptions:{
-		'streets': { id: 'streets' , path: 'Take out the garbage' },
-		'outdoors': { id: 'outdoors' , path: 'Watch my favorite show' },
-		'dark': { id: 'dark' , path: 'Take out the garbage' },
-		'light': { id: 'light' , path: 'Charge my phone' },
-		'satelliteStreets': { id: 'satelliteStreets' , path: 'Cook dinner' },
-		'satelliteStreets': { id: 'satelliteStreets', path: 'test path' },
-		'navigationPreviewDay': { id: 'navigationPreviewDay', path: 'test path' },
-		'navigationPreviewNight': { id: 'navigationPreviewNight', path: 'test path' },
-		'navigationGuidanceDay': { id: 'navigationGuidanceDay', path: 'test path' },
-		'navigationGuidanceNight': { id: 'navigationGuidanceNight', path: 'test path' },
-	},
-	dataOptions:{
-		'affected': { id: 'affected' , path: 'Take out the garbage' },
-		'typicall': { id: 'typicall' , path: 'Take out the garbage' },
-		'roadwork': { id: 'roadwork' , path: 'Take out the garbage' },
-		'trafficWarnings': { id: 'roadwork' , path: 'Take out the garbage' },
-		'futureEvents08/2017-01/2018':{ id: 'roadwork' , path: 'Take out the garbage' } 
+	tasks:{
+		'outdoors': { id: 'outdoors' , type: 'mapOptions' ,path: 'Watch my favorite show' },
+		'dark': { id: 'dark' , type: 'mapOptions' ,ppath: 'Take out the garbage' },
+		'light': { id: 'light' , type: 'mapOptions' ,ppath: 'Charge my phone' },
+		'satelliteStreets': { id: 'satelliteStreets' , type: 'mapOptions' ,ppath: 'Cook dinner' },
+		'satelliteStreets': { id: 'satelliteStreets', type: 'mapOptions' ,ppath: 'test path' },
+		'navigationPreviewDay': { id: 'navigationPreviewDay', type: 'mapOptions' ,ppath: 'test path' },
+		'navigationPreviewNight': { id: 'navigationPreviewNight', type: 'mapOptions' ,ppath: 'test path' },
+		'navigationGuidanceDay': { id: 'navigationGuidanceDay',type: 'mapOptions' ,path: 'test path' },
+		'navigationGuidanceNight': { id: 'navigationGuidanceNight',type: 'mapOptions' ,path: 'test path' },
+		'streets': { id: 'streets' , path: 'Take out the garbage' ,type: 'mapOptions' },
+		'affected': { id: 'affected' ,type: 'dataOptions', path: 'Take out the garbage' },
+		'typicall': { id: 'typicall' ,type: 'dataOptions', path: 'Take out the garbage' },
+		'roadwork': { id: 'roadwork' ,type: 'dataOptions', path: 'Take out the garbage' },
+		'trafficWarnings': { id: 'roadwork' ,type: 'dataOptions', path: 'Take out the garbage' },
+		'events':{ id: 'futureEvents',type: 'dataOptions' , info: '08/2017-01/2018' },
+		'currentSpeeds':{ id: 'currentSpeeds',type: 'dataOptions' , info: '08/2017-01/2018' } 
 	},
 	columns:{
 		'activeOptions': {
 			id: 'activeOptions',
 			title: 'Map Options',
-			taskIds: [] 
+			taskIds: ['streets'] 
 		},
 		'mapOptions': {
 			id: 'mapOptions',
 			title: 'Data Options',
 			taskIds: [
-				"streets",
 				"outdoors",
 				"light",
 				"dark",
@@ -45,10 +41,10 @@ const initalState= {
 		'dataOptions': {
 			id: 'dataOptions',
 			title: 'Data Options',
-			taskIds: ['typicallyAffectedSubgraph','affectedSubgraph', 'raodwork','trafficWarnings','futureEvents08/2017-01/2018'] 
+			taskIds: ['typicallyAffectedSubgraph','affectedSubgraph', 'roadwork','trafficWarnings','events' ,'currentSpeeds' ] 
 		}
 	},
-	columnOrder: ['activeOptions','mapOptions','dataOptions']
+	columnOrder: ['activeOptions','dataOptions','mapOptions']
 };
 
 export default function(state = initalState , action){

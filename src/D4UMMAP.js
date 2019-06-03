@@ -37,9 +37,10 @@ class D4UMMAP extends Component {
 	}
 
   _resize() {
+      //width: window.innerWidth * 0.70 ,
     this._onViewportChange({
-      width: window.innerWidth - 800,
-      height: window.innerHeight-500
+      width: window.innerWidth ,
+      height: window.innerHeight * 0.5
     });
   }
 
@@ -650,6 +651,8 @@ class D4UMMAP extends Component {
 		}
 	}
   render() {
+		console.log(window.window.innerWidth);
+		console.log(window.window.innerHeight);
 		const {viewport} = this.state;
 					const buttons = [
 						"streets",
@@ -669,26 +672,24 @@ class D4UMMAP extends Component {
 				<MapGL
 					className="Map"
 					{...viewport}
-					mapStyle={this.state.mapStyle}
+					mapStyle={this.props.mapStyle}
 				onViewportChange={this._onViewportChange.bind(this)}
 				>
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
 				<div className="ActiveOptions__Container">
 					<Paper className="Paper" title={'Active Options'} description={'Drag your selections here'}/>
-					<div>
-						<Play 
-							changeFilter = {(val) => store.dispatch({type:'SET_FILTER', payload:val})} 
-							resetFilter = { () => store.dispatch({type:'RESET_FILTER',payload: {}})}
-							filter= {this.props.filter}
-							unselectSelectedEvent = {(val) => store.dispatch({type:'UNSELECT_EVENT', payload:val})}
-						/>
-						<SelectCity
-						changeCity ={(val) => store.dispatch({type:'SELECT_CITY', payload:val})} 
-						cities= {this.props.cities} 
-						changeViewport ={(val) => store.dispatch({type:'SET_VIEWPORT', payload:val})}
-						/>
-					</div>
+					<Play 
+						changeFilter = {(val) => store.dispatch({type:'SET_FILTER', payload:val})} 
+						resetFilter = { () => store.dispatch({type:'RESET_FILTER',payload: {}})}
+						filter= {this.props.filter}
+						unselectSelectedEvent = {(val) => store.dispatch({type:'UNSELECT_EVENT', payload:val})}
+					/>
+					<SelectCity
+					changeCity ={(val) => store.dispatch({type:'SELECT_CITY', payload:val})} 
+					cities= {this.props.cities} 
+					changeViewport ={(val) => store.dispatch({type:'SET_VIEWPORT', payload:val})}
+					/>
 				</div>
 				<Droppable droppableId='activeOptions' direction="horizontal">
 				{(provided) => (
@@ -710,6 +711,24 @@ class D4UMMAP extends Component {
 				</div>
 				)}
 				</Droppable>
+				<Paper className="Paper" title={'Data'} description={'Drag the Datapoints you are interested in onto the options panel '}/>
+				<Droppable droppableId='dataOptions' direction="horizontal">
+				{(provided) => (
+				<div className="MapFilterContainer" ref={provided.innerRef} {...provided.droppableProps} >
+					{this.props.layers.columns.dataOptions.taskIds.map( (value,index) => 
+						<Draggable draggableId={value} index={index}>
+							{(provided) => (
+								<div className="MapTile" onClick = {() =>this.test(value)} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+									<div className={value}></div>
+									<div className="MapTile__title"> {splitCamelCase(value)}</div>
+								</div>
+							)}
+						</Draggable>
+					)}
+					{provided.placeholder}
+				</div>
+				)}
+				</Droppable>
 				<Paper className="Paper" title={'Map Options'} description={'Drag your prefered mapstyle onto the active options panel'}/>
 				<Droppable droppableId='mapOptions' direction="horizontal">
 				{(provided) => (
@@ -723,24 +742,6 @@ class D4UMMAP extends Component {
 						</div>
 						)}
 					</Draggable>
-					)}
-					{provided.placeholder}
-				</div>
-				)}
-				</Droppable>
-				<Paper className="Paper" title={'Data'} description={'Drag the Datapoints you are interested in onto the options panel '}/>
-				<Droppable droppableId='dataOptions' direction="horizontal">
-				{(provided) => (
-				<div className="MapFilterContainer" ref={provided.innerRef} {...provided.droppableProps} >
-					{this.props.layers.columns.dataOptions.taskIds.map( (value,index) => 
-						<Draggable draggableId={value} index={index}>
-							{(provided) => (
-								<div className="MapTile" onClick = {() =>this.test(value)} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-									<div className="dark"></div>
-									<div className="MapTile__title"> {splitCamelCase(value)}</div>
-								</div>
-							)}
-						</Draggable>
 					)}
 					{provided.placeholder}
 				</div>

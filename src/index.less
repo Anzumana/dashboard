@@ -78,6 +78,8 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 	.br4();
 }
 .Play{
+	height:76px;
+	min-width:25vw;
 	margin-top: 1vh;
 	background-color:white;
 	justify-content:center;
@@ -147,6 +149,48 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 	height: 74px;
 	border-radius:4px 4px 0px 0px;
 }
+.typicallyAffectedSubgraph{
+	background-size:cover;
+	background-image: url("./assets/typicallyAffectedSubgraph.png");
+	width:154px;
+	height: 74px;
+	border-radius:4px 4px 0px 0px;
+}
+.affectedSubgraph{
+	background-size:cover;
+	background-image: url("./assets/affectedSubgraph.png");
+	width:154px;
+	height: 74px;
+	border-radius:4px 4px 0px 0px;
+}
+.roadwork{
+	background-size:cover;
+	background-image: url("./assets/roadworkTile.png");
+	width:154px;
+	height: 74px;
+	border-radius:4px 4px 0px 0px;
+}
+.trafficWarnings{
+	background-size:cover;
+	background-image: url("./assets/trafficWarnings.png");
+	width:154px;
+	height: 74px;
+	border-radius:4px 4px 0px 0px;
+}
+.events{
+	background-size:cover;
+	background-image: url("./assets/eventsTile.png");
+	width:154px;
+	height: 74px;
+	border-radius:4px 4px 0px 0px;
+}
+.currentSpeeds{
+	background-size:cover;
+	background-image: url("./assets/currentSpeeds.png");
+	width:154px;
+	height: 74px;
+	border-radius:4px 4px 0px 0px;
+}
 .satellite{
 	background-size:cover;
 	background-image: url("./assets/satellite-v9.png");
@@ -206,12 +250,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 .MapTile__title{
 	text-transform: capitalize;
 	width:154px;
-	background-color:#333344;
+	background-color:#4B4B5A;
 	color:white;
 	border-radius:0px 0px 4px 4px;
 	display:flex;
 	justify-content:center;
-	border: 2px solid black;
 }
 .MapTile__header{
 	color:white;
@@ -236,6 +279,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 	margin-top: 1vh;
 }
 .Card{
+	max-width: 25vw !important; // overwriting default material ui style
 	position:absolute;
 	right:18px;
 	top:11px;
@@ -252,4 +296,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 .Paper{
 	min-width:30vw;
 	margin-right: 1vw;
+}
+.dropdown{
+	height:76px;
+	min-width:25vw!important;
+	margin-left:1vw;
+	margin-top: 1vh;
 }

@@ -26,6 +26,12 @@ import navigationPreviewDay from '../assets/navigation-preview-day-v4.png';
 import navigationPreviewNight from '../assets/navigation-preview-night-v4.png';
 import navigationGuidanceDay from '../assets/navigation-guidance-day-v4.png';
 import navigationGuidanceNight from '../assets/navigation-guidance-night-v4.png';
+import typicallyAffectedSubgraph from '../assets/typicallyAffectedSubgraph.png';
+import currentSpeeds from '../assets/currentSpeeds.png';
+import affectedSubgraph from '../assets/affectedSubgraph.png';
+import roadwork from '../assets/roadworkTile.png';
+import trafficWarnings from '../assets/trafficWarnings.png';
+import events from '../assets/eventsTile.png';
 import camelCase from '../lib/utils';
 
 const styles = theme => ({
@@ -80,7 +86,13 @@ class RecipeReviewCard extends React.Component {
 			affected: dark,
 			typicall: streets,
 			none: light,
-			buildings: outdoors
+			buildings: outdoors,
+			typicallyAffectedSubgraph:typicallyAffectedSubgraph,
+			affectedSubgraph: affectedSubgraph,
+			roadwork: roadwork,
+			trafficWarnings: trafficWarnings,
+			events: events,
+			currentSpeeds: currentSpeeds
 		}
 		const { classes } = this.props;
 		
