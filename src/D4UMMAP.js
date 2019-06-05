@@ -669,8 +669,7 @@ class D4UMMAP extends Component {
 		const activeOptions = this.props.layers.columns.activeOptions.taskIds;
 			return (
 			<div>
-				<MapGL
-					className="Map"
+				<MapGL 
 					{...viewport}
 					mapStyle={this.props.mapStyle}
 				onViewportChange={this._onViewportChange.bind(this)}
