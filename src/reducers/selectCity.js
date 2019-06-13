@@ -8,9 +8,9 @@ const initialState = {
 			viewport:{
 				latitude: 52.376712,
 				longitude: 9.754260,
-				zoom: 9,
-				pitch: 58.07993019329368,
-				bearing: 10.55792307692307,
+				zoom: 11,
+				pitch: 0,
+				bearing: 0,
 				transitionDuration:3000
 			}
 		},
@@ -41,18 +41,44 @@ const initialState = {
 			}
 		},
 		{
-			text: 'Aktuelle Verkehrslage -Auszug',
-			value: 'bielefeld',
-			location:'8.611414,52.489153-10.967783,52.291364',
+			text: 'Raodwork A 39',
+			value: 'roadwork-0',
+			location:'9.548431,52.470767-9.973886,52.296619',
 			viewport:{
-				latitude: 52.08291796567653,
-				longitude: 8.667069429652617,
-				zoom: 11.74,
-				pitch: 51,
-				bearing: 0,
+				latitude: 52.423048,
+				longitude: 10.737844,
+				zoom: 13,
+				pitch: 54,
+				bearing: 4.74,
 				transitionDuration:3000
 			}
-		}
+		},
+		{
+			text: 'Traffic Warning Sandkamp',
+			value: 'roadwork-1',
+			location:'8.611414,52.489153-10.967783,52.291364',
+			viewport:{
+				latitude: 52.428780,
+				longitude: 10.750485,
+				zoom: 13,
+				pitch: 56,
+				bearing: 4.74,
+				transitionDuration:3000
+			}
+		},
+		{
+			text: 'Traffic Warning Cremlingen - Scheppau',
+			value: 'roadwork-2',
+			location:'8.611414,52.489153-10.967783,52.291364',
+			viewport:{
+				latitude: 52.281313,
+				longitude: 10.710486,
+				zoom: 13,
+				pitch: 54,
+				bearing: 4.74,
+				transitionDuration:3000
+			}
+		},
 		
 	]
 }

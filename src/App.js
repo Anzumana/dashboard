@@ -433,27 +433,37 @@ class App extends Component {
 	}
 	onDragStart(result){
 		store.dispatch({type: 'SELECT_EVENT',payload:result});
+		if(result.draggableId === 'events'){
+			getEvents().then((res) =>{
+				res.json().then((json) => { 
+					store.dispatch({type: 'SET_EVENTDATA',payload:json});
+				});
+			}
+		);
+		}
+		if(result.draggableId === 'currentSpeeds'){
+		getPrimary().then((res) =>{
+				res.json().then((json) => { 
+					store.dispatch({type: '[PRIMARY]:SET',payload:json});
+				});
+			}
+		);
+		}
 		console.log(result);
 	}
-	componentWillMount(){
-		//getRoadwork().then((res) =>{
-			//res.json().then((json) => { 
-				//store.dispatch({type: '[ROADWORK]:SET',payload:json});
-			//});
-		//}
-		//);
+	componentDidMount(){
+		getRoadwork().then((res) =>{
+			res.json().then((json) => { 
+				store.dispatch({type: '[ROADWORK]:SET',payload:json});
+			});
+		}
+		);
 		//getTraffic().then((res) =>{
 			//res.json().then((json) => { 
 				//store.dispatch({type: '[TRAFFIC]:SET',payload:json});
 			//});
 		//}
 		//);
-		getPrimary().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: '[PRIMARY]:SET',payload:json});
-			});
-		}
-		);
 		//getSecondary().then((res) =>{
 			//res.json().then((json) => { 
 				//store.dispatch({type: '[SECONDARY]:SET',payload:json});
@@ -508,12 +518,6 @@ class App extends Component {
 			//});
 		//}
 		//);
-		getEvents().then((res) =>{
-			res.json().then((json) => { 
-				store.dispatch({type: 'SET_EVENTDATA',payload:json});
-			});
-		}
-		);
 		////every 5 minutes  = 300000
 		//setInterval(() =>{
 			//getTraffic().then((res) =>{

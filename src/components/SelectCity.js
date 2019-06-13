@@ -22,8 +22,14 @@ class SelectCity extends React.Component{
 				case 'wolfsburg':
 					this.props.changeViewport(this.props.cities[2].viewport);
 					break;
-				case 'bielefeld':
+				case 'roadwork-0':
 					this.props.changeViewport(this.props.cities[3].viewport);
+					break;
+				case 'roadwork-1':
+					this.props.changeViewport(this.props.cities[4].viewport);
+					break;
+				case 'roadwork-2':
+					this.props.changeViewport(this.props.cities[5].viewport);
 					break;
 				default:
 					this.props.changeViewport(this.props.cities[0].viewport);
