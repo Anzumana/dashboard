@@ -98,20 +98,10 @@ class RecipeReviewCard extends React.Component {
 		
 
     return (
-      <Card className={classes.card + ' ' + 'Card'}>
+      <Card  raised={true} className={classes.card + ' ' + 'Card'}>
         <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={this.props.tile.draggableId}
-          subheader="September 14, 2016"
+          title='Layer'
+          subheader={'containing ' +this.props.tile.draggableId +' information'}
         />
         <CardMedia
           className={classes.media}
@@ -125,12 +115,6 @@ class RecipeReviewCard extends React.Component {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
