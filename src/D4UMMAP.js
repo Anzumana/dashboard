@@ -94,14 +94,20 @@ class D4UMMAP extends Component {
 								console.log(d.object);
 							},
 							getColor: d => {
-								if((d.currentSpeed/d.speedLimit) > 1){
-									return [80,40,255,255];
+								if((d.currentSpeed/d.speedLimit) > 0.75){
+									return [0,255,0,255];
 								}
-								if((d.currentSpeed/d.speedLimit) < 1 && d.currentSpeed/d.speedLimit > 0.6){
+								if((d.currentSpeed/d.speedLimit) <= 0.75 && d.currentSpeed/d.speedLimit > 0.5){
+									return [50,205,50,255];
+								}
+								if((d.currentSpeed/d.speedLimit) <= 0.5 && d.currentSpeed/d.speedLimit > 0.3){
 									return [255,255,0,255];
 								}
-								if((d.currentSpeed/d.speedLimit) < 0.6){
-									return [255,40,255,255];
+								if((d.currentSpeed/d.speedLimit) <= 0.3 && d.currentSpeed/d.speedLimit > 0.03){
+									return [178,34,34,255];
+								}
+								if((d.currentSpeed/d.speedLimit) <= 0.03 && d.currentSpeed/d.speedLimit > 0){
+									return [128,0,0,255];
 								}
 							},
 							getWidth: d => 2,

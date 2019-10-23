@@ -31,11 +31,7 @@ const initalState= {
 				"light",
 				"dark",
 				"satellite",
-				"satelliteStreets",
-				"navigationPreviewDay",
-				"navigationPreviewNight",
-				"navigationGuidanceDay",
-				"navigationGuidanceNight",
+				"satelliteStreets"
 			]
 		},
 		'dataOptions': {
