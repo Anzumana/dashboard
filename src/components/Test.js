@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
-class Test extends Component {
-  state = { visible: false }
+class Test extends React.Component {
+	constructor(props){
+		super(props);
+		state = { visible: false }
+	}
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  toggleVisibility(){
+		this.setState({ visible: !this.state.visible })
+	}
 
   render() {
     const { visible } = this.state
