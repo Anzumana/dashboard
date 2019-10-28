@@ -13,6 +13,7 @@ import { splitCamelCase } from './lib/utils';
 //Component
 import Play from './components/Play';
 import SelectCity from './components/SelectCity.js';
+import FullscreenButton from './components/FullscreenButton.js';
 
 class D4UMMAP extends Component {
 
@@ -25,6 +26,9 @@ class D4UMMAP extends Component {
 		this.test = this.test.bind(this);
 		console.log(this.props.traffic.features);
 		console.log(' HERE IS OUR CONSTRUICTOR');
+
+
+
 	
 	}
 	onDragEnd(result) {
@@ -37,12 +41,23 @@ class D4UMMAP extends Component {
 	}
 
   _resize() {
-      //width: window.innerWidth * 0.70 ,
-    this._onViewportChange({
-      width: window.innerWidth ,
-      height: window.innerHeight * 0.5
-    });
+		// we need to update the internal _onViewportChange method that deck gl is using 
+		// otherwiese the map will not respond to resizing of the browser window
+		var state = store.getState();
+		var fullscreen = state.fullscreen;
+		if(fullscreen){
+			this._onViewportChange({
+				width: window.innerWidth ,
+				height: window.innerHeight
+			});
+		} else{
+			this._onViewportChange({
+				width: window.innerWidth ,
+				height: window.innerHeight * 0.5
+			});
+		}
   }
+
 
 	calcPosition(val){
 		let substrings = val.split(',')
@@ -544,6 +559,14 @@ class D4UMMAP extends Component {
   }
 	
 	componentWillReceiveProps(props){
+		var fullscreen = props.fullscreen;
+		if(fullscreen){
+			props.viewport.width=window.innerWidth;
+				props.viewport.height = window.innerHeight; 
+		} else{
+			 props.viewport.width= window.innerWidth; 
+				props.viewport.height= window.innerHeight * 0.5 ;
+		}
 		this.setState({
 			viewport: {...this.state.viewport , ...props.viewport},
 			selectEvent: props.selectEvent
@@ -657,8 +680,6 @@ class D4UMMAP extends Component {
 		}
 	}
   render() {
-		console.log(window.window.innerWidth);
-		console.log(window.window.innerHeight);
 		const {viewport} = this.state;
 					const buttons = [
 						"streets",
@@ -675,6 +696,7 @@ class D4UMMAP extends Component {
 		const activeOptions = this.props.layers.columns.activeOptions.taskIds;
 			return (
 			<div>
+				<FullscreenButton fullscreen={this.props.fullscreen} />
 				<MapGL 
 					{...viewport}
 					mapStyle={this.props.mapStyle}

@@ -20,6 +20,7 @@ import tertiaryLinkReducer from './reducers/tertiary_link'
 import trunkLinkReducer from './reducers/trunk_link'
 import layersReducer from './reducers/layers';
 import mapStyleReducer from './reducers/mapStyle';
+import fullscreenReducer from './reducers/fullscreen';
 import { composeWithDevTools} from 'redux-devtools-extension'
 
 const reducer = combineReducers({
@@ -43,7 +44,8 @@ const reducer = combineReducers({
 	tertiaryLink: tertiaryLinkReducer,
 	trunkLink: trunkLinkReducer,
 	layers: layersReducer,
-	mapStyle: mapStyleReducer
+	mapStyle: mapStyleReducer,
+	fullscreen: fullscreenReducer
 });
 export default createStore(
 	reducer,
