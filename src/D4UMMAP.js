@@ -694,13 +694,27 @@ class D4UMMAP extends Component {
 						"navigationGuidanceNight",
 					];
 		const activeOptions = this.props.layers.columns.activeOptions.taskIds;
+		if(this.props.fullscreen){
+			return(
+				<div>
+					<FullscreenButton fullscreen={this.props.fullscreen} />
+					<MapGL 
+						{...viewport}
+						mapStyle={this.props.mapStyle}
+						onViewportChange={this._onViewportChange.bind(this)}
+					>
+					<DeckGL {...viewport} layers={this._renderLayers()} />
+					</MapGL>
+				</div>
+			)
+		}
 			return (
 			<div>
 				<FullscreenButton fullscreen={this.props.fullscreen} />
 				<MapGL 
 					{...viewport}
 					mapStyle={this.props.mapStyle}
-				onViewportChange={this._onViewportChange.bind(this)}
+					onViewportChange={this._onViewportChange.bind(this)}
 				>
 				<DeckGL {...viewport} layers={this._renderLayers()} />
 				</MapGL>
