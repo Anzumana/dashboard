@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import store from '../store';
+import FullscreenIcon  from '@material-ui/icons/Fullscreen';
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
+import Button from '@material-ui/core/Button';
 
 export default class FullscreenButton extends React.Component {
 	constructor(props){
@@ -13,11 +16,26 @@ export default class FullscreenButton extends React.Component {
 	render(){
 		if(this.props.fullscreen){
 			return (
-				<h1 style={{position:'fixed', top:0, zIndex:2 , backgroundColor:'black'}} onClick={() => this.fullscreen()}> Fullscreen </h1>
+				<div className="FullscreenButton" onClick={() => this.fullscreen()}>
+				<Button
+					variant="contained"
+					endIcon={<FullscreenExitIcon />}
+				>
+					Exit Fullscreen
+				</Button>
+				</div>
 			)
 		}else {
 			return (
-				<h1 style={{position:'fixed', top:0, zIndex:2}} onClick={() => this.fullscreen()}> fullscreen off</h1>
+			<div className="FullscreenButton" onClick={() => this.fullscreen()}>
+				<Button
+					variant="contained"
+				size="large"
+					endIcon={<FullscreenIcon fontSize="large"/>}
+				>
+					Enter Fullscreen
+				</Button>
+			</div>
 			)
 		}
 	}
