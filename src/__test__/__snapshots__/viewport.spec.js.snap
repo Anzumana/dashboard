@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`set viewport 1`] = `
+Object {
+  "bearing": 0,
+  "height": 618,
+  "latitude": 52.385932,
+  "longitude": 9.739497,
+  "pitch": 0,
+  "width": 1040,
+  "zoom": 14,
+}
+`;

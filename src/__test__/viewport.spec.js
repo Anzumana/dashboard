@@ -37,5 +37,5 @@ test('set viewport', () => {
 					bearing: 0
 				}
 			});
-	expect(result).toEqual(expectedState);
+	expect(result).toMatchSnapshot();
 });

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`set viewport 1`] = `
+Object {
+  "cities": Array [
+    Object {
+      "location": "9.548431,52.470767-9.973886,52.296619",
+      "text": "Hannover",
+      "value": "hannover",
+      "viewport": Object {
+        "bearing": 10.55792307692307,
+        "latitude": 52.376712,
+        "longitude": 9.75426,
+        "pitch": 58.07993019329368,
+        "transitionDuration": 3000,
+        "zoom": 9,
+      },
+    },
+    Object {
+      "location": "10.355531,52.361515-10.727006,52.152200",
+      "text": "Braunschweig",
+      "value": "braunschweig",
+      "viewport": Object {
+        "bearing": 10.5579,
+        "latitude": 52.275471,
+        "longitude": 10.524445,
+        "pitch": 58.07,
+        "transitionDuration": 3000,
+        "zoom": 9,
+      },
+    },
+    Object {
+      "location": "10.611414,52.489153-10.967783,52.291364",
+      "text": "Wolfsburg",
+      "value": "wolfsburg",
+      "viewport": Object {
+        "bearing": -49.63659663812949,
+        "latitude": 52.41383,
+        "longitude": 10.773462,
+        "pitch": 58.59013474066599,
+        "transitionDuration": 3000,
+        "zoom": 9,
+      },
+    },
+  ],
+  "city": "hannover",
+}
+`;
