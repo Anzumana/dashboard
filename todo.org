@@ -1,0 +1,2 @@
+* errors 
+** styleguidist type error sideoverlay type of undefined
