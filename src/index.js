@@ -6,6 +6,8 @@ import store from './store';
 import { fetchResults ,getTraffic} from './lib/service.js';
 import { convertSubgraph } from './lib/utils.js';
 import { Provider } from 'react-redux';
+import { theme } from './lib/theme'; 
+import { ThemeProvider } from '@material-ui/styles';
 
 const changeSelectedEvent = (val) => store.dispatch({type:'SELECT_EVENT', payload:val});
 const unselectSelectedEvent = (val) => {console.log('unselec');store.dispatch({type:'UNSELECT_EVENT', payload:val})};
@@ -23,8 +25,10 @@ const resetFilter = () => store.dispatch({type:'RESET_FILTER',payload: {}});
 
 ReactDOM.render(
 <Provider store={store}>
-	<App 
-	/>
+	<ThemeProvider theme={theme}>
+		<App 
+		/>
+	</ThemeProvider>
 </Provider>
 , document.getElementById('root'));
 
