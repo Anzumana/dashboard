@@ -16,4 +16,57 @@ or
 npm run d4umstaging 
 if you want to deploy the respective website
 [jest error fix](https://github.com/expo/expo/issues/2192)
-	
+
+
+# Snippets
+src/index.js
+ ```js
+init();
+setTimeout(() => {
+  store.dispatch({
+    type: 'SELECT_EVENT',
+    payload: {
+      capacity: 3500,
+      category: 'concert',
+      coordinates: '9.2323,52.323',
+      geometrie: [],
+      id: 103,
+      name: 'Beethiven: 9. Sinfonie',
+      place: 'Kuppelsaal',
+      start: '2017-12-27 20:00:00',
+    },
+  });
+}, 1000);
+
+
+
+changeCity={changeCity}
+changeViewport = {changeViewport}
+changeSelectedEvent = {changeSelectedEvent}
+changeFilter = {changeFilter}
+resetFilter = {resetFilter}
+unselectSelectedEvent = {unselectSelectedEvent}
+ ```
+
+ ```js
+const init = (val) =>{
+const state = store.getState();
+fetch('http://localhost:8080/events').then(function(res){
+res.json().then(data => {
+store.dispatch({type:'SET_EVENTDATA', payload: data});
+});
+});
+init();
+fetchResults(new Date().toISOString()).then(res=> {
+var b = res.json().then(data => {
+data = data.map((element)=> {
+element.affected_subgraph= convertSubgraph(element.affected_subgraph);
+element.typically_affected_subgraph= convertSubgraph(element.typically_affected_subgraph);
+return element;
+} );
+store.dispatch({type:'SET_EVENTDATA', payload: data});
+});
+})
+.catch(error => console.log('Error:', error));
+}
+ ```
