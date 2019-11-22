@@ -1,10 +1,6 @@
 @import "css/tachyons.less";
 #d4um-container{
-	background: rgb(30,53,76);
-	background: -moz-linear-gradient(90deg, rgba(30,53,76,1) 0%, rgba(13,36,57,1) 51%);
-	background: -webkit-linear-gradient(90deg, rgba(30,53,76,1) 0%, rgba(13,36,57,1) 51%);
-	background: linear-gradient(90deg, rgba(30,53,76,1) 0%, rgba(13,36,57,1) 51%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endColorstr="#0d2439",GradientType=1);
+	background-color:#2d9fa7;
 	h1{
 		color:pink;
 	}
@@ -265,6 +261,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 	flex-direction: row;
 	overflow:scroll;
 	min-height: 12vh;
+   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.MapFilterContainer::-webkit-scrollbar{
+	display: none;  /* Safari and Chrome */
 }
 .Paper{
 	max-width: 30vw;
@@ -299,6 +300,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1e354c",endCo
 }
 .FullscreenButton {
 	position: fixed; 
-	top: 0;
+	top: 1vh;
+	right: 0;
  	z-index: 2;
+}
+.AppBar__title{
+	color:white;
+}
+.AppBar__button{
+	color:white;
 }
