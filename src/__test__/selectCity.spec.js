@@ -1,12 +1,12 @@
 import reducers from '../reducers/selectCity';
 
 test('selectCity reducer init', () => {
-  const result = reducers(undefined, {type:'ANYTHING'});
-	expect(result).toBeDefined();
+  const result = reducers(undefined, { type: 'ANYTHING' });
+  expect(result).toBeDefined();
 });
 
 test('set viewport', () => {
-	const startState = {
+  const startState = {
 			    city: '----',
 				    cities: [
 							      {
@@ -19,8 +19,8 @@ test('set viewport', () => {
 																          zoom: 9,
 																          pitch: 58.07993019329368,
 																          bearing: 10.55792307692307,
-																          transitionDuration: 3000
-																        }
+																          transitionDuration: 3000,
+																        },
 											      },
 							      {
 											        text: 'Braunschweig',
@@ -32,8 +32,8 @@ test('set viewport', () => {
 																          zoom: 9,
 																          pitch: 58.07,
 																          bearing: 10.5579,
-																          transitionDuration: 3000
-																        }
+																          transitionDuration: 3000,
+																        },
 											      },
 							      {
 											        text: 'Wolfsburg',
@@ -45,16 +45,16 @@ test('set viewport', () => {
 																          zoom: 9,
 																          pitch: 58.59013474066599,
 																          bearing: -49.63659663812949,
-																          transitionDuration: 3000
-																        }
-											      }
-							    ]
+																          transitionDuration: 3000,
+																        },
+											      },
+							    ],
 			  };
-	const result = reducers(startState, 
-			{
-				type:'SELECT_CITY', 
-				payload:'hannover'
-				
-			});
-	expect(result).toMatchSnapshot();
+  const result = reducers(startState,
+    {
+      type: 'SELECT_CITY',
+      payload: 'hannover',
+
+    });
+  expect(result).toMatchSnapshot();
 });

@@ -17,7 +17,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import streets from '../assets/navigation-guidance-day-v4.png';
-import outdoors from  '../assets/outdoors-v10.png';
+import outdoors from '../assets/outdoors-v10.png';
 import dark from '../assets/dark-v9.png';
 import light from '../assets/light-v9.png';
 import satellite from '../assets/satellite-v9.png';
@@ -34,7 +34,7 @@ import trafficWarnings from '../assets/trafficWarnings.png';
 import events from '../assets/eventsTile.png';
 import camelCase from '../lib/utils';
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
     maxWidth: 400,
   },
@@ -61,47 +61,47 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { expanded: false };
-		this.handleExpandClick = this.handleExpandClick.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = { expanded: false };
+    this.handleExpandClick = this.handleExpandClick.bind(this);
+  }
 
-  handleExpandClick(){
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+  handleExpandClick() {
+    this.setState((state) => ({ expanded: !state.expanded }));
+  }
 
   render() {
-		const images = {
-			streets: streets,
-			outdoors: outdoors,
-			light: light,
-			dark: dark,
-			satellite: satellite,
-			'satelliteStreets': satelliteStreets,
-			'navigationPreviewDay': navigationPreviewDay,
-			'navigationPreviewNight': navigationPreviewNight,
-			'navigationGuidanceDay': navigationGuidanceDay,
-			'navigationGuidanceNight': navigationGuidanceNight,
-			affected: dark,
-			typicall: streets,
-			none: light,
-			buildings: outdoors,
-			typicallyAffectedSubgraph:typicallyAffectedSubgraph,
-			affectedSubgraph: affectedSubgraph,
-			roadwork: roadwork,
-			trafficWarnings: trafficWarnings,
-			events: events,
-			currentSpeeds: currentSpeeds
-		}
-		const { classes } = this.props;
-		
+    const images = {
+      streets,
+      outdoors,
+      light,
+      dark,
+      satellite,
+      satelliteStreets,
+      navigationPreviewDay,
+      navigationPreviewNight,
+      navigationGuidanceDay,
+      navigationGuidanceNight,
+      affected: dark,
+      typicall: streets,
+      none: light,
+      buildings: outdoors,
+      typicallyAffectedSubgraph,
+      affectedSubgraph,
+      roadwork,
+      trafficWarnings,
+      events,
+      currentSpeeds,
+    };
+    const { classes } = this.props;
+
 
     return (
-      <Card  raised={true} className={classes.card + ' ' + 'Card'}>
+      <Card raised className={`${classes.card} ` + 'Card'}>
         <CardHeader
-          title='Layer'
-          subheader={'containing ' +this.props.tile.draggableId +' information'}
+          title="Layer"
+          subheader={`containing ${this.props.tile.draggableId} information`}
         />
         <CardMedia
           className={classes.media}

@@ -1,48 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Sidebar, Segment, Button, Menu, Image, Icon, Header,
+} from 'semantic-ui-react';
 
 class SidebarBottomOverlay extends React.Component {
-	constructor(props){
-		super(props);
-		state = { visible: false }
-	}
+  constructor(props) {
+    super(props);
+    state = { visible: false };
+  }
 
- 	toggleVisibility(){ 
-		this.setState({ visible: !this.state.visible })
+ 	toggleVisibility() {
+    this.setState({ visible: !this.state.visible });
+  }
 
-	}
   render() {
-    const { visible } = this.state
+    const { visible } = this.state;
     return (
       <div>
         <Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='overlay' direction='bottom' visible={visible} inverted>
-            <Menu.Item name='home'>
-              <Icon name='home' />
+          <Sidebar as={Menu} animation="overlay" direction="bottom" visible={visible} inverted>
+            <Menu.Item name="home">
+              <Icon name="home" />
               Home
             </Menu.Item>
-            <Menu.Item name='gamepad'>
-              <Icon name='gamepad' />
+            <Menu.Item name="gamepad">
+              <Icon name="gamepad" />
               Games
             </Menu.Item>
-            <Menu.Item name='camera'>
+            <Menu.Item name="camera">
               Channels
-              <Icon name='camera' />
+              <Icon name="camera" />
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <Header as='h3'>Application Content</Header>
-							<Link to='/active'> </Link>
-              <Image src='paragraph.png' />
+              <Header as="h3">Application Content</Header>
+              <Link to="/active"> </Link>
+              <Image src="paragraph.png" />
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
-    )
+    );
   }
 }
 
-export default SidebarBottomOverlay
+export default SidebarBottomOverlay;

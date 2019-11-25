@@ -38,7 +38,9 @@ function SimpleCard(props) {
           be
           {bull}
           nev
-          {bull}o{bull}
+          {bull}
+o
+          {bull}
           lent
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
@@ -47,7 +49,7 @@ function SimpleCard(props) {
         <Typography component="p">
           well meaning and kindly.
           <br />
-          {'"a benevolent smile"'}
+          "a benevolent smile"
         </Typography>
       </CardContent>
       <CardActions>
