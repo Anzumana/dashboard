@@ -4,10 +4,10 @@ import {
   Sidebar, Segment, Button, Menu, Image, Icon, Header,
 } from 'semantic-ui-react';
 
-class SidebarBottomOverlay extends React.Component {
+class SidebarOverlay extends React.Component {
   constructor(props) {
     super(props);
-    state = { visible: false };
+    this.state = { visible: false };
   }
 
  	toggleVisibility() {
@@ -47,4 +47,4 @@ class SidebarBottomOverlay extends React.Component {
   }
 }
 
-export default SidebarBottomOverlay;
+export default SidebarOverlay;

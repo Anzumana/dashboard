@@ -1,2 +1,12 @@
 * errors 
-** styleguidist type error sideoverlay type of undefined
+** styleguidist broken
+** drag and drop error
+** change commit lint 
+* features
+* jira
+D4UM-2524 component documentation
+D4UM-2525 unit tests
+D4UM-2526 refactoring
+* eslint integration 
+https://medium.com/@pppped/extend-create-react-app-with-airbnbs-eslint-config-prettier-flow-and-react-testing-library-96627e9a9672
+"types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "revert"],

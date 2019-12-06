@@ -1,4 +1,3 @@
-
 http://negomi.github.io/react-burger-menu/
 http://recharts.org/#/en-US/
 https://react.semantic-ui.com/introduction
@@ -16,6 +15,8 @@ or
 npm run d4umstaging 
 if you want to deploy the respective website
 [jest error fix](https://github.com/expo/expo/issues/2192)
+
+eslint
 
 
 # Snippets

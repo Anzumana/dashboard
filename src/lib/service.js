@@ -1,7 +1,4 @@
-export const getTodo = () => {
-  console.log('gettodo');
-  return fetch('http://localhost:8080/userBadges').then((res) => res.json());
-};
+export const getTodo = () => fetch('http://localhost:8080/userBadges').then((res) => res.json());
 // export const fetchResults=() =>{
 // var header = new Headers();
 // header.append('Authorization', 'Basic ' + 'D4UM'+ ':' + 'D4uM$2017' );
@@ -14,11 +11,9 @@ export const getTodo = () => {
 // }
 export const fetchResults = (until) => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
-  console.log('fetchResults');
-  console.log(until);
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const since = new Date(2017, 10, 12).toISOString();
-  const url = `${'https://d4umnode.hannit.de/events?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='}${since}&until=${until}&type=null`;
+  const url = `${'https://d4umnode.hannit.de/events?location=9.448464,52636607-11.163406,52.176500&since='}${since}&until=${until}&type=null`;
   return fetch(url, {
     header,
     mode: 'cors',
@@ -27,11 +22,10 @@ export const fetchResults = (until) => {
 };
 // '2017-12-05T19:30:00'
 export const getEvents = (since, until) => {
+  since = new Date(2017, 10, 12).toISOString();
+  until = new Date().toISOString();
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
-  console.log('fetchResults');
-  var since = new Date(2017, 10, 12).toISOString();
-  var until = new Date().toISOString();
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = `${'https://d4umnode.hannit.de/test?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='}${encodeURIComponent(since)}&until=${until}&type=null`;
   return fetch(url, {
     header,
@@ -41,8 +35,7 @@ export const getEvents = (since, until) => {
 };
 export const getTraffic = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
-  console.log('fetchResults');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/traffic';
   return fetch(url, {
     header,
@@ -52,8 +45,7 @@ export const getTraffic = () => {
 };
 export const getRoadwork = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
-  console.log('fetchResults');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/roadwork';
   return fetch(url, {
     header,
@@ -63,7 +55,7 @@ export const getRoadwork = () => {
 };
 export const getMotorway = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/motorway';
   return fetch(url, {
     header,
@@ -73,7 +65,7 @@ export const getMotorway = () => {
 };
 export const getMotorwayLink = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/motorway_link';
   return fetch(url, {
     header,
@@ -83,7 +75,7 @@ export const getMotorwayLink = () => {
 };
 export const getPrimary = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/primary';
   return fetch(url, {
     header,
@@ -93,7 +85,7 @@ export const getPrimary = () => {
 };
 export const getPrimaryLink = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/primary_link';
   return fetch(url, {
     header,
@@ -103,7 +95,7 @@ export const getPrimaryLink = () => {
 };
 export const getSecondary = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/secondary';
   return fetch(url, {
     header,
@@ -113,7 +105,7 @@ export const getSecondary = () => {
 };
 export const getSecondaryLink = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/secondary_link';
   return fetch(url, {
     header,
@@ -123,7 +115,7 @@ export const getSecondaryLink = () => {
 };
 export const getTertiary = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/tertiary';
   return fetch(url, {
     header,
@@ -133,7 +125,7 @@ export const getTertiary = () => {
 };
 export const getTertiaryLink = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/tertiary_link';
   return fetch(url, {
     header,
@@ -143,7 +135,7 @@ export const getTertiaryLink = () => {
 };
 export const getTrunk = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/trunk';
   return fetch(url, {
     header,
@@ -153,7 +145,7 @@ export const getTrunk = () => {
 };
 export const getTrunkLink = () => {
   const header = new Headers();
-  header.append('Authorization', 'Basic ' + 'D4UM' + ':' + 'D4uM$2017');
+  header.append('Authorization', 'Basic D4UM:D4uM$2017');
   const url = 'https://d4umnode.hannit.de/trunk_link';
   return fetch(url, {
     header,

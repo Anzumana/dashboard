@@ -567,7 +567,7 @@ class App extends Component {
 
   render() {
     const {
-      city, cities, viewport, changeViewport, changeCity, events, selectEvent, changeSelectedEvent, changeFilter, filter, resetFilter, unselectSelectedEvent,
+      city, cities, viewport, changeViewport, changeCity, events, selectEvent, changeSelectedEvent, changeFilter, filter, resetFilter, unselectSelectedEvent,hoverEvent
     } = this.props;
  		const renderD4UMMAP = (props) => (
    <D4UMMAP
@@ -575,6 +575,7 @@ class App extends Component {
      changeViewport={changeViewport}
      events={events}
      changeSelectedEvent={changeSelectedEvent}
+      hoverEvent={hoverEvent}
      filter={filter}
      selectEvent={selectEvent}
    />
@@ -605,6 +606,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeEventData: (val) => dispatch({ type: 'CHANGE_EVENTDATA', payload: 'somevalue' }),
   changeFilter: (val) => dispatch({ type: 'SET_FILTER', payload: val }),
   resetFilter: () => dispatch({ type: 'RESET_FILTER', payload: {} }),
+  hoverEvent: (val) => dispatch({ type: 'HOVER_EVENT', payload: val })
 });
 const mapStateToProps = (state) => state;
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);

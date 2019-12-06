@@ -6,7 +6,7 @@ import {
 class Test extends React.Component {
   constructor(props) {
     super(props);
-    state = { visible: false };
+    this.state = { visible: false };
   }
 
   toggleVisibility() {

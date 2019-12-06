@@ -6,11 +6,12 @@ export default (state = initalState, action) => {
         return initalState;
       }
       return { ...action.payload };
-
-
+    case 'HOVER_EVENT':
+      return action.payload
     case 'UNSELECT_EVENT':
       return initalState;
     default:
       return state;
+
   }
 };
