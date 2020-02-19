@@ -1,2 +1,6 @@
-* errors 
+* bugs
 ** styleguidist type error sideoverlay type of undefined
+* update react scripts
+* hover over element kacheln should update side menu draging / holding it should lock
+the content in
+tthat way we kind of have the same thing as we have with the hover
