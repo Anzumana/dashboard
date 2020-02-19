@@ -22,6 +22,9 @@ import trunkLinkReducer from './reducers/trunk_link';
 import layersReducer from './reducers/layers';
 import mapStyleReducer from './reducers/mapStyle';
 import fullscreenReducer from './reducers/fullscreen';
+import bikeReducer from './reducers/bike';
+import carReducer from './reducers/car';
+import pedestriansReducer from './reducers/pedestrians';
 
 const reducer = combineReducers({
   viewport: viewportReducer,
@@ -46,6 +49,9 @@ const reducer = combineReducers({
   layers: layersReducer,
   mapStyle: mapStyleReducer,
   fullscreen: fullscreenReducer,
+  accessScoreBike : bikeReducer,
+  accessScoreCar : carReducer,
+  accessScorePedestrians : pedestriansReducer
 });
 export default createStore(
   reducer,
