@@ -1,11 +1,48 @@
 
+```js
+        <Droppable droppableId="activeOptions" direction="horizontal">
+          {provided => (
+            <div
+              className="MapFilterContainer"
+              ref={provided.innerRef}
+              {...provided.droppableProps}>
+              {this.props.layers.columns.activeOptions.taskIds.map(
+                (value, index) => (
+                  <Draggable draggableId={value} index={index}>
+                    {provided => (
+                      <div
+                        className="MapTile"
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}>
+                        <div className={value} onClick={() => this.test(value)}>
+                          {' '}
+                        </div>
+                        <div className="MapTile__title">
+                          {splitCamelCase(value)}
+                        </div>
+                      </div>
+                    )}
+                  </Draggable>
+                ),
+              )}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+        <Paper
+          className="Paper"
+          title="Data"
+          description="Drag the Datapoints you are interested in onto the options panel "
+        />
+```
 http://negomi.github.io/react-burger-menu/
 http://recharts.org/#/en-US/
 https://react.semantic-ui.com/introduction
 https://github.com/aliustaoglu/react-d3-gauge
 https://github.com/trendmicro-frontend/react-liquid-gauge
 https://reactjs.org/docs/react-without-es6.html
-
+https://www.npmjs.com/package/geojson-tile-server
 ## Submodule
 We put the mapbox component into a submodule because we would have to eject create-react-app.
 For this reason we will develop the mapbox component as a submodule until its ready
@@ -109,4 +146,10 @@ lib/utils
 ```js
 // format that is being parsed
 // "LINESTRING(9.7441138 52.3725554,9.7440523 52.3720947,9.7440011 52.3717967,9.7439862 52.3716662,9.7440009 52.3715866)"
+```
+## json configuration for eslint
+```js
+{
+  "extends": "airbnb",
+}
 ```
