@@ -161,3 +161,7 @@ export const getTrunkLink = () => {
     credentials: 'include',
   });
 };
+export const getBike =() => {
+  const url = '/bike';
+  return fetch(url);
+}
