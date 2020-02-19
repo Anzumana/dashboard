@@ -21,7 +21,7 @@ const initialState = {
       viewport: {
         latitude: 52.275471,
         longitude: 10.524445,
-        zoom: 9,
+        zoom: 12,
         pitch: 58.07,
         bearing: 10.5579,
         transitionDuration: 3000,
@@ -34,7 +34,7 @@ const initialState = {
       viewport: {
         latitude: 52.413830,
         longitude: 10.773462,
-        zoom: 9,
+        zoom: 12,
         pitch: 58.59013474066599,
         bearing: -49.63659663812949,
         transitionDuration: 3000,
