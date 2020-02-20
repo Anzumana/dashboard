@@ -42,10 +42,10 @@ quantity of meassurments:
     }
     if (this.props.selectEvent.type === 'Feature') {
       console.log(this.props.selectEvent.type);
-      if(this.props.selectEvent.properties.Axs_Score){
+      if(this.props.selectEvent.properties.Axs_score){
         return(
         <div className="SideOverlay">
-          <div className="SideOverlay__title">ACCESSIBILITY SCORE: {this.props.selectEvent.properties.Axs_Score }</div>
+          <div className="SideOverlay__title">ACCESSIBILITY SCORE: {this.props.selectEvent.properties.Axs_score }</div>
           <div className="SideOverlay__description">{this.props.selectEvent.properties.name}</div>
         </div>
         )
