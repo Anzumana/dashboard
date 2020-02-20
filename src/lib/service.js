@@ -165,3 +165,7 @@ export const getBike =() => {
   const url = '/bike';
   return fetch(url);
 }
+export const getCar =() => {
+  const url = '/car';
+  return fetch(url);
+}

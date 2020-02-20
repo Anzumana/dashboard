@@ -28,7 +28,7 @@ import Paper from './components/Paper';
 import roadwork from './assets/roadwork.png';
 import events from './assets/location-icon-atlas.png';
 //import car from './data/Car-Network.js';
-import bike from './data/Bike-Network.js';
+//import bike from './data/Bike-Network.js';
 //import pedestrian from './data/Pedestrian-Network.js';
 
 class D4UMMAP extends Component {
@@ -137,10 +137,10 @@ class D4UMMAP extends Component {
           getElevation: 30,
           onHover: d => {
             console.log('hover');
-            //if (isUndefined(d.object)) {
-              //return;
-            //}
-            //this.props.changeSelectedEvent(d.object);
+            if (isUndefined(d.object)) {
+              return;
+            }
+            this.props.changeSelectedEvent(d.object);
             console.log(d.object);
           }
         }),

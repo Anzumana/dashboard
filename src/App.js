@@ -7,7 +7,7 @@ import store from './store';
 import './App.css';
 // Services
 import {
-  getTodo, fetchResults, getTraffic, getEvents, getRoadwork, getMotorway, getMotorwayLink, getPrimary, getSecondary, getTertiary, getTrunk, getTrunkLink, getPrimaryLink, getSecondaryLink, getTertiaryLink,getBike
+  getTodo, fetchResults, getTraffic, getEvents, getRoadwork, getMotorway, getMotorwayLink, getPrimary, getSecondary, getTertiary, getTrunk, getTrunkLink, getPrimaryLink, getSecondaryLink, getTertiaryLink,getBike,getCar
 } from './lib/service';
 // Component
 import Play from './components/Play';
