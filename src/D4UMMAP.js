@@ -777,7 +777,7 @@ class D4UMMAP extends Component {
             <IconButton edge="start">
               <MenuIcon className="AppBar__button" />
             </IconButton>
-            <Typography variant="h6">Data4UrbanMobility Dashboard</Typography>
+            <Typography variant="h6">Traffic Analytics Dashboard</Typography>
           </Toolbar>
         </AppBar>
         <FullscreenButton fullscreen={this.props.fullscreen} />

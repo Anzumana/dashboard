@@ -11,17 +11,17 @@ D4UM-2526 refactoring
 https://medium.com/@pppped/extend-create-react-app-with-airbnbs-eslint-config-prettier-flow-and-react-testing-library-96627e9a9672
 "types": ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "revert"],
 
+* l3s release
+* typical darkBlue
+* affected Subgraph black
+* historical = true/false in event object
+* historical -> affectedSubgraph
+* future -> typical
+* fullscreen prev next event - enable
+* fullscreen default
+* token replace
+* structDep
+* trafficMeesage + roadwork disable
 
-- typical darkBlue
-- affected Subgraph black
-- historical = true/false in event object
-- historical -> affectedSubgraph
-- future -> typical
-- fullscreen prev next event - enable
-- fullscreen default
-- token replace
-- structDep
-- trafficMeesage + roadwork disable
-
-- Title TA-Dash
-- Traffic Analytics Dashboard -> Title
+* DONE Title TA-Dash
+* DONE Traffic Analytics Dashboard -> Title
