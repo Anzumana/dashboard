@@ -145,7 +145,7 @@ class D4UMMAP extends Component {
         widthMinPixels: 5,
         getPath: d => d.path,
         pickable: true,
-        onHover: d => {
+        onClick: d => {
           if (isUndefined(d.object)) {
             return;
           }
@@ -595,16 +595,15 @@ class D4UMMAP extends Component {
       this.state.selectEvent &&
       this.state.selectEvent.type != 'Feature'
     ) {
+			if(this.state.selectEvent.historical){
       layers.push(
         new PathLayer({
-          id: 'path-layer',
-          data: convertSubgraph(
-            this.state.selectEvent.typically_affected_subgraph,
-          ),
+          id: 'path-layer2',
+          data: convertSubgraph(this.state.selectEvent.affected_subgraph),
           widthScale: 10,
           widthMinPixels: 2,
           getPath: d => d.path,
-          getColor: d => [0, 0, 255, 255],
+          getColor: d => [0, 0, 0, 255],
           getWidth: d => 1,
         }),
 				new ScatterplotLayer({
@@ -618,6 +617,31 @@ class D4UMMAP extends Component {
 					getColor: d => this.calcColor(d.category),
 				}),
       );
+			}else{
+				layers.push(
+					new PathLayer({
+						id: 'path-layer',
+						data: convertSubgraph(
+							this.state.selectEvent.typically_affected_subgraph,
+						),
+						widthScale: 10,
+						widthMinPixels: 2,
+						getPath: d => d.path,
+						getColor: d => [0, 0, 255, 255],
+						getWidth: d => 1,
+					}),
+					new ScatterplotLayer({
+						id: 'scatterplot-layer',
+						outline: true,
+						data: this.state.filteredEvents,
+						strokeWidth: 5,
+						radiusScale: 1,
+						getPosition: d => this.calcPosition(d.coordinates),
+						getRadius: d => d.impact * 1000,
+						getColor: d => this.calcColor(d.category),
+					}),
+				);
+			}
     }
     return layers;
   }

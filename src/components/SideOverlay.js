@@ -62,9 +62,9 @@ quantity of meassurments:
         date = moment(this.props.selectEvent.start).format('DD.MM.YYYY');
         time = moment(this.props.selectEvent.start).format('hh:mm');
 				if(this.props.selectEvent.historical){
-					historical = 'Historical Data'
+					historical = '<div> Historical Data</div>'
 				}else{
-					historical = 'Predicted Data'
+					historical = '<div class="SideOverlay__prediction">Prediction</div>'
 				}
       }
       return (
@@ -77,7 +77,7 @@ Ab
             {time}
           </div>
           <div className="SideOverlay__date">{date}</div>
-					<div> {historical} </div>
+				{renderHTML(historical)} 
           <LineChart width={300} height={200} data={this.props.selectEvent.temporal_impacts}>
             <Line type="basis" dataKey="temporal_impact" stroke="#000000" dot={false} />
             <XAxis dataKey="minute">
