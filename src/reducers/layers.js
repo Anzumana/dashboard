@@ -20,7 +20,7 @@ const initalState = {
     activeOptions: {
       id: 'activeOptions',
       title: 'Map Options',
-      taskIds: ['streets'],
+      taskIds: ['streets','typicallyAffectedSubgraph','events'],
     },
     mapOptions: {
       id: 'mapOptions',
@@ -36,7 +36,7 @@ const initalState = {
     dataOptions: {
       id: 'dataOptions',
       title: 'Data Options',
-      taskIds: ['typicallyAffectedSubgraph', 'affectedSubgraph', 'roadwork', 'trafficWarnings', 'events', 'currentSpeeds'],
+      taskIds: ['affectedSubgraph', 'roadwork', 'trafficWarnings' , 'currentSpeeds'],
     },
   },
   columnOrder: ['activeOptions', 'dataOptions', 'mapOptions'],

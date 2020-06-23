@@ -464,16 +464,6 @@ class App extends Component {
   onDragStart(result) {
     store.dispatch({ type: 'SELECT_EVENT', payload: result });
     if (result.draggableId === 'events') {
-      getEvents().then((res) => {
-        res.json().then((json) => {
-          store.dispatch({ type: 'SET_EVENTDATA', payload: json });
-        });
-      });
-      getStructDep().then((res) => {
-        res.json().then((json) => {
-          store.dispatch({ type: 'SET_STRUCTDEP', payload: json });
-        });
-      });
     }
     if (result.draggableId === 'currentSpeeds') {
       getPrimary().then((res) => {
@@ -571,6 +561,16 @@ class App extends Component {
   }
 
   render() {
+      getEvents().then((res) => {
+        res.json().then((json) => {
+          store.dispatch({ type: 'SET_EVENTDATA', payload: json });
+        });
+      });
+      getStructDep().then((res) => {
+        res.json().then((json) => {
+          store.dispatch({ type: 'SET_STRUCTDEP', payload: json });
+        });
+      });
     const {
       city, cities, viewport, changeViewport, changeCity, events,structDep, selectEvent, changeSelectedEvent, changeFilter, filter, resetFilter, unselectSelectedEvent,hoverEvent
     } = this.props;
