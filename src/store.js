@@ -4,6 +4,7 @@ import selectCityReducer from './reducers/selectCity';
 import selectEventReducer from './reducers/selectEvent';
 import viewportReducer from './reducers/viewport';
 import eventsReducer from './reducers/events';
+import structDepReducer from './reducers/structDep';
 import filterReducer from './reducers/filter';
 import trafficReducer from './reducers/traffic';
 import roadworkReducer from './reducers/roadwork';
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   viewport: viewportReducer,
   selectCity: selectCityReducer,
   events: eventsReducer,
+  structDep: structDepReducer,
   selectEvent: selectEventReducer,
   filter: filterReducer,
   traffic: trafficReducer,

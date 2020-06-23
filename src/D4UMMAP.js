@@ -145,7 +145,7 @@ class D4UMMAP extends Component {
         widthMinPixels: 5,
         getPath: d => d.path,
         pickable: true,
-        onClick: d => {
+        onHover: d => {
           if (isUndefined(d.object)) {
             return;
           }
@@ -161,6 +161,7 @@ class D4UMMAP extends Component {
         getWidth: d => 2,
       }),
     );
+						console.log('renderstructDep');
     if (this.props.primary) {
       layers.push(
         new PathLayer({

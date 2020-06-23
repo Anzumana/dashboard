@@ -77,7 +77,6 @@ Ab
             {time}
           </div>
           <div className="SideOverlay__date">{date}</div>
-				{renderHTML(historical)} 
           <LineChart width={300} height={200} data={this.props.selectEvent.temporal_impacts}>
             <Line type="basis" dataKey="temporal_impact" stroke="#000000" dot={false} />
             <XAxis dataKey="minute">
@@ -96,3 +95,4 @@ Ab
   }
 }
 export default SideOverlay;
+				//{renderHTML(historical)} 

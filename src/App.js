@@ -471,7 +471,7 @@ class App extends Component {
       });
       getStructDep().then((res) => {
         res.json().then((json) => {
-          store.dispatch({ type: 'SET_STRUCTDEPDATA', payload: json });
+          store.dispatch({ type: 'SET_STRUCTDEP', payload: json });
         });
       });
     }
@@ -572,13 +572,14 @@ class App extends Component {
 
   render() {
     const {
-      city, cities, viewport, changeViewport, changeCity, events, selectEvent, changeSelectedEvent, changeFilter, filter, resetFilter, unselectSelectedEvent,hoverEvent
+      city, cities, viewport, changeViewport, changeCity, events,structDep, selectEvent, changeSelectedEvent, changeFilter, filter, resetFilter, unselectSelectedEvent,hoverEvent
     } = this.props;
  		const renderD4UMMAP = (props) => (
    <D4UMMAP
      viewport={viewport}
      changeViewport={changeViewport}
      events={events}
+			structDep={structDep}
      changeSelectedEvent={changeSelectedEvent}
       hoverEvent={hoverEvent}
      filter={filter}
