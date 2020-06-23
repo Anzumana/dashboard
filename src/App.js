@@ -7,7 +7,7 @@ import store from './store';
 import './App.css';
 // Services
 import {
-  getTodo, fetchResults, getTraffic, getEvents, getRoadwork, getMotorway, getMotorwayLink, getPrimary, getSecondary, getTertiary, getTrunk, getTrunkLink, getPrimaryLink, getSecondaryLink, getTertiaryLink,
+  getStructDep,getTodo, fetchResults, getTraffic, getEvents, getRoadwork, getMotorway, getMotorwayLink, getPrimary, getSecondary, getTertiary, getTrunk, getTrunkLink, getPrimaryLink, getSecondaryLink, getTertiaryLink,
 } from './lib/service';
 // Component
 import Play from './components/Play';
@@ -467,6 +467,11 @@ class App extends Component {
       getEvents().then((res) => {
         res.json().then((json) => {
           store.dispatch({ type: 'SET_EVENTDATA', payload: json });
+        });
+      });
+      getStructDep().then((res) => {
+        res.json().then((json) => {
+          store.dispatch({ type: 'SET_STRUCTDEPDATA', payload: json });
         });
       });
     }

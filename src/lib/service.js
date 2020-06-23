@@ -22,15 +22,19 @@ export const fetchResults = (until) => {
 };
 // '2017-12-05T19:30:00'
 export const getEvents = (since, until) => {
-  since = new Date(2017, 10, 12).toISOString();
-  until = new Date().toISOString();
   const header = new Headers();
-  header.append('Authorization', 'Basic D4UM:D4uM$2017');
-  const url = `${'https://d4umnode.hannit.de/test?location=' + '9.448464,52636607-11.163406,52.176500' + '&since='}${encodeURIComponent(since)}&until=${until}&type=null`;
+  const url = 'http://dash-data.l3s.uni-hannover.de/events';
   return fetch(url, {
     header,
     mode: 'cors',
-    credentials: 'include',
+  });
+};
+export const getStructDep= () => {
+  const header = new Headers();
+  const url = 'http://dash-data.l3s.uni-hannover.de/structDep';
+  return fetch(url, {
+    header,
+    mode: 'cors',
   });
 };
 export const getTraffic = () => {

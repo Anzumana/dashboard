@@ -340,128 +340,118 @@ class D4UMMAP extends Component {
       );
     }
     if (this.props.traffic) {
-      layers.push(
-        new IconLayer({
-          id: 'icon-traffic',
-          data: this.props.traffic.features,
-          iconAtlas: roadwork,
-          iconMapping: {
-            'traffic-blue': {
-              x: 0,
-              y: 0,
-              width: 170,
-              height: 174,
-            },
-            'traffic-yellow': {
-              x: 220,
-              y: 0,
-              width: 170,
-              height: 174,
-            },
-            'roadwork-red': {
-              x: 414,
-              y: 0,
-              width: 170,
-              height: 174,
-            },
-            'roadwork-man': {
-              x: 612,
-              y: 0,
-              width: 157,
-              height: 174,
-            },
-          },
-          sizeScale: 1,
-          getPosition: d => d.geometry.coordinates,
-          getIcon: d => 'traffic-yellow',
-          getSize: d => 100,
-          pickable: true,
-          updateTrigger: {
-            getPosition: d => d.geometry.coordinates,
-          },
-          onClick: d => {
-            this.props.changeSelectedEvent(d.object);
-          },
-          onHover: d => {
-            if (isUndefined(d.object)) {
-              return;
-            }
-            this.props.changeSelectedEvent(d.object);
-          },
-        }),
-        new ScatterplotLayer({
-          id: 'scatterplot-layer',
-          outline: true,
-          data: this.state.filteredEvents,
-          strokeWidth: 5,
-          radiusScale: 1,
-          getPosition: d => this.calcPosition(d.coordinates),
-          getRadius: d => d.impact * 1000,
-          getColor: d => this.calcColor(d.category),
-        }),
-      );
+      //layers.push(
+        //new IconLayer({
+          //id: 'icon-traffic',
+          //data: this.props.traffic.features,
+          //iconAtlas: roadwork,
+          //iconMapping: {
+            //'traffic-blue': {
+              //x: 0,
+              //y: 0,
+              //width: 170,
+              //height: 174,
+            //},
+            //'traffic-yellow': {
+              //x: 220,
+              //y: 0,
+              //width: 170,
+              //height: 174,
+            //},
+            //'roadwork-red': {
+              //x: 414,
+              //y: 0,
+              //width: 170,
+              //height: 174,
+            //},
+            //'roadwork-man': {
+              //x: 612,
+              //y: 0,
+              //width: 157,
+              //height: 174,
+            //},
+          //},
+          //sizeScale: 1,
+          //getPosition: d => d.geometry.coordinates,
+          //getIcon: d => 'traffic-yellow',
+          //getSize: d => 100,
+          //pickable: true,
+          //updateTrigger: {
+            //getPosition: d => d.geometry.coordinates,
+          //},
+          //onClick: d => {
+            //this.props.changeSelectedEvent(d.object);
+          //},
+          //onHover: d => {
+            //if (isUndefined(d.object)) {
+              //return;
+            //}
+            //this.props.changeSelectedEvent(d.object);
+          //},
+        //})
+      //);
     }
     if (this.props.roadwork) {
-      layers.push(
-        new IconLayer({
-          id: 'icon-roadwork',
-          data: this.props.roadwork.features,
-          iconAtlas: roadwork,
-          iconMapping: {
-            'traffic-blue': {
-              x: 0,
-              y: 0,
-              width: 170,
-              height: 174,
-            },
-            'traffic-yellow': {
-              x: 220,
-              y: 0,
-              width: 170,
-              height: 174,
-            },
-            'roadwork-red': {
-              x: 414,
-              y: 0,
-              width: 170,
-              height: 174,
-            },
-            'roadwork-man': {
-              x: 612,
-              y: 0,
-              width: 157,
-              height: 174,
-            },
-          },
-          sizeScale: 1,
-          getPosition: d => d.geometry.coordinates,
-          getIcon: d => 'roadwork-man',
-          getSize: d => 100,
-          pickable: true,
-          updateTrigger: {
-            getPosition: d => d.geometry.coordinates,
-          },
-          onClick: d => {
-            this.props.changeSelectedEvent(d.object);
-          },
-          onHover: d => {
-            if (isUndefined(d.object)) {
-              return;
-            }
-            this.props.changeSelectedEvent(d.object);
-          },
-        }),
-        new ScatterplotLayer({
-          id: 'scatterplot-layer',
-          outline: true,
-          data: this.state.filteredEvents,
-          strokeWidth: 5,
-          radiusScale: 1,
-          getPosition: d => this.calcPosition(d.coordinates),
-          getRadius: d => d.impact * 1000,
-          getColor: d => this.calcColor(d.category),
-        }),
-      );
+      //layers.push(
+        //new IconLayer({
+          //id: 'icon-roadwork',
+          //data: this.props.roadwork.features,
+          //iconAtlas: roadwork,
+          //iconMapping: {
+            //'traffic-blue': {
+              //x: 0,
+              //y: 0,
+              //width: 170,
+              //height: 174,
+            //},
+            //'traffic-yellow': {
+              //x: 220,
+              //y: 0,
+              //width: 170,
+              //height: 174,
+            //},
+            //'roadwork-red': {
+              //x: 414,
+              //y: 0,
+              //width: 170,
+              //height: 174,
+            //},
+            //'roadwork-man': {
+              //x: 612,
+              //y: 0,
+              //width: 157,
+              //height: 174,
+            //},
+          //},
+          //sizeScale: 1,
+          //getPosition: d => d.geometry.coordinates,
+          //getIcon: d => 'roadwork-man',
+          //getSize: d => 100,
+          //pickable: true,
+          //updateTrigger: {
+            //getPosition: d => d.geometry.coordinates,
+          //},
+          //onClick: d => {
+            //this.props.changeSelectedEvent(d.object);
+          //},
+          //onHover: d => {
+            //if (isUndefined(d.object)) {
+              //return;
+            //}
+            //this.props.changeSelectedEvent(d.object);
+          //},
+        //}),
+        //new ScatterplotLayer({
+          //id: 'scatterplot-layer',
+          //outline: true,
+          //data: this.state.filteredEvents,
+          //strokeWidth: 5,
+          //radiusScale: 1,
+          //getPosition: d => this.calcPosition(d.coordinates),
+          //getRadius: d => d.impact * 1000,
+          //getColor: d => this.calcColor(d.category),
+        //}),
+      //);
     }
     layers.push(
       new IconLayer({
@@ -571,17 +561,7 @@ class D4UMMAP extends Component {
           }
           this.props.changeSelectedEvent(d.object);
         },
-      }),
-      new ScatterplotLayer({
-        id: 'scatterplot-layer',
-        outline: true,
-        data: this.state.filteredEvents,
-        strokeWidth: 5,
-        radiusScale: 1,
-        getPosition: d => this.calcPosition(d.coordinates),
-        getRadius: d => d.impact * 1000,
-        getColor: d => this.calcColor(d.category),
-      }),
+      })
     );
     if (
       this.props.layer == 'affected_subgraph' &&
@@ -598,6 +578,16 @@ class D4UMMAP extends Component {
           getColor: d => [0, 0, 0, 255],
           getWidth: d => 1,
         }),
+				new ScatterplotLayer({
+					id: 'scatterplot-layer',
+					outline: true,
+					data: this.state.filteredEvents,
+					strokeWidth: 5,
+					radiusScale: 1,
+					getPosition: d => this.calcPosition(d.coordinates),
+					getRadius: d => d.impact * 1000,
+					getColor: d => this.calcColor(d.category),
+				}),
       );
     }
     if (
@@ -605,7 +595,6 @@ class D4UMMAP extends Component {
       this.state.selectEvent &&
       this.state.selectEvent.type != 'Feature'
     ) {
-      console.log('we triggered this');
       layers.push(
         new PathLayer({
           id: 'path-layer',
@@ -615,9 +604,19 @@ class D4UMMAP extends Component {
           widthScale: 10,
           widthMinPixels: 2,
           getPath: d => d.path,
-          getColor: d => [0, 0, 0, 255],
+          getColor: d => [0, 0, 255, 255],
           getWidth: d => 1,
         }),
+				new ScatterplotLayer({
+					id: 'scatterplot-layer',
+					outline: true,
+					data: this.state.filteredEvents,
+					strokeWidth: 5,
+					radiusScale: 1,
+					getPosition: d => this.calcPosition(d.coordinates),
+					getRadius: d => d.impact * 1000,
+					getColor: d => this.calcColor(d.category),
+				}),
       );
     }
     return layers;
