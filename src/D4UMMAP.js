@@ -760,6 +760,18 @@ class D4UMMAP extends Component {
       return (
         <div>
           <FullscreenButton fullscreen={this.props.fullscreen} />
+          <Play
+            changeFilter={val =>
+              store.dispatch({type: 'SET_FILTER', payload: val})
+            }
+            resetFilter={() =>
+              store.dispatch({type: 'RESET_FILTER', payload: {}})
+            }
+            filter={this.props.filter}
+            unselectSelectedEvent={val =>
+              store.dispatch({type: 'UNSELECT_EVENT', payload: val})
+            }
+          />
           <MapGL
             {...viewport}
             mapStyle={this.props.mapStyle}
