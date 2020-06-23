@@ -31,7 +31,6 @@ package-lock.json
 # Generated Files
 www/
 tmp/
-docs/
 src/assets/styles/main.css
 src/aot/
 report/
