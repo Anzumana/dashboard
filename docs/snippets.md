@@ -111,3 +111,9 @@ lib/utils
 // format that is being parsed
 // "LINESTRING(9.7441138 52.3725554,9.7440523 52.3720947,9.7440011 52.3717967,9.7439862 52.3716662,9.7440009 52.3715866)"
 ```
+# .eslintrc
+
+{
+	  "extends": "airbnb",
+}
+
