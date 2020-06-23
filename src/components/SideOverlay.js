@@ -22,6 +22,9 @@ class SideOverlay extends React.Component {
     if (this.props.selectEvent === null) {
       return null;
     }
+		if(this.props.selectEvent['groupId']){
+			return null;
+		}
     if (this.props.selectEvent.type == 'traffic') {
       return (
         <div className="SideOverlay">
@@ -49,10 +52,10 @@ quantity of meassurments:
         </div>
       );
     }
+
+			//<Card tile={this.props.selectEvent} />
     if (this.props.selectEvent.type === 'DEFAULT') {
-      return (
-        <Card tile={this.props.selectEvent} />
-      );
+      return null;
     }
     if (this.props.selectEvent.type !== 'Feature') {
       let time;
@@ -75,6 +78,7 @@ quantity of meassurments:
             {' '}
 Ab
             {time}
+				{renderHTML(historical)} 
           </div>
           <div className="SideOverlay__date">{date}</div>
           <LineChart width={300} height={200} data={this.props.selectEvent.temporal_impacts}>
@@ -95,4 +99,3 @@ Ab
   }
 }
 export default SideOverlay;
-				//{renderHTML(historical)} 

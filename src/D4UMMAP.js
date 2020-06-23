@@ -9039,38 +9039,13 @@ let structDep =[
     ];
     layers.push(
       new PathLayer({
-        id: 'testEventLayer',
-        data: testEvent,
-        widthScale: 1,
-        widthMinPixels: 5,
-        getPath: d => d.path,
-        pickable: true,
-        onHover: d => {
-          if (isUndefined(d.object)) {
-            return;
-          }
-          this.props.hoverEvent(d.object);
-        },
-        getColor: d => {
-					console.log('get Color');
-          if (this.props.selectEvent['groupId'] == d.groupId) {
-            return [50, 205, 50, 255];
-          } else {
-            return [255, 40, 255, 255];
-          }
-        },
-        getWidth: d => 2,
-      }),
-    );
-    layers.push(
-      new PathLayer({
         id: 'connctedTestlayer',
         data: structDep,
         widthScale: 1,
         widthMinPixels: 5,
         getPath: d => d.path,
         pickable: true,
-        onHover: d => {
+        onClick: d => {
           if (isUndefined(d.object)) {
             return;
           }
