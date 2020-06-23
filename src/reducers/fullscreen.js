@@ -1,4 +1,4 @@
-const initalState = false;
+const initalState = true;
 
 export default function (state = initalState, action) {
   switch (action.type) {
